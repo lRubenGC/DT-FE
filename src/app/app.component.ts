@@ -1,10 +1,12 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { HeaderComponent } from './layouts/header/header.component';
+import { SeoComponent } from './seo/seo.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [SeoComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
