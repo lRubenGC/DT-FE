@@ -1,0 +1,4 @@
+{
+  "test1": "Tengo manzanas",
+  "test2": "Tengo {{count}} manzanas"
+}
