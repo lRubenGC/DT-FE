@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DcButtonComponent } from './dc-button.component';
+import { DtSelectButtonComponent } from './dt-select-button.component';
 
-describe('DcButtonComponent', () => {
-  let component: DcButtonComponent;
-  let fixture: ComponentFixture<DcButtonComponent>;
+describe('DtSelectButtonComponent', () => {
+  let component: DtSelectButtonComponent;
+  let fixture: ComponentFixture<DtSelectButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DcButtonComponent]
+      imports: [DtSelectButtonComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DcButtonComponent);
+    fixture = TestBed.createComponent(DtSelectButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

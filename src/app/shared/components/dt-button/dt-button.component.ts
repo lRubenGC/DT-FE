@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'dc-button',
+  selector: 'dt-button',
   standalone: true,
   imports: [],
-  templateUrl: './dc-button.component.html',
-  styleUrl: './dc-button.component.scss',
+  templateUrl: './dt-button.component.html',
+  styleUrl: './dt-button.component.scss',
 })
-export class DcButtonComponent {
+export class DtButtonComponent {
   @Input({ required: true }) header!: string;
   @Input('bgColor') set bgColorSetter(v: string | null) {
     if (!v) {

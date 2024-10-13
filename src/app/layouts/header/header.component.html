@@ -1,30 +1,29 @@
 <header
   *transloco="let t"
-  class="flex items-center justify-between w-full h-20 border-b-2 border-gray-200 px-4"
+  class="grid grid-cols-5 w-full h-20 border-b-2 border-gray-200 px-16"
 >
-  <div class="flex items-center justify-center w-full gap-12">
-    <div class="flex gap-4">
-      <dc-button header="Básicos"></dc-button>
-      <dc-button header="Especiales"></dc-button>
-      <dc-button header="Premium"></dc-button>
-    </div>
+  <div></div>
+  <div class="flex justify-end items-center gap-2">
+    <dt-select-button [options]="leftButtonsOptions$ | async" />
+  </div>
 
+  <div class="flex justify-center">
     <img
       alt="logo"
-      src="assets/images/shared/logo.webp"
-      class="w-28 cursor-pointer"
-    />
-
-    <input
-      type="text"
-      placeholder="search"
-      class="h-10 border border-gray-300 rounded-md"
+      class="w-20 cursor-pointer drop-shadow"
+      src="assets/images/header/logo.webp"
     />
   </div>
 
-  <img
-    alt="user"
-    src="assets/images/shared/logo.webp"
-    class="w-20 cursor-pointer"
-  />
+  <div class="flex items-center">
+    <dt-search-bar class="w-full" />
+  </div>
+
+  <div class="flex items-center justify-end">
+    <img
+      alt="user"
+      class="w-12 rounded-full cursor-pointer"
+      src="assets/images/header/no-user.webp"
+    />
+  </div>
 </header>

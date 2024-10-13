@@ -1,0 +1,9 @@
+@for (opt of options; track $index) {
+<button
+  [title]="opt.label"
+  class="mx-3 px-1 font-semibold hover:text-orange-500"
+  [ngClass]="{ 'border-b-2 border-orange-400': opt.active }"
+>
+  {{ opt.label }}
+</button>
+}
