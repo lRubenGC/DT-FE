@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export interface SelectButtonOptions {
+  id: string;
   active: boolean;
   label: string;
 }
@@ -15,4 +16,5 @@ export interface SelectButtonOptions {
 })
 export class DtSelectButtonComponent {
   @Input({ required: true }) options: SelectButtonOptions[] | null = [];
+  @Output() optionSelected = new EventEmitter<string>();
 }

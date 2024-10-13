@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import {
   DtSelectButtonComponent,
   SelectButtonOptions,
 } from '@shared/components/dt-select-button/dt-select-button.component';
-import { map, Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @Component({
@@ -17,29 +17,36 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     TranslocoDirective,
     DtSelectButtonComponent,
     SearchBarComponent,
+    RouterLink,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   //#region SERVICES
-  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
   //#endregion SERVICES
 
   //#region LEFT BUTTONS
-  public readonly LEFT_BUTTONS_OPTIONS: { label: string; route: string }[] = [
-    { label: 'Básicos', route: 'basic-cars' },
-    { label: 'Especiales', route: 'special-cars' },
-    { label: 'Premium', route: 'premium-cars' },
+  public readonly LEFT_BUTTONS_OPTIONS: { id: string; label: string }[] = [
+    { id: '/basic-cars', label: 'Básicos' },
+    { id: '/special-cars', label: 'Especiales' },
+    { id: '/premium-cars', label: 'Premium' },
   ];
   public leftButtonsOptions$: Observable<SelectButtonOptions[]> =
-    this.activatedRoute.url.pipe(
-      map((r) =>
-        this.LEFT_BUTTONS_OPTIONS.map(({ label, route }) => ({
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map((event: any) =>
+        this.LEFT_BUTTONS_OPTIONS.map(({ label, id }) => ({
+          id,
           label,
-          active: route === r[0].path,
+          active: id === event.url,
         }))
       )
     );
   //#endregion LEFT BUTTONS
+
+  public navigate(route: string) {
+    this.router.navigate([route]);
+  }
 }
