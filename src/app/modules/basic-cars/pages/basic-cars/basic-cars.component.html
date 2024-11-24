@@ -1,1 +1,9 @@
-<p>basic-cars works!</p>
+<form [formGroup]="payload">
+  <input type="number" formControlName="year" />
+  <input type="text" formControlName="mainSerie" />
+</form>
+
+@if (cars$ | async; as cars) {
+<h3>Coches básicos</h3>
+<pre>{{ cars | json }}</pre>
+}

@@ -1,0 +1,1 @@
+export const BASIC_CARS_DEFAULT_YEAR = 2024;
