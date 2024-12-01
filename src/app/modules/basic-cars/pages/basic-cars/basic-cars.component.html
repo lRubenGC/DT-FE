@@ -1,9 +1,10 @@
+@if (filters$ | async) {
 <form [formGroup]="payload">
   <input type="number" formControlName="year" />
   <input type="text" formControlName="mainSerie" />
 </form>
 
-@if (cars$ | async; as cars) {
+@if (groupedCars$ | async; as cars) {
 <h3>Coches básicos</h3>
 <pre>{{ cars | json }}</pre>
-}
+} }

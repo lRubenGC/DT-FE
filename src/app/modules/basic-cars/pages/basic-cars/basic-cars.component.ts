@@ -1,19 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { BASIC_CARS_DEFAULT_YEAR } from '@modules/basic-cars/models/basic-cars.constants';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   BasicCarPayload,
   BasicCarResponse,
+  BasicCarsGrouped,
 } from '@modules/basic-cars/models/basic-cars.models';
 import { BasicCarsService } from '@modules/basic-cars/services/basic-cars.service';
 import { USER_PROPERTY } from '@shared/models/filters.models';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, shareReplay, startWith, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'basic-cars',
@@ -29,30 +24,42 @@ export class BasicCarsComponent {
 
   //#region PAYLOAD
   public payload = new FormGroup({
-    year: new FormControl<number>(BASIC_CARS_DEFAULT_YEAR, {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    mainSerie: new FormControl<string | null>(null),
-    exclusiveSerie: new FormControl<string | null>(null),
-    userProperty: new FormControl<USER_PROPERTY | null>(null),
+    year: new FormControl<number | undefined>(undefined),
+    mainSerie: new FormControl<string | undefined>(undefined),
+    exclusiveSerie: new FormControl<string | undefined>(undefined),
+    userProperty: new FormControl<USER_PROPERTY | undefined>(undefined),
   });
+  private payloadChanges$ = this.payload.valueChanges.pipe(startWith({}));
   //#endregion PAYLOAD
 
   //#region DATA
-  public data$: Observable<BasicCarResponse> = this.payload.valueChanges.pipe(
-    tap((value) => console.log('a')),
-    switchMap((payload) => this.getBasicCars(payload as BasicCarPayload)),
-    tap((value) => console.log('b'))
+  public data$: Observable<BasicCarResponse> = this.payloadChanges$.pipe(
+    switchMap((payload) => this.getBasicCars(payload)),
+    shareReplay({ refCount: true, bufferSize: 1 })
   );
   //#endregion DATA
 
   //#region VALUE
-  public cars$: Observable<any> = this.data$
-    .pipe
-    // tap((value) => console.log(value))
-    ();
+  public groupedCars$: Observable<BasicCarsGrouped> = this.data$.pipe(
+    map(({ cars }) => cars)
+  );
   //#endregion VALUE
+
+  //#region FILTERS
+  public filters$: Observable<BasicCarPayload> = this.data$.pipe(
+    tap(({ filters }) =>
+      this.payload.patchValue(filters, { emitEvent: false })
+    ),
+    map(({ filters }) => filters)
+  );
+  //#endregion FILTERS
+
+  //#region CARS COUNT
+  public carsCount$: Observable<{ carsOwned: number; carsShowed: number }> =
+    this.data$.pipe(
+      map(({ carsOwned, carsShowed }) => ({ carsOwned, carsShowed }))
+    );
+  //#endregion CARS COUNT
 
   private getBasicCars(payload: BasicCarPayload) {
     return this.basicCarsService
