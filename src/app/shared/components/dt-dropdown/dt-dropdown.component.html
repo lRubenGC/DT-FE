@@ -1,0 +1,9 @@
+<h4>{{ header }}</h4>
+<input type="text" (input)="onTextChange.next($event)" />
+<div class="options flex flex-col">
+  @for (option of options$ | async; track $index) {
+  <div (click)="onSelect(option)">
+    <span>{{ option }}</span>
+  </div>
+  }
+</div>
