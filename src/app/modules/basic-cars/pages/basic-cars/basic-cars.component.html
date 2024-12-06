@@ -1,7 +1,21 @@
-@if (filters$ | async) {
-<form [formGroup]="payload">
-  <input type="number" formControlName="year" />
-  <input type="text" formControlName="mainSerie" />
+@if (filters$ | async; as filters) {
+<form [formGroup]="payload" class="flex flex-col">
+  <!-- <dt-dropdown formControlName="year" header="year" [options]="filters.year" /> -->
+  <dt-dropdown
+    formControlName="mainSerie"
+    header="mainSerie"
+    [options]="filters.mainSerie"
+  />
+  <!-- <dt-dropdown
+    formControlName="exclusiveSerie"
+    header="exclusiveSerie"
+    [options]="filters.exclusiveSerie"
+  />
+  <dt-dropdown
+    formControlName="userProperty"
+    header="userProperty"
+    [options]="filters.userProperty"
+  /> -->
 </form>
 
 @if (groupedCars$ | async; as cars) {

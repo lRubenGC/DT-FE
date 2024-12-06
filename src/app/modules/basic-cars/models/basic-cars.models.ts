@@ -31,3 +31,10 @@ export interface BasicCarPayload {
   exclusiveSerie?: string | null;
   userProperty?: USER_PROPERTY | null;
 }
+
+export class BasicCarsFilters {
+  year: number[] = [];
+  mainSerie: string[] = [];
+  exclusiveSerie: string[] = [];
+  userProperty: string[] = [];
+}
