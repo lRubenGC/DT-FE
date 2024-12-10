@@ -1,22 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+import { ClickOutsideDirective } from '@shared/directives/click-outside-directive';
+import {
+  BehaviorSubject,
   combineLatest,
   debounceTime,
   map,
   merge,
   Observable,
   ReplaySubject,
+  share,
   startWith,
   Subject,
   tap,
 } from 'rxjs';
+import { DtButtonComponent } from '../dt-button/dt-button.component';
 
 @Component({
   selector: 'dt-dropdown',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    DtButtonComponent,
+    ClickOutsideDirective,
+    FormsModule,
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -30,6 +43,29 @@ import {
 export class DtDropdownComponent implements ControlValueAccessor {
   //#region INPUTS
   @Input({ required: true }) header: string = '';
+  @Input() allowNullable: boolean = true;
+  //#endregion INPUTS
+
+  //#region VALUE
+  public valueChanges$ = new ReplaySubject<string | number | null>(1);
+  public value$: Observable<string | number | null> = this.valueChanges$.pipe(
+    map((v) => v ?? ''),
+    share()
+  );
+  //#endregion VALUE
+
+  //#region FILTER
+  public onFilterChange = new Subject<Event>();
+  public filterValue = new Subject<string>();
+  private onFilterChange$: Observable<string | number | null> = merge(
+    this.onFilterChange.pipe(
+      map((event) => (event.target as HTMLInputElement).value)
+    ),
+    this.filterValue.pipe(tap((v) => console.log(v)))
+  );
+  //#endregion FILTER
+
+  //#region OPTIONS
   @Input({ alias: 'options', required: true }) set optionsSetter(
     v: string[] | number[]
   ) {
@@ -37,58 +73,35 @@ export class DtDropdownComponent implements ControlValueAccessor {
     this.options.next(v);
   }
   private options = new ReplaySubject<string[] | number[]>(1);
-  //#endregion INPUTS
-
-  //#region TEXT INPUT
-  public onTextChange = new Subject<Event>();
-  private onTextChange$: Observable<string> = this.onTextChange.pipe(
-    debounceTime(300),
-    map((event) => (event.target as HTMLInputElement).value),
-    tap((v) => console.log('value', v)),
-    startWith('')
-  );
-  //#endregion TEXT INPUT
-
-  //#region OPTIONS
-  public options$ = combineLatest([this.options, this.onTextChange$]).pipe(
+  public options$ = combineLatest([
+    this.options,
+    this.onFilterChange$.pipe(startWith('')),
+  ]).pipe(
     map(([options, textSearched]) =>
       options.filter((option) =>
-        option.toString().toLowerCase().includes(textSearched.toLowerCase())
+        option
+          .toString()
+          .toLowerCase()
+          .includes(String(textSearched).toLowerCase())
       )
     )
   );
   //#endregion OPTIONS
 
-  //#region VALUE CHANGES
-  private onFnChange = new Subject();
-  private onFnChange$: Observable<string> = this.onFnChange.pipe(
-    tap((a) => console.log(a)),
-    map(() => '')
-  );
-  private valueChange$ = new Subject<string | number>();
-  //#endregion VALUE CHANGES
-
-  //#region VALUE
-  public value$: Observable<string | number> = merge(
-    this.valueChange$,
-    this.onFnChange$
-  );
-  //#region VALUE
-
-  onSelect(option: string | number): void {
-    this.valueChange$.next(option);
-    this.onChange(option);
-    this.onTouched();
-  }
+  //#region VISIBILITY
+  public dropdownVisibility = new BehaviorSubject<{ visible: boolean }>({
+    visible: false,
+  });
+  public dropdownVisibility$ = this.dropdownVisibility.pipe(share());
+  //#endregion VISIBILITY
 
   //#region DEFAULT ANGULAR FNS
-  private onChange: (value: string | number) => void = () => {};
+  private onChange: (value: string | number | null) => void = () => {};
   private onTouched: () => void = () => {};
   public writeValue(v: string): void {
-    this.valueChange$.next(v);
+    this.valueChanges$.next(v);
   }
   public registerOnChange(fn: any): void {
-    // this.onFnChange.next(fn);
     this.onChange = fn;
   }
   public registerOnTouched(fn: any): void {
@@ -96,4 +109,11 @@ export class DtDropdownComponent implements ControlValueAccessor {
   }
   public setDisabledState(isDisabled: boolean): void {}
   //#endregion DEFAULT ANGULAR FNS
+
+  public onSelect(option: string | number | null): void {
+    this.valueChanges$.next(option);
+    this.dropdownVisibility.next({ visible: false });
+    this.onChange(option);
+    this.onTouched();
+  }
 }

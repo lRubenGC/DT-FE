@@ -1,9 +1,75 @@
-<h4>{{ header }}</h4>
-<input type="text" (input)="onTextChange.next($event)" />
-<div class="options flex flex-col">
-  @for (option of options$ | async; track $index) {
-  <div (click)="onSelect(option)">
-    <span>{{ option }}</span>
+@if (dropdownVisibility$ | async; as dropdownVisible) {
+<div
+  appClickOutside
+  class="dt-dropdown-container relative"
+  (clickOutside)="dropdownVisibility.next({ visible: false })"
+>
+  <h4>{{ header }}</h4>
+  <div
+    (click)="dropdownVisibility.next({ visible: true })"
+    class="relative w-full"
+  >
+    <input
+      type="text"
+      readonly
+      class="w-full p-2.5 rounded-md cursor-pointer outline-none bg-gray-200 text-gray-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
+      [ngClass]="{
+        'rounded-b-none': dropdownVisible.visible
+      }"
+      [ngModel]="value$ | async"
+    />
+    @if (allowNullable && !!(value$ | async)) {
+    <dt-button
+      type="button"
+      icon="close"
+      class="absolute inset-y-0 end-0 flex items-center pe-3"
+      buttonClass="bg-transparent"
+      (onClick)="onSelect(null)"
+    ></dt-button>
+    } @else {
+    <dt-button
+      type="button"
+      icon="arrow-down"
+      class="absolute inset-y-0 end-0 flex items-center pe-3"
+      buttonClass="bg-transparent"
+    ></dt-button>
+    }
   </div>
-  }
+
+  <div
+    class="flex flex-col absolute w-full overflow-hidden z-10 transition-all duration-300 ease-in-out bg-gray-200 text-gray-700 dark:bg-gray-700"
+    [class.max-h-0]="!dropdownVisible.visible"
+    [class.max-h-60]="dropdownVisible.visible"
+  >
+    <div class="py-2 px-2 relative">
+      <input
+        class="w-full p-1.5 border border-gray-700 dark:border-gray-50 rounded-md outline-none bg-gray-200 text-gray-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
+        (input)="onFilterChange.next($event)"
+        [ngModel]="filterValue | async"
+      />
+      <dt-button
+        type="button"
+        icon="close"
+        class="absolute inset-y-0 end-0 flex items-center pe-3"
+        buttonClass="bg-transparent"
+        (onClick)="filterValue.next('')"
+      />
+    </div>
+    <div class="overflow-y-auto accent-pink-500">
+      @for (option of options$ | async; track $index; let odd = $odd, even =
+      $even) {
+      <div
+        [ngClass]="{
+          'bg-gray-100 dark:bg-gray-700': odd,
+          'bg-gray-200 dark:bg-gray-800': even
+        }"
+        class="cursor-pointer bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 dark:text-white p-1"
+        (click)="onSelect(option)"
+      >
+        <span>{{ option }}</span>
+      </div>
+      }
+    </div>
+  </div>
 </div>
+}
