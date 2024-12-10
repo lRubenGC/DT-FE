@@ -2,22 +2,27 @@
   @if (filters$ | async; as filters) {
   <aside class="col-span-3">
     <form [formGroup]="payload" class="flex flex-col">
-      <!-- <dt-dropdown formControlName="year" header="year" [options]="filters.year" /> -->
+      <dt-dropdown
+        formControlName="year"
+        header="year"
+        [options]="filters.year"
+        [allowNullable]="false"
+      />
       <dt-dropdown
         formControlName="mainSerie"
         header="mainSerie"
         [options]="filters.mainSerie"
       />
-      <!-- <dt-dropdown
-    formControlName="exclusiveSerie"
-    header="exclusiveSerie"
-    [options]="filters.exclusiveSerie"
-  />
-  <dt-dropdown
-    formControlName="userProperty"
-    header="userProperty"
-    [options]="filters.userProperty"
-  /> -->
+      <dt-dropdown
+        formControlName="exclusiveSerie"
+        header="exclusiveSerie"
+        [options]="filters.exclusiveSerie"
+      />
+      <dt-dropdown
+        formControlName="userProperty"
+        header="userProperty"
+        [options]="filters.userProperty"
+      />
     </form>
   </aside>
   } @if (groupedCars$ | async; as cars) {
