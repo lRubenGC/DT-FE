@@ -3,6 +3,7 @@
   [title]="title ?? header"
   class="rounded-md cursor-pointer py-1 px-1 flex items-center w-full gap-1 bg-orange-400 hover:bg-orange-500 active:bg-orange-600 text-white duration-200"
   [class]="buttonClass"
+  (click)="onClick.emit()"
 >
   @if (!!icon) { <img [src]="'assets/icons/' + icon + '.svg'" /> }
   {{ header }}
