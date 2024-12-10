@@ -1,22 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Subject } from 'rxjs';
+
+export type DT_ICONS = 'close' | 'search';
 
 @Component({
   selector: 'dt-button',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dt-button.component.html',
   styleUrl: './dt-button.component.scss',
 })
 export class DtButtonComponent {
-  @Input({ required: true }) header!: string;
-  @Input('bgColor') set bgColorSetter(v: string | null) {
-    if (!v) {
-      this.bgColor$.next('primary');
-    } else {
-      this.bgColor$.next(v);
-    }
-  }
-  public bgColor$ = new Subject<string>();
+  @Input({ required: true }) type!: 'icon' | 'button';
+  @Input() header: string = '';
+  @Input() icon: DT_ICONS | null = null;
   @Input() title: string | null = null;
+  @Input() buttonClass: string = '';
 }

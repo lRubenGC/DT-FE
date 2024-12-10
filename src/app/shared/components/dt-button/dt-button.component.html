@@ -1,6 +1,14 @@
+@if (type === 'button') {
 <button
-  class="bg-orange-400 rounded-md py-2 px-3 hover:bg-orange-500 active:bg-orange-600 hover:cursor-pointer text-white"
   [title]="title ?? header"
+  class="rounded-md cursor-pointer py-1 px-1 flex items-center w-full gap-1 bg-orange-400 hover:bg-orange-500 active:bg-orange-600 text-white duration-200"
+  [class]="buttonClass"
 >
+  @if (!!icon) { <img [src]="'assets/icons/' + icon + '.svg'" /> }
   {{ header }}
 </button>
+} @else {
+<div class="h-full flex items-center">
+  <img [src]="'assets/icons/' + icon + '.svg'" />
+</div>
+}
