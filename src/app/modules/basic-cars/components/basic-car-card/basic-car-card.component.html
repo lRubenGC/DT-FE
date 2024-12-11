@@ -1,0 +1,81 @@
+@if (car$| async; as car) {
+<div class="basic-card-container w-full flex flex-col gap-1">
+  <div class="img-container">
+    <div
+      class="buttons-container w-full h-full absolute flex justify-center items-end gap-2"
+    >
+      <button class="pi pi-window-maximize open-modal"></button>
+      <!-- (click)="openModal()" -->
+      <button
+        *ngIf="!car.hasCar && !car.wantsCar"
+        class="pi pi-heart wish-car"
+      ></button>
+      <!-- (click)="addCar({ wantsCar: true })" -->
+      <button
+        *ngIf="car.hasCar || car.wantsCar"
+        class="pi pi-times-circle remove-car"
+      ></button>
+      <!-- (click)="removeCar()" -->
+      <button *ngIf="!car.hasCar" class="pi pi-plus-circle add-car"></button>
+      <!-- (click)="addCar({ hasCar: true })" -->
+    </div>
+    <img
+      *ngIf="!!car.img.length"
+      [src]="car.img"
+      [alt]="car.model_name"
+      loading="lazy"
+    />
+    <img
+      *ngIf="!car.img.length"
+      src="../../../../../assets/images/basic_cars_page/no-image-basic.webp"
+      alt="Image not available"
+      loading="lazy"
+    />
+  </div>
+  <div class="card-description">
+    <p class="card-description-row">{{ car.model_name }}</p>
+    <div class="card-description-row flex justify-between">
+      <p class="card-description-item">{{ car.version }}</p>
+      <p class="card-description-item">{{ car.col_serie }}</p>
+    </div>
+    <div class="card-description-row flex justify-between">
+      <p class="card-description-item">
+        {{ car.car_id }}
+        <!-- <span *ngIf="showYear">- {{ car.year }}</span> -->
+      </p>
+      <div class="flex items-center gap-1">
+        <i
+          *ngIf="car.hasCar || car.wantsCar"
+          class="pi pi-heart-fill"
+          [ngClass]="{
+            owned: car.hasCar,
+            wished: car.wantsCar
+          }"
+        ></i>
+        <!-- <img
+          *ngIf="car.exclusive_serie"
+          [src]="getSeriesIcon(car.exclusive)"
+          class="card-series-img"
+        /> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="flex flex-col w-full">
+  <div class="flex">
+    <img
+      [src]="car.img"
+      loading="lazy"
+      class="w-[80%] h-[110px] object-cover"
+    />
+    <div class="flex flex-col w-[20%]">
+      <span>{{ car.car_id }}</span>
+      <span>{{ car.version }}</span>
+      <span>{{ car.col }}</span>
+      <span>{{ car.col_serie }}</span>
+    </div>
+  </div>
+  <h6 class="font-semibold text-center">{{ car.model_name }}</h6>
+</div> -->
+}
