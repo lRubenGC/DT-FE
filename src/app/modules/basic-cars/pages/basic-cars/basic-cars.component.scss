@@ -1,0 +1,12 @@
+.divider {
+  width: 100%;
+  background-color: #4b5563;
+  height: 1px;
+}
+.group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.5rem;
+}

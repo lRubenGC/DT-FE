@@ -1,6 +1,6 @@
-<div class="grid grid-cols-12 w-[75%] mx-auto my-3 gap-12">
+<div class="grid grid-cols-12 w-[85%] mx-auto my-3 gap-6">
   @if (filters$ | async; as filters) {
-  <aside class="col-span-3">
+  <aside class="col-span-2">
     <form [formGroup]="payload" class="flex flex-col">
       <dt-dropdown
         formControlName="year"
@@ -25,10 +25,20 @@
       />
     </form>
   </aside>
-  } @if (groupedCars$ | async; as cars) {
-  <main class="col-span-9">
-    <h1>Coches básicos</h1>
-    <pre>{{ cars | json }}</pre>
+  } @if (groupedCars$ | async; as groupedCars) {
+  <main class="col-span-10">
+    <h1 class="text-4xl">Coches básicos</h1>
+    @for(group of groupedCars | keyvalue; track $index){
+    <div class="py-2">
+      <h3 class="text-2xl">{{ group.key }}</h3>
+      <div class="divider my-1"></div>
+      <div class="group">
+        @for(car of group.value; track $index) {
+        <dt-basic-car-card [car]="car" />
+        }
+      </div>
+    </div>
+    }
   </main>
   }
 </div>

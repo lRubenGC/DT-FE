@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BasicCarCardComponent } from '@modules/basic-cars/components/basic-car-card/basic-car-card.component';
 import {
   BasicCarPayload,
   BasicCarResponse,
@@ -27,7 +28,12 @@ import {
 @Component({
   selector: 'basic-cars',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DtDropdownComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DtDropdownComponent,
+    BasicCarCardComponent,
+  ],
   templateUrl: './basic-cars.component.html',
   styleUrl: './basic-cars.component.scss',
 })
