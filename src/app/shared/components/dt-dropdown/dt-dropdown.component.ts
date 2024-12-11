@@ -54,17 +54,6 @@ export class DtDropdownComponent implements ControlValueAccessor {
   );
   //#endregion VALUE
 
-  //#region FILTER
-  public onFilterChange = new Subject<Event>();
-  public filterValue = new Subject<string>();
-  private onFilterChange$: Observable<string | number | null> = merge(
-    this.onFilterChange.pipe(
-      map((event) => (event.target as HTMLInputElement).value)
-    ),
-    this.filterValue.pipe(tap((v) => console.log(v)))
-  );
-  //#endregion FILTER
-
   //#region OPTIONS
   @Input({ alias: 'options', required: true }) set optionsSetter(
     v: string[] | number[]
@@ -73,9 +62,10 @@ export class DtDropdownComponent implements ControlValueAccessor {
     this.options.next(v);
   }
   private options = new ReplaySubject<string[] | number[]>(1);
+  public filterValue = new Subject<string>();
   public options$ = combineLatest([
     this.options,
-    this.onFilterChange$.pipe(startWith('')),
+    this.filterValue.pipe(startWith('')),
   ]).pipe(
     map(([options, textSearched]) =>
       options.filter((option) =>

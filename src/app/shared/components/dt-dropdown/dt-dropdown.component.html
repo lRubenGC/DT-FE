@@ -44,8 +44,8 @@
     <div class="py-2 px-2 relative">
       <input
         class="w-full p-1.5 border border-gray-700 dark:border-gray-50 rounded-md outline-none bg-gray-200 text-gray-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
-        (input)="onFilterChange.next($event)"
         [ngModel]="filterValue | async"
+        (ngModelChange)="filterValue.next($event)"
       />
       <dt-button
         type="button"
@@ -55,7 +55,7 @@
         (onClick)="filterValue.next('')"
       />
     </div>
-    <div class="overflow-y-auto accent-pink-500">
+    <div class="overflow-y-auto">
       @for (option of options$ | async; track $index; let odd = $odd, even =
       $even) {
       <div
