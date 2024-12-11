@@ -16,8 +16,8 @@ import {
   merge,
   Observable,
   pairwise,
+  scan,
   shareReplay,
-  skip,
   startWith,
   switchMap,
   take,
@@ -43,15 +43,29 @@ export class BasicCarsComponent {
     exclusiveSerie: new FormControl<string | undefined>(undefined),
     userProperty: new FormControl<USER_PROPERTY | undefined>(undefined),
   });
-  private payloadChanges$ = this.payload.valueChanges.pipe(
-    startWith({
-      year: undefined,
-    })
-  );
+  private payloadChanges$: Observable<BasicCarPayload> =
+    this.payload.valueChanges.pipe(
+      scan<BasicCarPayload>((prev, curr) => {
+        if (prev.year !== curr.year) {
+          curr.mainSerie = null;
+          curr.exclusiveSerie = null;
+          this.payload.patchValue(
+            {
+              mainSerie: null,
+              exclusiveSerie: null,
+            },
+            { emitEvent: false }
+          );
+        }
+        return curr;
+      }),
+      shareReplay({ refCount: true, bufferSize: 1 })
+    );
   //#endregion PAYLOAD
 
   //#region DATA
   public data$: Observable<BasicCarResponse> = this.payloadChanges$.pipe(
+    startWith({ year: undefined }),
     switchMap((payload) => this.getBasicCarsData(payload)),
     shareReplay({ refCount: true, bufferSize: 1 })
   );
@@ -64,27 +78,21 @@ export class BasicCarsComponent {
   //#endregion VALUE
 
   //#region FILTERS
-  private onYearChange$: Observable<number> = merge(
+  private onYearChange$: Observable<number> = this.data$.pipe(
+    pairwise(),
+    filter(([prev, curr]) => prev.filters.year !== curr.filters.year),
+    map(([_, curr]) => curr),
+    filter(({ filters: { year } }) => !!year),
+    map(({ filters: { year } }) => year!)
+  );
+  public filters$: Observable<BasicCarsFilters> = merge(
     this.data$.pipe(
       take(1),
-      tap(({ filters }) =>
-        this.payload.patchValue(filters, { emitEvent: false })
-      ),
-      filter(({ filters: { year } }) => !!year),
-      map(({ filters: { year } }) => year!)
+      map(({ filters }) => filters.year)
     ),
-    this.payloadChanges$.pipe(
-      skip(1),
-      pairwise(),
-      filter(
-        ([prevPayload, currPayload]) => prevPayload.year !== currPayload.year
-      ),
-      map(([_, currPayload]) => currPayload.year),
-      filter((year) => !!year),
-      map((year) => year!)
-    )
-  );
-  public filters$: Observable<BasicCarsFilters> = this.onYearChange$.pipe(
+    this.onYearChange$
+  ).pipe(
+    tap((year) => this.payload.patchValue({ year }, { emitEvent: false })),
     switchMap((year) => this.getBasicFilters(year!))
   );
   //#endregion FILTERS
