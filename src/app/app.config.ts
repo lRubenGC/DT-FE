@@ -11,6 +11,7 @@ import {
   withHttpTransferCacheOptions,
 } from '@angular/platform-browser';
 import { provideTransloco } from '@jsverse/transloco';
+import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { routes } from './app.routes';
 import { TranslocoHttpLoader } from './transloco-loader';
 
@@ -35,5 +36,6 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
+    provideAngularSvgIcon(),
   ],
 };

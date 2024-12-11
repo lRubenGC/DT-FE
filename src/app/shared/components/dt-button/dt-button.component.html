@@ -5,11 +5,19 @@
   [class]="buttonClass"
   (click)="onClick.emit()"
 >
-  @if (!!icon) { <img [src]="'assets/icons/' + icon + '.svg'" /> }
+  @if (!!icon) {
+  <svg-icon
+    [src]="'assets/icons/' + icon + '.svg'"
+    [svgStyle]="{ fill: iconFill }"
+  ></svg-icon>
+  }
   {{ header }}
 </button>
 } @else {
 <div class="h-full flex items-center">
-  <img [src]="'assets/icons/' + icon + '.svg'" />
+  <svg-icon
+    [src]="'assets/icons/' + icon + '.svg'"
+    [svgStyle]="{ fill: iconFill }"
+  ></svg-icon>
 </div>
 }
