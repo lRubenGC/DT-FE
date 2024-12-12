@@ -1,4 +1,5 @@
-<div class="grid grid-cols-12 w-[85%] mx-auto my-3 gap-6">
+<h1 class="text-4xl text-center pt-4">Coches básicos</h1>
+<div class="grid grid-cols-12 w-[85%] mx-auto pb-2 gap-6">
   @if (filters$ | async; as filters) {
   <aside class="col-span-2">
     <form [formGroup]="payload" class="flex flex-col">
@@ -27,7 +28,6 @@
   </aside>
   } @if (groupedCars$ | async; as groupedCars) {
   <main class="col-span-10">
-    <h1 class="text-4xl">Coches básicos</h1>
     @for(group of groupedCars | keyvalue; track $index){
     <div class="py-2">
       <h3 class="text-2xl">{{ group.key }}</h3>

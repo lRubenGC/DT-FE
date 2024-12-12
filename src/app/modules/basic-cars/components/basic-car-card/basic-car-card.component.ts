@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { BasicCarDTO } from '@modules/basic-cars/models/basic-cars.models';
+import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import { ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'dt-basic-car-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DtButtonComponent],
   templateUrl: './basic-car-card.component.html',
   styleUrl: './basic-car-card.component.scss',
 })

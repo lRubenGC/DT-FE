@@ -1,81 +1,58 @@
 @if (car$| async; as car) {
-<div class="basic-card-container w-full flex flex-col gap-1">
-  <div class="img-container">
-    <div
-      class="buttons-container w-full h-full absolute flex justify-center items-end gap-2"
+<div class="flex flex-col w-full gap-1">
+  <div class="w-fit mx-auto">
+    <h6
+      class="font-semibold rounded-md px-2 text-white"
+      [ngClass]="{
+        'bg-green-600': car.hasCar,
+        'bg-sky-600': car.wantsCar,
+        'text-black': !car.hasCar && !car.wantsCar
+      }"
     >
-      <button class="pi pi-window-maximize open-modal"></button>
-      <!-- (click)="openModal()" -->
-      <button
-        *ngIf="!car.hasCar && !car.wantsCar"
-        class="pi pi-heart wish-car"
-      ></button>
-      <!-- (click)="addCar({ wantsCar: true })" -->
-      <button
-        *ngIf="car.hasCar || car.wantsCar"
-        class="pi pi-times-circle remove-car"
-      ></button>
-      <!-- (click)="removeCar()" -->
-      <button *ngIf="!car.hasCar" class="pi pi-plus-circle add-car"></button>
-      <!-- (click)="addCar({ hasCar: true })" -->
+      {{ car.model_name }}
+    </h6>
+  </div>
+  <div class="img-container relative">
+    <div
+      class="absolute w-full bottom-2 flex justify-center gap-2 img-buttons-container"
+    >
+      <dt-button
+        type="button"
+        icon="open-in-full"
+        buttonColor="yellow"
+        buttonClass="lg:p-2 md:p-1"
+      />
+      @if (!car.hasCar && !car.wantsCar) {
+      <dt-button
+        type="button"
+        icon="favorite"
+        buttonColor="sky"
+        buttonClass="lg:p-2 md:p-1"
+      />
+      <dt-button
+        type="button"
+        icon="add"
+        buttonColor="green"
+        buttonClass="lg:p-2 md:p-1"
+      />
+      } @else {
+      <dt-button
+        type="button"
+        icon="delete"
+        buttonColor="red"
+        buttonClass="lg:p-2 md:p-1"
+      />
+      }
     </div>
     <img
-      *ngIf="!!car.img.length"
       [src]="car.img"
-      [alt]="car.model_name"
       loading="lazy"
-    />
-    <img
-      *ngIf="!car.img.length"
-      src="../../../../../assets/images/basic_cars_page/no-image-basic.webp"
-      alt="Image not available"
-      loading="lazy"
+      class="w-full h-[130px] object-cover rounded-md"
     />
   </div>
-  <div class="card-description">
-    <p class="card-description-row">{{ car.model_name }}</p>
-    <div class="card-description-row flex justify-between">
-      <p class="card-description-item">{{ car.version }}</p>
-      <p class="card-description-item">{{ car.col_serie }}</p>
-    </div>
-    <div class="card-description-row flex justify-between">
-      <p class="card-description-item">
-        {{ car.car_id }}
-        <!-- <span *ngIf="showYear">- {{ car.year }}</span> -->
-      </p>
-      <div class="flex items-center gap-1">
-        <i
-          *ngIf="car.hasCar || car.wantsCar"
-          class="pi pi-heart-fill"
-          [ngClass]="{
-            owned: car.hasCar,
-            wished: car.wantsCar
-          }"
-        ></i>
-        <!-- <img
-          *ngIf="car.exclusive_serie"
-          [src]="getSeriesIcon(car.exclusive)"
-          class="card-series-img"
-        /> -->
-      </div>
-    </div>
+  <div class="w-full flex justify-between px-2">
+    <span class="text-gray-800 font-semibold">{{ car.car_id }}</span>
+    <span class="text-gray-800 font-semibold">{{ car.version }}</span>
   </div>
 </div>
-
-<!-- <div class="flex flex-col w-full">
-  <div class="flex">
-    <img
-      [src]="car.img"
-      loading="lazy"
-      class="w-[80%] h-[110px] object-cover"
-    />
-    <div class="flex flex-col w-[20%]">
-      <span>{{ car.car_id }}</span>
-      <span>{{ car.version }}</span>
-      <span>{{ car.col }}</span>
-      <span>{{ car.col_serie }}</span>
-    </div>
-  </div>
-  <h6 class="font-semibold text-center">{{ car.model_name }}</h6>
-</div> -->
 }
