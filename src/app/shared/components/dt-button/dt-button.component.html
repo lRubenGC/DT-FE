@@ -10,11 +10,17 @@
   [class]="buttonClass"
   (click)="onClick.emit()"
 >
-  @if (!!icon) {
+  @if (!!icon && !(loading$ | async)) {
   <svg-icon
     [src]="'assets/icons/' + icon + '.svg'"
     [svgStyle]="{ fill: iconFill }"
-  ></svg-icon>
+  />
+  } @else if (loading$ | async) {
+  <svg-icon
+    src="assets/icons/loading.svg"
+    class="loading"
+    [svgStyle]="{ fill: iconFill }"
+  />
   } {{ header }}
 </button>
 } @else {
@@ -22,6 +28,6 @@
   <svg-icon
     [src]="'assets/icons/' + icon + '.svg'"
     [svgStyle]="{ fill: iconFill }"
-  ></svg-icon>
+  />
 </div>
 }
