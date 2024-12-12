@@ -23,24 +23,35 @@
         buttonClass="lg:p-2 md:p-1"
       />
       @if (!car.hasCar && !car.wantsCar) {
-      <dt-button
-        type="button"
+      <dt-request-button
         icon="favorite"
         buttonColor="sky"
         buttonClass="lg:p-2 md:p-1"
+        endpoint="/api/basic-cars/add-car"
+        [body]="{
+          carId: car.id,
+          wantsCar: true
+        }"
       />
-      <dt-button
-        type="button"
+      <dt-request-button
         icon="add"
         buttonColor="green"
         buttonClass="lg:p-2 md:p-1"
+        endpoint="/api/basic-cars/add-car"
+        [body]="{
+          carId: car.id,
+          hasCar: true
+        }"
       />
       } @else {
-      <dt-button
-        type="button"
+      <dt-request-button
         icon="delete"
         buttonColor="red"
         buttonClass="lg:p-2 md:p-1"
+        endpoint="/api/basic-cars/delete-car"
+        [body]="{
+          carId: car.id,
+        }"
       />
       }
     </div>
