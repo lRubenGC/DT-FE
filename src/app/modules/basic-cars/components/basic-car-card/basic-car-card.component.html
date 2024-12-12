@@ -2,11 +2,12 @@
 <div class="flex flex-col w-full gap-1">
   <div class="w-fit mx-auto">
     <h6
-      class="font-semibold rounded-md px-2 text-white"
+      class="font-semibold rounded-md px-2"
       [ngClass]="{
         'bg-green-600': car.hasCar,
         'bg-sky-600': car.wantsCar,
-        'text-black': !car.hasCar && !car.wantsCar
+        'text-black': !car.hasCar && !car.wantsCar,
+        'text-white': car.hasCar || car.wantsCar
       }"
     >
       {{ car.model_name }}
