@@ -35,7 +35,7 @@ export class DtButtonComponent {
   @Input() buttonClass: string = '';
   @Input() iconFill: string = '#202020';
   @Input({ alias: 'loading' }) set loadingSetter(v: boolean | null) {
-    if (!v) return;
+    if (v === null) return;
     this.loading$.next(v);
   }
   public loading$ = new BehaviorSubject<boolean>(false);
