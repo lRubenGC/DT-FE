@@ -23,7 +23,7 @@
       type="button"
       icon="close"
       class="absolute inset-y-0 end-0 flex items-center pe-3"
-      buttonClass="bg-transparent"
+      buttonClass="bg-transparent p-1"
       (onClick)="onSelect(null)"
     ></dt-button>
     } @else {
@@ -31,7 +31,7 @@
       type="button"
       icon="arrow-down"
       class="absolute inset-y-0 end-0 flex items-center pe-3"
-      buttonClass="bg-transparent"
+      buttonClass="bg-transparent p-1"
     ></dt-button>
     }
   </div>
@@ -51,19 +51,14 @@
         type="button"
         icon="close"
         class="absolute inset-y-0 end-0 flex items-center pe-3"
-        buttonClass="bg-transparent"
+        buttonClass="bg-transparent p-1"
         (onClick)="filterValue.next('')"
       />
     </div>
     <div class="overflow-y-auto">
-      @for (option of options$ | async; track $index; let odd = $odd, even =
-      $even) {
+      @for (option of options$ | async; track $index) {
       <div
-        [ngClass]="{
-          'bg-gray-100 dark:bg-gray-700': odd,
-          'bg-gray-200 dark:bg-gray-800': even
-        }"
-        class="cursor-pointer bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 dark:text-white p-1"
+        class="cursor-pointer bg-gray-200 hover:bg-gray-300 dark:hover:bg-gray-900 dark:text-white p-1 odd:bg-gray-100 even:bg-gray-200 odd:dark:bg-gray-700 even:dark:bg-gray-800"
         (click)="onSelect(option)"
       >
         <span>{{ option }}</span>
