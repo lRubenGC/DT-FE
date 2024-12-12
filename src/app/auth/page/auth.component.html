@@ -1,0 +1,61 @@
+@if (formVisible$ | async; as formVisible) {
+<div class="w-full mt-20 flex flex-col justify-center items-center gap-2">
+  @if (formVisible === 'login') {
+  <span
+    >No tienes una cuenta? Regístrate
+    <span
+      (click)="formVisible$.next('register')"
+      class="underline text-sky-500 cursor-pointer"
+      >aquí</span
+    ></span
+  >
+  <form
+    [formGroup]="loginForm"
+    class="bg-gray-300 rounded-md p-3 flex flex-col"
+  >
+    <label>
+      Email
+      <input type="text" formControlName="email" />
+    </label>
+    <label>
+      Password
+      <input type="text" formControlName="password" />
+    </label>
+  </form>
+  } @else {
+  <span
+    >Ya tienes una cuenta? Inicia sesión
+    <span
+      (click)="formVisible$.next('login')"
+      class="underline text-sky-500 cursor-pointer"
+      >aquí</span
+    >
+  </span>
+  <form
+    [formGroup]="registerForm"
+    class="bg-gray-300 rounded-md p-3 flex flex-col"
+  >
+    <label>
+      Username
+      <input type="text" formControlName="username" />
+    </label>
+    <label>
+      Email
+      <input type="text" formControlName="email" />
+    </label>
+    <label>
+      Password
+      <input type="text" formControlName="password" />
+    </label>
+  </form>
+  }
+  <dt-button
+    type="button"
+    header="Enviar"
+    buttonClass="p-2"
+    iconFill="#fff"
+    [loading]="loading$ | async"
+    (onClick)="sendForm.next()"
+  />
+</div>
+}
