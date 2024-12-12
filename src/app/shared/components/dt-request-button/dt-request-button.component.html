@@ -1,0 +1,12 @@
+<ng-container *ngIf="onClick$ | async" />
+<dt-button
+  type="button"
+  [icon]="icon"
+  [buttonColor]="buttonColor"
+  [buttonClass]="buttonClass"
+  [header]="header"
+  [iconFill]="iconFill"
+  [title]="title"
+  [loading]="loading$ | async"
+  (onClick)="onClick.next()"
+/>
