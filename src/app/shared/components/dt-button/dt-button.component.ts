@@ -3,12 +3,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 export type DT_ICONS =
+  | 'add'
   | 'arrow-down'
   | 'arrow-left'
   | 'arrow-right'
   | 'arrow-up'
   | 'close'
+  | 'favorite'
+  | 'open-in-full'
   | 'search';
+
+// Para añadir colores, ir a tailwind.config.js y añadirlos en la safelist
+export type SAFELIST_COLORS = 'orange' | 'yellow' | 'green' | 'rose';
 
 @Component({
   selector: 'dt-button',
@@ -22,6 +28,7 @@ export class DtButtonComponent {
   @Input() header: string = '';
   @Input() icon: DT_ICONS | null = null;
   @Input() title: string | null = null;
+  @Input() buttonColor: SAFELIST_COLORS = 'orange';
   @Input() buttonClass: string = '';
   @Input() iconFill: string = '#202020';
   @Output() onClick = new EventEmitter<void>();
