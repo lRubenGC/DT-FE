@@ -6,4 +6,10 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /bg-(orange|yellow|green|rose)-(400|500|600)/,
+      variants: ["hover", "active"],
+    },
+  ],
 };
