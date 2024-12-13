@@ -15,11 +15,19 @@
   >
     <label>
       Email
-      <input type="text" formControlName="email" />
+      <input
+        type="text"
+        formControlName="email"
+        (keydown.enter)="sendForm.next()"
+      />
     </label>
     <label>
       Password
-      <input type="text" formControlName="password" />
+      <input
+        type="text"
+        formControlName="password"
+        (keydown.enter)="sendForm.next()"
+      />
     </label>
   </form>
   } @else {
@@ -37,15 +45,27 @@
   >
     <label>
       Username
-      <input type="text" formControlName="username" />
+      <input
+        type="text"
+        formControlName="username"
+        (keydown.enter)="sendForm.next()"
+      />
     </label>
     <label>
       Email
-      <input type="text" formControlName="email" />
+      <input
+        type="text"
+        formControlName="email"
+        (keydown.enter)="sendForm.next()"
+      />
     </label>
     <label>
       Password
-      <input type="text" formControlName="password" />
+      <input
+        type="text"
+        formControlName="password"
+        (keydown.enter)="sendForm.next()"
+      />
     </label>
   </form>
   }
