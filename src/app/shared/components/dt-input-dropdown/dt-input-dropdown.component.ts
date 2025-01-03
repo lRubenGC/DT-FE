@@ -9,15 +9,12 @@ import { ClickOutsideDirective } from '@shared/directives/click-outside-directiv
 import {
   BehaviorSubject,
   combineLatest,
-  debounceTime,
   map,
-  merge,
   Observable,
   ReplaySubject,
   share,
   startWith,
   Subject,
-  tap,
 } from 'rxjs';
 import { DtButtonComponent } from '../dt-button/dt-button.component';
 
@@ -33,14 +30,14 @@ import { DtButtonComponent } from '../dt-button/dt-button.component';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DtDropdownComponent),
+      useExisting: forwardRef(() => DtInputDropdownComponent),
       multi: true,
     },
   ],
-  templateUrl: './dt-dropdown.component.html',
-  styleUrl: './dt-dropdown.component.scss',
+  templateUrl: './dt-input-dropdown.component.html',
+  styleUrl: './dt-input-dropdown.component.scss',
 })
-export class DtDropdownComponent implements ControlValueAccessor {
+export class DtInputDropdownComponent implements ControlValueAccessor {
   //#region INPUTS
   @Input({ required: true }) header: string = '';
   @Input() allowNullable: boolean = true;
@@ -85,7 +82,7 @@ export class DtDropdownComponent implements ControlValueAccessor {
   public dropdownVisibility$ = this.dropdownVisibility.pipe(share());
   //#endregion VISIBILITY
 
-  //#region DEFAULT ANGULAR FNS
+  //#region CONTROL VALUE ACCESSOR
   private onChange: (value: string | number | null) => void = () => {};
   private onTouched: () => void = () => {};
   public writeValue(v: string): void {
@@ -98,7 +95,7 @@ export class DtDropdownComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
   public setDisabledState(isDisabled: boolean): void {}
-  //#endregion DEFAULT ANGULAR FNS
+  //#endregion CONTROL VALUE ACCESSOR
 
   public onSelect(option: string | number | null): void {
     this.valueChanges$.next(option);
