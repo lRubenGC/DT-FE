@@ -2,24 +2,24 @@
 <div class="grid grid-cols-12 w-[85%] mx-auto pb-2 gap-6">
   @if (filters$ | async; as filters) {
   <aside class="col-span-2">
-    <form [formGroup]="payload" class="flex flex-col">
-      <dt-dropdown
+    <form [formGroup]="payload" class="flex flex-col gap-3">
+      <dt-input-dropdown
         formControlName="year"
         header="year"
         [options]="filters.year"
         [allowNullable]="false"
       />
-      <dt-dropdown
+      <dt-input-dropdown
         formControlName="mainSerie"
         header="mainSerie"
         [options]="filters.mainSerie"
       />
-      <dt-dropdown
+      <dt-input-dropdown
         formControlName="exclusiveSerie"
         header="exclusiveSerie"
         [options]="filters.exclusiveSerie"
       />
-      <dt-dropdown
+      <dt-input-dropdown
         formControlName="userProperty"
         header="userProperty"
         [options]="filters.userProperty"

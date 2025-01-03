@@ -9,7 +9,7 @@ import {
   BasicCarsGrouped,
 } from '@modules/basic-cars/models/basic-cars.models';
 import { BasicCarsService } from '@modules/basic-cars/services/basic-cars.service';
-import { DtDropdownComponent } from '@shared/components/dt-dropdown/dt-dropdown.component';
+import { DtInputDropdownComponent } from '@shared/components/dt-input-dropdown/dt-input-dropdown.component';
 import { USER_PROPERTY } from '@shared/models/filters.models';
 import {
   filter,
@@ -31,7 +31,7 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DtDropdownComponent,
+    DtInputDropdownComponent,
     BasicCarCardComponent,
   ],
   templateUrl: './basic-cars.component.html',

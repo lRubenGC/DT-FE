@@ -19,7 +19,7 @@ import {
 import { DtButtonComponent } from '../dt-button/dt-button.component';
 
 @Component({
-  selector: 'dt-dropdown',
+  selector: 'dt-input-dropdown',
   standalone: true,
   imports: [
     CommonModule,
