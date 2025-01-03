@@ -6,21 +6,27 @@
     <span
       (click)="formVisible$.next('register')"
       class="underline text-sky-500 cursor-pointer"
-      >aquí</span
-    ></span
-  >
+      >aquí
+    </span>
+  </span>
   <form
     [formGroup]="loginForm"
     class="bg-gray-300 rounded-md p-3 flex flex-col"
   >
-    <label>
+    <dt-input-text
+      type="text"
+      header="Email"
+      formControlName="email"
+      (keydownEnter)="sendForm.next()"
+    />
+    <!-- <label>
       Email
       <input
         type="text"
         formControlName="email"
         (keydown.enter)="sendForm.next()"
       />
-    </label>
+    </label> -->
     <label>
       Password
       <input
@@ -36,8 +42,8 @@
     <span
       (click)="formVisible$.next('login')"
       class="underline text-sky-500 cursor-pointer"
-      >aquí</span
-    >
+      >aquí
+    </span>
   </span>
   <form
     [formGroup]="registerForm"

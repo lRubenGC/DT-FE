@@ -10,12 +10,19 @@ import {
   merge,
   Subject,
   switchMap,
+  withLatestFrom,
 } from 'rxjs';
+import { DtInputTextComponent } from '../../shared/components/dt-input-text/dt-input-text.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DtButtonComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DtButtonComponent,
+    DtInputTextComponent,
+  ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
@@ -42,7 +49,8 @@ export class AuthComponent {
 
   //#region REQUEST
   public sendForm = new Subject<void>();
-  public request$ = combineLatest([this.sendForm, this.formVisible$]).pipe(
+  public request$ = this.sendForm.pipe(
+    withLatestFrom(this.formVisible$),
     switchMap(([_, formVisible]) =>
       formVisible === 'login'
         ? this.authService.login(this.loginForm.getRawValue())
