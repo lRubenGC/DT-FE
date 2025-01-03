@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { TranslocoDirective } from '@jsverse/transloco';
 import {
   DtSelectButtonComponent,
   SelectButtonOptions,
@@ -14,7 +13,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
   standalone: true,
   imports: [
     CommonModule,
-    TranslocoDirective,
     DtSelectButtonComponent,
     SearchBarComponent,
     RouterLink,
