@@ -1,0 +1,8 @@
+<label>
+  {{ header }}
+  <input
+    [type]="type"
+    (keydown.enter)="keydownEnter.emit()"
+    (input)="onInput($event)"
+  />
+</label>
