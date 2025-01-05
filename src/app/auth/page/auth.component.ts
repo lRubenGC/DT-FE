@@ -5,7 +5,6 @@ import { AuthService } from '@auth/services/auth.service';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import {
   BehaviorSubject,
-  combineLatest,
   map,
   merge,
   Subject,

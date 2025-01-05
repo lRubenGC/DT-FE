@@ -11,30 +11,22 @@
   </span>
   <form
     [formGroup]="loginForm"
-    class="bg-gray-300 rounded-md p-3 flex flex-col"
+    class="bg-gray-300 rounded-md p-3 flex flex-col w-80 gap-6"
   >
     <dt-input-text
-      type="text"
+      type="email"
       header="Email"
       formControlName="email"
+      [required]="true"
       (keydownEnter)="sendForm.next()"
     />
-    <!-- <label>
-      Email
-      <input
-        type="text"
-        formControlName="email"
-        (keydown.enter)="sendForm.next()"
-      />
-    </label> -->
-    <label>
-      Password
-      <input
-        type="text"
-        formControlName="password"
-        (keydown.enter)="sendForm.next()"
-      />
-    </label>
+    <dt-input-text
+      type="password"
+      header="Password"
+      formControlName="password"
+      [required]="true"
+      (keydownEnter)="sendForm.next()"
+    />
   </form>
   } @else {
   <span
@@ -47,32 +39,29 @@
   </span>
   <form
     [formGroup]="registerForm"
-    class="bg-gray-300 rounded-md p-3 flex flex-col"
+    class="bg-gray-300 rounded-md p-3 flex flex-col w-80 gap-6"
   >
-    <label>
-      Username
-      <input
-        type="text"
-        formControlName="username"
-        (keydown.enter)="sendForm.next()"
-      />
-    </label>
-    <label>
-      Email
-      <input
-        type="text"
-        formControlName="email"
-        (keydown.enter)="sendForm.next()"
-      />
-    </label>
-    <label>
-      Password
-      <input
-        type="text"
-        formControlName="password"
-        (keydown.enter)="sendForm.next()"
-      />
-    </label>
+    <dt-input-text
+      type="text"
+      header="Username"
+      formControlName="username"
+      [required]="true"
+      (keydownEnter)="sendForm.next()"
+    />
+    <dt-input-text
+      type="email"
+      header="Email"
+      formControlName="email"
+      [required]="true"
+      (keydownEnter)="sendForm.next()"
+    />
+    <dt-input-text
+      type="password"
+      header="Password"
+      formControlName="password"
+      [required]="true"
+      (keydownEnter)="sendForm.next()"
+    />
   </form>
   }
   <dt-button
