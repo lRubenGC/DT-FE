@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -12,7 +13,7 @@ export type InputType = 'text' | 'password' | 'email';
 @Component({
   selector: 'dt-input-text',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dt-input-text.component.html',
   styleUrl: './dt-input-text.component.scss',
   providers: [
@@ -27,6 +28,8 @@ export class DtInputTextComponent implements ControlValueAccessor {
   //#region INPUTS
   @Input({ required: true }) type: InputType = 'text';
   @Input({ required: true }) header: string = '';
+  @Input() required: boolean = false;
+  @Input() pattern: string | null = null;
   @Input() allowNullable: boolean = true;
   //#endregion INPUTS
 

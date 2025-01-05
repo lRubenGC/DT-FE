@@ -1,0 +1,13 @@
+input {
+  &:not(:focus):not(:placeholder-shown):not(:valid).validation {
+    border: 2px solid #ef4444;
+  }
+  &:focus + .labelline,
+  &:not(:placeholder-shown) + .labelline {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(-10px, -14px) scale(0.8);
+    z-index: 10;
+  }
+}

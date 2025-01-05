@@ -1,8 +1,21 @@
-<label>
-  {{ header }}
-  <input
-    [type]="type"
-    (keydown.enter)="keydownEnter.emit()"
-    (input)="onInput($event)"
-  />
-</label>
+<div class="w-full h-[38px]">
+  <div class="relative h-[38px] leading-[38px]">
+    <input
+      [type]="type"
+      [required]="required"
+      [pattern]="pattern"
+      placeholder
+      (keydown.enter)="keydownEnter.emit()"
+      (input)="onInput($event)"
+      [ngClass]="{
+        validation: !!pattern,
+        'valid:border-2 valid:border-green-400': !!pattern
+      }"
+      class="absolute w-full outline-none pl-2.5 leading-[38px] border border-gray-400 rounded-md bg-transparent z-10 focus:border-2 focus:border-orange-400"
+    />
+    <label class="labelline absolute pl-2.5 duration-200 bg-gray-300">
+      {{ header }}
+    </label>
+  </div>
+</div>
+<!-- TODO <span class="pl-2.5 text-red-500 font-semibold">Error</span> -->
