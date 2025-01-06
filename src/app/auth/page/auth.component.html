@@ -1,76 +1,98 @@
 @if (formVisible$ | async; as formVisible) {
-<div class="w-full mt-20 flex flex-col justify-center items-center gap-2">
-  @if (formVisible === 'login') {
+<div class="w-full mt-20 flex flex-col justify-center items-center gap-6">
+  <div class="w-[350px] flex flex-col gap-6 shadow-xl p-6 rounded-md bg-white">
+    <div id="header" class="">
+      <h3 class="font-bold text-3xl">
+        {{ formVisible === "login" ? "Sign in" : "Sign up" }}
+      </h3>
+      <span>
+        {{
+          formVisible === "login"
+            ? "Access your diecast collection"
+            : "Start tracking your cars today"
+        }}
+      </span>
+    </div>
+
+    @if (formVisible === 'login') {
+    <form [formGroup]="loginForm" class="flex flex-col gap-4">
+      <dt-input-text
+        type="email"
+        header="Email"
+        formControlName="email"
+        [required]="true"
+        (keydownEnter)="sendForm.next()"
+      />
+      <dt-input-text
+        type="password"
+        header="Password"
+        formControlName="password"
+        [required]="true"
+        (keydownEnter)="sendForm.next()"
+      />
+    </form>
+    } @else {
+    <form [formGroup]="registerForm" class="flex flex-col gap-4">
+      <dt-input-text
+        type="text"
+        header="Username"
+        formControlName="username"
+        [required]="true"
+        (keydownEnter)="sendForm.next()"
+      />
+      <dt-input-text
+        type="email"
+        header="Email"
+        formControlName="email"
+        [required]="true"
+        (keydownEnter)="sendForm.next()"
+      />
+      <dt-input-text
+        type="password"
+        header="Password"
+        formControlName="password"
+        [required]="true"
+        (keydownEnter)="sendForm.next()"
+      />
+    </form>
+    }
+
+    <div id="button">
+      <dt-button
+        type="button"
+        [header]="formVisible === 'login' ? 'Sign in' : 'Sign up'"
+        buttonClass="py-2"
+        iconFill="#fff"
+        [loading]="loading$ | async"
+        (onClick)="sendForm.next()"
+      />
+    </div>
+
+    <div id="errors">
+      <h4 class="font-bold text-red-600 text-center">
+        Username already in use
+      </h4>
+    </div>
+  </div>
+
+  @if(formVisible === 'login') {
   <span
-    >No tienes una cuenta? Regístrate
+    >New to Diecast Tracker?
     <span
       (click)="formVisible$.next('register')"
-      class="underline text-sky-500 cursor-pointer"
-      >aquí
-    </span>
+      class="text-orange-500 cursor-pointer font-semibold"
+      >Join now</span
+    >
   </span>
-  <form
-    [formGroup]="loginForm"
-    class="bg-gray-300 rounded-md p-3 flex flex-col w-80 gap-6"
-  >
-    <dt-input-text
-      type="email"
-      header="Email"
-      formControlName="email"
-      [required]="true"
-      (keydownEnter)="sendForm.next()"
-    />
-    <dt-input-text
-      type="password"
-      header="Password"
-      formControlName="password"
-      [required]="true"
-      (keydownEnter)="sendForm.next()"
-    />
-  </form>
   } @else {
   <span
-    >Ya tienes una cuenta? Inicia sesión
+    >Already have an account?
     <span
       (click)="formVisible$.next('login')"
-      class="underline text-sky-500 cursor-pointer"
-      >aquí
-    </span>
-  </span>
-  <form
-    [formGroup]="registerForm"
-    class="bg-gray-300 rounded-md p-3 flex flex-col w-80 gap-6"
+      class="text-orange-500 cursor-pointer font-semibold"
+      >Sign in</span
+    ></span
   >
-    <dt-input-text
-      type="text"
-      header="Username"
-      formControlName="username"
-      [required]="true"
-      (keydownEnter)="sendForm.next()"
-    />
-    <dt-input-text
-      type="email"
-      header="Email"
-      formControlName="email"
-      [required]="true"
-      (keydownEnter)="sendForm.next()"
-    />
-    <dt-input-text
-      type="password"
-      header="Password"
-      formControlName="password"
-      [required]="true"
-      (keydownEnter)="sendForm.next()"
-    />
-  </form>
   }
-  <dt-button
-    type="button"
-    header="Enviar"
-    buttonClass="p-2"
-    iconFill="#fff"
-    [loading]="loading$ | async"
-    (onClick)="sendForm.next()"
-  />
 </div>
 }
