@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@auth/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import {
   BehaviorSubject,
@@ -9,6 +10,7 @@ import {
   merge,
   Subject,
   switchMap,
+  tap,
   withLatestFrom,
 } from 'rxjs';
 import { DtInputTextComponent } from '../../shared/components/dt-input-text/dt-input-text.component';
@@ -21,6 +23,7 @@ import { DtInputTextComponent } from '../../shared/components/dt-input-text/dt-i
     ReactiveFormsModule,
     DtButtonComponent,
     DtInputTextComponent,
+    TranslateModule,
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
@@ -54,7 +57,8 @@ export class AuthComponent {
       formVisible === 'login'
         ? this.authService.login(this.loginForm.getRawValue())
         : this.authService.register(this.registerForm.getRawValue())
-    )
+    ),
+    tap((v) => console.log(v))
   );
   //#endregion REQUEST
 
