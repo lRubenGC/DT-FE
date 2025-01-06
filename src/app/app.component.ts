@@ -1,8 +1,9 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { LanguageService } from '@shared/services/language.service';
 import { HeaderComponent } from './layouts/header/header.component';
 import { SeoComponent } from './seo/seo.component';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,12 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   private readonly platform = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
+  // private readonly cookie = inject(SsrCookieService);
+  private readonly language = inject(LanguageService);
 
   constructor() {
+    // this.language.changeLang(this.cookie.get('lang') || 'en');
+    this.language.changeLang('en');
     if (isPlatformBrowser(this.platform)) {
       console.warn('browser');
       // Use document

@@ -1,4 +1,36 @@
 {
-  "test1": "Tengo manzanas",
-  "test2": "Tengo {{count}} manzanas"
+  "AUTH": {
+    "signIn": {
+      "header": "Sign In",
+      "description": "Access your diecast collection",
+      "goToSignUpQuestion": "New to Diecast Tracker?",
+      "goToSignUpAction": "Join now"
+    },
+    "signUp": {
+      "header": "Sign Up",
+      "description": "Start tracking your cars today",
+      "goToSignInQuestion": "Already have an account?",
+      "goToSignInAction": "Sign in"
+    },
+    "fields": {
+      "username": "Username",
+      "email": "Email",
+      "password": "Password"
+    }
+  },
+  "ERRORS": {
+    "1": "Internal server error | | talk to admin please",
+    "2": "Bad request | talk to admin please",
+    "3": "Username already in use",
+    "4": "Invalid username pattern",
+    "5": "Email already in use",
+    "6": "Invalid email pattern",
+    "7": "Invalid password pattern",
+    "8": "Invalid credentials",
+    "9": "Car not found",
+    "10": "User has to be logged in",
+    "11": "The car has already been added to user",
+    "12": "User not found",
+    "13": "There are no changes in form"
+  }
 }
