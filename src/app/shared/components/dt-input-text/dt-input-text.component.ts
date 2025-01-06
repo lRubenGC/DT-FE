@@ -28,6 +28,7 @@ export class DtInputTextComponent implements ControlValueAccessor {
   //#region INPUTS
   @Input({ required: true }) type: InputType = 'text';
   @Input({ required: true }) header: string = '';
+  @Input() bgColorClass: string = 'bg-white';
   @Input() required: boolean = false;
   @Input() pattern: string | null = null;
   @Input() allowNullable: boolean = true;

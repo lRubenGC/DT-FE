@@ -13,7 +13,10 @@
       }"
       class="absolute w-full outline-none pl-2.5 leading-[38px] border border-gray-400 rounded-md bg-transparent z-10 focus:border-2 focus:border-orange-400"
     />
-    <label class="labelline absolute pl-2.5 duration-200 bg-gray-300">
+    <label
+      [class]="bgColorClass"
+      class="labelline absolute ml-2.5 pl-2.5 duration-200"
+    >
       {{ header }}
     </label>
   </div>
