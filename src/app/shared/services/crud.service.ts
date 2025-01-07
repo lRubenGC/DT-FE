@@ -9,9 +9,10 @@ interface FrontDefaultResponse<T> {
   ok: true;
   data: T;
 }
+type ErrorType = { error: number; msg: string };
 interface FrontErrorResponse {
   ok: false;
-  errors: number[];
+  errors: ErrorType[];
 }
 
 type BackResponse<T> = BackDefaultResponse<T> | BackErrorResponse;
@@ -21,7 +22,7 @@ interface BackDefaultResponse<T> {
 }
 interface BackErrorResponse {
   ok: false;
-  errors: { error: number; msg: string }[];
+  errors: ErrorType[];
 }
 
 @Injectable({
@@ -37,19 +38,25 @@ export class CrudService {
   ): Observable<FrontResponse<TResponse>> {
     const absoluteUrl = url.startsWith('/') ? url : `/${url}`;
     return this.http.post(absoluteUrl, body).pipe(
-      map<any, FrontResponse<TResponse>>((response: BackResponse<TResponse>) =>
+      catchError<any, Observable<FrontErrorResponse>>((res) =>
+        of({
+          ok: false,
+          errors: res.error.errors.reduce(
+            (acc: ErrorType[], curr: ErrorType) => [
+              ...acc,
+              {
+                error: curr.error,
+                msg: curr.msg,
+              },
+            ],
+            []
+          ),
+        })
+      ),
+      map((response: BackResponse<TResponse>) =>
         response.ok
           ? { ok: true, data: response.data }
-          : {
-              ok: false,
-              errors: response.errors.reduce<number[]>(
-                (acc, { error }) => [...acc, error],
-                []
-              ),
-            }
-      ),
-      catchError<any, Observable<FrontErrorResponse>>((error) =>
-        of({ ok: false, errors: [error] })
+          : { ok: false, errors: response.errors }
       )
     );
   }
