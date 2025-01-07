@@ -11,6 +11,8 @@ export type DT_ICONS =
   | 'arrow-up'
   | 'close'
   | 'delete'
+  | 'eye-close'
+  | 'eye-open'
   | 'favorite'
   | 'open-in-full'
   | 'search';
