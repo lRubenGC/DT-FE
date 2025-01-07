@@ -14,8 +14,11 @@ export type DT_ICONS =
   | 'eye-close'
   | 'eye-open'
   | 'favorite'
+  | 'lock'
+  | 'mail'
   | 'open-in-full'
-  | 'search';
+  | 'search'
+  | 'user';
 
 // Para añadir colores, ir a tailwind.config.js y añadirlos en la safelist
 export type SAFELIST_COLORS = 'orange' | 'yellow' | 'green' | 'sky' | 'red';
@@ -36,6 +39,7 @@ export class DtButtonComponent {
   @Input() buttonColor: SAFELIST_COLORS = 'orange';
   @Input() buttonClass: string = '';
   @Input() iconFill: string = '#202020';
+  @Input() iconSize: string = '24px';
   @Input({ alias: 'loading' }) set loadingSetter(v: boolean | null) {
     if (v === null) return;
     this.loading$.next(v);
