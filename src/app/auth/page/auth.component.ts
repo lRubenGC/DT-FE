@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
@@ -38,6 +39,7 @@ import { DtInputTextComponent } from '../../shared/components/dt-input-text/dt-i
 export class AuthComponent {
   //#region SERVICES
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
   //#endregion SERVICES
 
   //#region FORMS
@@ -87,6 +89,9 @@ export class AuthComponent {
         ? this.authService.login(this.loginForm.getRawValue())
         : this.authService.register(this.registerForm.getRawValue())
     ),
+    tap(({ ok }) => {
+      if (ok) this.router.navigate(['/']);
+    }),
     share()
   );
   //#endregion REQUEST
