@@ -1,13 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '@auth/services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import {
   BehaviorSubject,
+  filter,
   map,
   merge,
+  share,
   Subject,
   switchMap,
   tap,
@@ -35,13 +42,28 @@ export class AuthComponent {
 
   //#region FORMS
   public readonly loginForm = new FormGroup({
-    email: new FormControl<string>('', { nonNullable: true }),
-    password: new FormControl<string>('', { nonNullable: true }),
+    email: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    password: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
   });
   public readonly registerForm = new FormGroup({
-    username: new FormControl<string>('', { nonNullable: true }),
-    email: new FormControl<string>('', { nonNullable: true }),
-    password: new FormControl<string>('', { nonNullable: true }),
+    username: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    email: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
+    password: new FormControl<string>('', {
+      nonNullable: true,
+      validators: Validators.required,
+    }),
   });
   //#endregion FORMS
 
@@ -51,20 +73,34 @@ export class AuthComponent {
 
   //#region REQUEST
   public sendForm = new Subject<void>();
-  public request$ = this.sendForm.pipe(
+  public sendForm$ = this.sendForm.pipe(
+    withLatestFrom(this.formVisible$),
+    filter(([_, formVisible]) =>
+      formVisible === 'login' ? this.loginForm.valid : this.registerForm.valid
+    ),
+    share()
+  );
+  public request$ = this.sendForm$.pipe(
     withLatestFrom(this.formVisible$),
     switchMap(([_, formVisible]) =>
       formVisible === 'login'
         ? this.authService.login(this.loginForm.getRawValue())
         : this.authService.register(this.registerForm.getRawValue())
     ),
-    tap((v) => console.log(v))
+    share()
   );
   //#endregion REQUEST
 
+  //#region ERRORS
+  public errors$ = merge(
+    this.request$.pipe(map((resp) => (resp.ok ? [] : resp.errors))),
+    this.formVisible$.pipe(map(() => []))
+  ).pipe(map((errors) => errors.map(({ error }) => error)));
+  //#endregion ERRORS
+
   //#region LOADING
   public loading$ = merge(
-    this.sendForm.pipe(map(() => true)),
+    this.sendForm$.pipe(map(() => true)),
     this.request$.pipe(map(() => false))
   );
   //#endregion LOADING

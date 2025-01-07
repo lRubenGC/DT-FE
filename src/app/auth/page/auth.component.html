@@ -76,11 +76,15 @@
       />
     </div>
 
+    @if (errors$ | async; as errors) {
     <div id="errors">
-      <h4 class="font-bold text-red-600 text-center">
-        {{ "ERRORS." + 4 | translate }}
-      </h4>
+      <div *ngFor="let error of errors">
+        <h4 class="font-bold text-red-600 text-center">
+          {{ "ERRORS." + error | translate }}
+        </h4>
+      </div>
     </div>
+    }
   </div>
 
   @if(formVisible === 'login') {
