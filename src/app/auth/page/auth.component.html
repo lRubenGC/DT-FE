@@ -22,6 +22,7 @@
     <form [formGroup]="loginForm" class="flex flex-col gap-4">
       <dt-input-text
         type="email"
+        infoIcon="mail"
         [header]="'AUTH.fields.email' | translate"
         formControlName="email"
         [required]="true"
@@ -29,6 +30,7 @@
       />
       <dt-input-text
         type="password"
+        infoIcon="lock"
         [header]="'AUTH.fields.password' | translate"
         formControlName="password"
         [required]="true"
@@ -39,6 +41,7 @@
     <form [formGroup]="registerForm" class="flex flex-col gap-4">
       <dt-input-text
         type="text"
+        infoIcon="user"
         [header]="'AUTH.fields.username' | translate"
         formControlName="username"
         [required]="true"
@@ -46,6 +49,7 @@
       />
       <dt-input-text
         type="email"
+        infoIcon="mail"
         [header]="'AUTH.fields.email' | translate"
         formControlName="email"
         [required]="true"
@@ -53,6 +57,7 @@
       />
       <dt-input-text
         type="password"
+        infoIcon="lock"
         [header]="'AUTH.fields.password' | translate"
         formControlName="password"
         [required]="true"
