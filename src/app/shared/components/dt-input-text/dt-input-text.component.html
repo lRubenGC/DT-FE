@@ -1,7 +1,14 @@
+@if (typeToUse$|async; as typeToUse) {
 <div class="w-full h-[38px]">
   <div class="relative h-[38px] leading-[38px]">
+    <dt-button
+      class="absolute z-20 inset-y-0 ps-2"
+      type="icon"
+      [icon]="infoIcon"
+      iconSize="22px"
+    />
     <input
-      [type]="type"
+      [type]="typeToUse"
       [required]="required"
       [pattern]="pattern"
       placeholder
@@ -11,14 +18,26 @@
         validation: !!pattern,
         'valid:border-2 valid:border-green-400': !!pattern
       }"
-      class="absolute w-full outline-none pl-2.5 leading-[38px] border border-gray-400 rounded-md bg-transparent z-10 focus:border-2 focus:border-orange-400"
+      class="absolute w-full outline-none ps-9 leading-[38px] border border-gray-400 rounded-md bg-transparent z-10 focus:border-2 focus:border-orange-400"
     />
-    <label
-      [class]="bgColorClass"
-      class="labelline absolute ml-2.5 pl-2.5 duration-200"
-    >
+    <label [class]="bgColorClass" class="labelline absolute ps-9 duration-200">
       {{ header }}
     </label>
+    @if ((type$|async) === 'password') {
+    <dt-button
+      class="absolute z-20 inset-y-0 end-0 pe-3 flex items-center"
+      type="button"
+      [icon]="typeToUse === 'password' ? 'eye-open' : 'eye-close'"
+      buttonClass="bg-transparent p-1"
+      iconSize="22px"
+      (onClick)="
+        typeToUse === 'password'
+          ? typeToUse$.next('text')
+          : typeToUse$.next('password')
+      "
+    />
+    }
   </div>
 </div>
+}
 <!-- TODO <span class="pl-2.5 text-red-500 font-semibold">Error</span> -->
