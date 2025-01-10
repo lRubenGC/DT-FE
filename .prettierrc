@@ -1,0 +1,19 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "semi": true,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "css",
+  "endOfLine": "lf",
+  "parser": "angular",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}

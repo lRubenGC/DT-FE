@@ -1,34 +1,37 @@
 @if (type === 'button') {
-<button
-  type="button"
-  [title]="title ?? header"
-  class="rounded-md cursor-pointer flex items-center justify-center w-full gap-1 duration-200 text-white"
-  [ngClass]="[
-    'bg-' + buttonColor + '-400',
-    'hover:bg-' + buttonColor + '-500',
-    'active:bg-' + buttonColor + '-600'
-  ]"
-  [class]="buttonClass"
-  (click)="onClick.emit()"
->
-  @if (!!icon && !(loading$ | async)) {
-  <svg-icon
-    [src]="'assets/icons/' + icon + '.svg'"
-    [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
-  />
-  } @else if (loading$ | async) {
-  <svg-icon
-    src="assets/icons/loading.svg"
-    class="loading"
-    [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
-  />
-  } {{ header }}
-</button>
-} @else { @if (!!icon){
-<div class="h-full flex items-center">
-  <svg-icon
-    [src]="'assets/icons/' + icon + '.svg'"
-    [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
-  />
-</div>
-} }
+  <button
+    type="button"
+    [title]="title ?? header"
+    class="rounded-md cursor-pointer flex items-center justify-center w-full gap-1 duration-200 text-white"
+    [ngClass]="[
+      'bg-' + buttonColor + '-400',
+      'hover:bg-' + buttonColor + '-500',
+      'active:bg-' + buttonColor + '-600'
+    ]"
+    [class]="buttonClass"
+    (click)="onClick.emit()"
+  >
+    @if (!!icon && !(loading$ | async)) {
+      <svg-icon
+        [src]="'assets/icons/' + icon + '.svg'"
+        [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
+      />
+    } @else if (loading$ | async) {
+      <svg-icon
+        src="assets/icons/loading.svg"
+        class="loading"
+        [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
+      />
+    }
+    {{ header }}
+  </button>
+} @else {
+  @if (!!icon) {
+    <div class="h-full flex items-center">
+      <svg-icon
+        [src]="'assets/icons/' + icon + '.svg'"
+        [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
+      />
+    </div>
+  }
+}
