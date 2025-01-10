@@ -1,11 +1,15 @@
+import {
+  HttpClient,
+  HttpRequest,
+  provideHttpClient,
+  withFetch
+} from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { HttpClient, HttpRequest, provideHttpClient, withFetch } from '@angular/common/http';
 import {
   provideClientHydration,
-  withHttpTransferCacheOptions,
+  withHttpTransferCacheOptions
 } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
@@ -22,7 +26,7 @@ export const appConfig: ApplicationConfig = {
       withHttpTransferCacheOptions({
         filter: (req: HttpRequest<unknown>) => true,
         includeHeaders: [],
-        includePostRequests: true,
+        includePostRequests: true
       })
     ),
     provideHttpClient(withFetch()),
@@ -33,9 +37,9 @@ export const appConfig: ApplicationConfig = {
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-        },
+          deps: [HttpClient]
+        }
       })
-    ),
-  ],
+    )
+  ]
 };

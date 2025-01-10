@@ -7,12 +7,12 @@
   "bracketSpacing": true,
   "htmlWhitespaceSensitivity": "css",
   "endOfLine": "lf",
-  "parser": "angular",
   "overrides": [
     {
       "files": "*.html",
       "options": {
-        "tabWidth": 2
+        "tabWidth": 2,
+        "parser": "angular"
       }
     }
   ]
