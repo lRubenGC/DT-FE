@@ -1,6 +1,6 @@
 @if (typeToUse$|async; as typeToUse) {
-<div class="w-full h-[38px]">
-  <div class="relative h-[38px] leading-[38px]">
+<div class="w-full h-[40px]">
+  <div class="relative h-full leading-[38px]">
     <dt-button
       class="absolute z-20 inset-y-0 ps-2"
       type="icon"
@@ -12,7 +12,7 @@
       [required]="required"
       [pattern]="pattern"
       placeholder
-      (keydown.enter)="keydownEnter.emit()"
+      (keydown.enter)="keydownEnter.emit($event)"
       (input)="onInput($event)"
       [ngClass]="{
         validation: !!pattern,
@@ -20,7 +20,10 @@
       }"
       class="absolute w-full outline-none ps-9 leading-[38px] border border-gray-400 rounded-md bg-transparent z-10 focus:border-2 focus:border-orange-400"
     />
-    <label [class]="bgColorClass" class="labelline absolute ps-9 duration-200">
+    <label
+      [class]="bgColorClass"
+      class="labelline absolute ps-9 duration-200 text-gray-500"
+    >
       {{ header }}
     </label>
     @if ((type$|async) === 'password') {

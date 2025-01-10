@@ -1,21 +1,18 @@
-<form class="flex gap-2 items-center max-w-sm mx-auto">
-  <div class="relative flex-grow">
-    <dt-button
-      type="icon"
-      icon="search"
-      class="absolute inset-y-0 start-0 ps-2"
-    />
-    <input
+<div class="flex gap-2 items-center max-w-sm">
+  <div class="w-full">
+    <dt-input-text
       type="text"
-      class="w-full rounded-md ps-9 p-2.5 outline-none bg-gray-200 border-gray-300 text-gray-900 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
-      placeholder="Search branch name..."
-      required
+      infoIcon="search"
+      header="Search branch name...!"
+      [required]="true"
+      bgColorClass="bg-gray-50"
+      (keydownEnter)="searchCar($event)"
     />
   </div>
   <dt-button
     type="button"
-    buttonClass="py-2 px-4"
+    buttonClass="py-[8px] px-4"
     header="Buscar"
     iconFill="#fff"
   />
-</form>
+</div>

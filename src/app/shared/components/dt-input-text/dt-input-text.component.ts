@@ -37,7 +37,7 @@ export class DtInputTextComponent implements ControlValueAccessor {
   //#endregion INPUTS
 
   //#region OUTPUTS
-  @Output() keydownEnter = new EventEmitter<void>();
+  @Output() keydownEnter = new EventEmitter<Event>();
   //#endregion OUTPUTS
 
   //#region TYPE
@@ -69,8 +69,8 @@ export class DtInputTextComponent implements ControlValueAccessor {
   //#endregion CONTROL VALUE ACCESSOR
 
   public onInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const value = inputElement.value;
+    event.preventDefault();
+    const value = (event.target as HTMLInputElement).value;
     this.onChange(value);
     this.onTouched();
   }
