@@ -18,6 +18,23 @@
       "password": "Password"
     }
   },
+  "BASIC_CARS": {
+    "title": "Basic cars",
+    "filters": {
+      "year": {
+        "header": "Year"
+      },
+      "mainSerie": {
+        "header": "Main serie"
+      },
+      "exclusiveSerie": {
+        "header": "Exclusive serie"
+      },
+      "userProperty": {
+        "header": "Property"
+      }
+    }
+  },
   "ERRORS": {
     "1": "Internal server error | | talk to admin please",
     "2": "Bad request | talk to admin please",
