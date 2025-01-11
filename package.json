@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:DT-FE": "node dist/dt-fe/server/server.mjs",
+    "serve:ssr": "node dist/dt-fe/server/server.mjs",
     "build:tailwind": "npx tailwindcss -i ./src/styles.scss -o ./src/output.css --watch"
   },
   "private": true,

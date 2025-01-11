@@ -22,8 +22,8 @@ export function app(): express.Express {
   server.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://localhost:8000',
-      changeOrigin: true,
+      target: 'http://localhost:8000/api',
+      changeOrigin: true
     })
   );
   //#endregion MIDDLEWARE - Comment in deployment
@@ -32,7 +32,7 @@ export function app(): express.Express {
   server.get(
     '*.*',
     express.static(browserDistFolder, {
-      maxAge: '1y',
+      maxAge: '1y'
     })
   );
 
@@ -46,7 +46,7 @@ export function app(): express.Express {
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }]
       })
       .then((html) => res.send(html))
       .catch((err) => next(err));
