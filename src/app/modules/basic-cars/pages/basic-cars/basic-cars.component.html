@@ -43,7 +43,7 @@
       @for (group of groupedCars | keyvalue; track $index) {
         <div class="py-2">
           <h3 class="text-2xl">{{ group.key }}</h3>
-          <div class="divider my-1"></div>
+          <div class="w-full h-[1px] bg-gray-800 my-1"></div>
           <div class="group">
             @for (car of group.value; track $index) {
               <dt-basic-car-card [car]="car" />
