@@ -1,0 +1,12 @@
+<div class="">
+  <ng-content select="[title]"></ng-content>
+</div>
+
+<div class="grid grid-cols-12 w-[85%] mx-auto pb-2 gap-6">
+  <aside class="col-span-2">
+    <ng-content select="[aside]"></ng-content>
+  </aside>
+  <main class="col-span-10">
+    <ng-content select="[mainContent]"></ng-content>
+  </main>
+</div>
