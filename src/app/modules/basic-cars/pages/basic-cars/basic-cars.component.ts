@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BasicCarCardComponent } from '@modules/basic-cars/components/basic-car-card/basic-car-card.component';
+import { BasicCarsCarsSkeletonComponent } from '@modules/basic-cars/components/basic-cars-cars-skeleton/basic-cars-cars-skeleton.component';
+import { BasicCarsFiltersSkeletonComponent } from '@modules/basic-cars/components/basic-cars-filters-skeleton/basic-cars-filters-skeleton.component';
 import {
   BasicCarPayload,
   BasicCarResponse,
@@ -9,6 +11,7 @@ import {
   BasicCarsGrouped,
 } from '@modules/basic-cars/models/basic-cars.models';
 import { BasicCarsService } from '@modules/basic-cars/services/basic-cars.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { DtInputDropdownComponent } from '@shared/components/dt-input-dropdown/dt-input-dropdown.component';
 import { USER_PROPERTY } from '@shared/models/filters.models';
 import {
@@ -18,12 +21,14 @@ import {
   Observable,
   pairwise,
   scan,
+  share,
   shareReplay,
   startWith,
   switchMap,
   take,
   tap,
 } from 'rxjs';
+import { DtLayoutComponent } from 'src/app/layouts/dt-layout/dt-layout.component';
 
 @Component({
   selector: 'basic-cars',
@@ -31,8 +36,12 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
     DtInputDropdownComponent,
     BasicCarCardComponent,
+    DtLayoutComponent,
+    BasicCarsFiltersSkeletonComponent,
+    BasicCarsCarsSkeletonComponent,
   ],
   templateUrl: './basic-cars.component.html',
   styleUrl: './basic-cars.component.scss',
@@ -60,12 +69,12 @@ export class BasicCarsComponent {
               mainSerie: null,
               exclusiveSerie: null,
             },
-            { emitEvent: false }
+            { emitEvent: false },
           );
         }
         return curr;
       }),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   //#endregion PAYLOAD
 
@@ -73,42 +82,55 @@ export class BasicCarsComponent {
   public data$: Observable<BasicCarResponse> = this.payloadChanges$.pipe(
     startWith({ year: undefined }),
     switchMap((payload) => this.getBasicCarsData(payload)),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
   //#endregion DATA
 
   //#region VALUE
   public groupedCars$: Observable<BasicCarsGrouped> = this.data$.pipe(
-    map(({ cars }) => cars)
+    map(({ cars }) => cars),
   );
   //#endregion VALUE
 
   //#region FILTERS
-  private onYearChange$: Observable<number> = this.data$.pipe(
+  private onYearChange$: Observable<number> = this.payloadChanges$.pipe(
     pairwise(),
-    filter(([prev, curr]) => prev.filters.year !== curr.filters.year),
+    filter(([prev, curr]) => prev.year !== curr.year),
     map(([_, curr]) => curr),
-    filter(({ filters: { year } }) => !!year),
-    map(({ filters: { year } }) => year!)
+    filter(({ year }) => !!year),
+    map(({ year }) => year!),
+    share(),
   );
   public filters$: Observable<BasicCarsFilters> = merge(
     this.data$.pipe(
       take(1),
-      map(({ filters }) => filters.year)
+      map(({ filters }) => filters.year),
     ),
-    this.onYearChange$
+    this.onYearChange$,
   ).pipe(
     tap((year) => this.payload.patchValue({ year }, { emitEvent: false })),
-    switchMap((year) => this.getBasicFilters(year!))
+    switchMap((year) => this.getBasicFilters(year!)),
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
   //#endregion FILTERS
 
   //#region CARS COUNT
   public carsCount$: Observable<{ carsOwned: number; carsShowed: number }> =
     this.data$.pipe(
-      map(({ carsOwned, carsShowed }) => ({ carsOwned, carsShowed }))
+      map(({ carsOwned, carsShowed }) => ({ carsOwned, carsShowed })),
     );
   //#endregion CARS COUNT
+
+  //#region LOADING
+  public filtersLoading$: Observable<boolean> = merge(
+    merge(this.data$.pipe(take(1)), this.onYearChange$).pipe(map(() => true)),
+    this.filters$.pipe(map(() => false)),
+  );
+  public carsLoading$: Observable<boolean> = merge(
+    this.payloadChanges$.pipe(map(() => true)),
+    this.data$.pipe(map(() => false)),
+  ).pipe(startWith(true));
+  //#endregion LOADING
 
   private getBasicCarsData(payload: BasicCarPayload) {
     return this.basicCarsService

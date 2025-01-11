@@ -1,44 +1,56 @@
-<h1 class="text-4xl text-center pt-4">Coches básicos</h1>
-<div class="grid grid-cols-12 w-[85%] mx-auto pb-2 gap-6">
-  @if (filters$ | async; as filters) {
-  <aside class="col-span-2">
-    <form [formGroup]="payload" class="flex flex-col gap-3">
-      <dt-input-dropdown
-        formControlName="year"
-        header="year"
-        [options]="filters.year"
-        [allowNullable]="false"
-      />
-      <dt-input-dropdown
-        formControlName="mainSerie"
-        header="mainSerie"
-        [options]="filters.mainSerie"
-      />
-      <dt-input-dropdown
-        formControlName="exclusiveSerie"
-        header="exclusiveSerie"
-        [options]="filters.exclusiveSerie"
-      />
-      <dt-input-dropdown
-        formControlName="userProperty"
-        header="userProperty"
-        [options]="filters.userProperty"
-      />
-    </form>
-  </aside>
-  } @if (groupedCars$ | async; as groupedCars) {
-  <main class="col-span-10">
-    @for(group of groupedCars | keyvalue; track $index){
-    <div class="py-2">
-      <h3 class="text-2xl">{{ group.key }}</h3>
-      <div class="divider my-1"></div>
-      <div class="group">
-        @for(car of group.value; track $index) {
-        <dt-basic-car-card [car]="car" />
-        }
-      </div>
-    </div>
+@let filters = filters$ | async;
+@let groupedCars = groupedCars$ | async;
+
+<dt-layout>
+  <h1 title class="text-4xl text-center pt-4">Coches básicos</h1>
+  <ng-container aside>
+    @if (filtersLoading$ | async) {
+      <basic-cars-filters-skeleton />
+    } @else if (filters) {
+      <form [formGroup]="payload" class="flex flex-col gap-3">
+        <dt-input-dropdown
+          formControlName="year"
+          [header]="'BASIC_CARS.filters.year.header' | translate"
+          [options]="filters.year"
+          [allowNullable]="false"
+        />
+        <dt-input-dropdown
+          formControlName="mainSerie"
+          [header]="'BASIC_CARS.filters.mainSerie.header' | translate"
+          [options]="filters.mainSerie"
+        />
+        <dt-input-dropdown
+          formControlName="exclusiveSerie"
+          [header]="'BASIC_CARS.filters.exclusiveSerie.header' | translate"
+          [options]="filters.exclusiveSerie"
+        />
+        <dt-input-dropdown
+          formControlName="userProperty"
+          [header]="'BASIC_CARS.filters.userProperty.header' | translate"
+          [options]="filters.userProperty"
+        />
+      </form>
+      @if (carsCount$ | async; as carsCount) {
+        {{ carsCount.carsOwned }} / {{ carsCount.carsShowed }}
+      }
     }
-  </main>
-  }
-</div>
+  </ng-container>
+
+  <ng-container mainContent>
+    @if (carsLoading$ | async) {
+      <basic-cars-cars-skeleton />
+    } @else if (groupedCars) {
+      @for (group of groupedCars | keyvalue; track $index) {
+        <div class="py-2">
+          <h3 class="text-2xl">{{ group.key }}</h3>
+          <div class="divider my-1"></div>
+          <div class="group">
+            @for (car of group.value; track $index) {
+              <dt-basic-car-card [car]="car" />
+            }
+          </div>
+        </div>
+      }
+    }
+  </ng-container>
+</dt-layout>
