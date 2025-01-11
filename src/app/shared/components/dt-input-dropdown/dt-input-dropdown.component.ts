@@ -41,19 +41,20 @@ export class DtInputDropdownComponent implements ControlValueAccessor {
   //#region INPUTS
   @Input({ required: true }) header: string = '';
   @Input() allowNullable: boolean = true;
+  @Input() disabled: boolean = false;
   //#endregion INPUTS
 
   //#region VALUE
   public valueChanges$ = new ReplaySubject<string | number | null>(1);
   public value$: Observable<string | number | null> = this.valueChanges$.pipe(
     map((v) => v ?? ''),
-    share()
+    share(),
   );
   //#endregion VALUE
 
   //#region OPTIONS
   @Input({ alias: 'options', required: true }) set optionsSetter(
-    v: string[] | number[]
+    v: string[] | number[],
   ) {
     if (!v) return;
     this.options.next(v);
@@ -69,9 +70,9 @@ export class DtInputDropdownComponent implements ControlValueAccessor {
         option
           .toString()
           .toLowerCase()
-          .includes(String(textSearched).toLowerCase())
-      )
-    )
+          .includes(String(textSearched).toLowerCase()),
+      ),
+    ),
   );
   //#endregion OPTIONS
 
@@ -97,7 +98,11 @@ export class DtInputDropdownComponent implements ControlValueAccessor {
   public setDisabledState(isDisabled: boolean): void {}
   //#endregion CONTROL VALUE ACCESSOR
 
-  public onSelect(option: string | number | null): void {
+  public onSelect(
+    option: string | number | null,
+    previousOption: string | number | null,
+  ): void {
+    if (option === previousOption) return;
     this.valueChanges$.next(option);
     this.dropdownVisibility.next({ visible: false });
     this.onChange(option);
