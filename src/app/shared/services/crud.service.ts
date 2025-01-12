@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 
 type CurdHttpOptions = {};
 
-type FrontResponse<T> = FrontDefaultResponse<T> | FrontErrorResponse;
+export type FrontResponse<T> = FrontDefaultResponse<T> | FrontErrorResponse;
 interface FrontDefaultResponse<T> {
   ok: true;
   data: T;
 }
-type ErrorType = { error: number; msg: string };
+export type ErrorType = { error: number; msg: string };
 interface FrontErrorResponse {
   ok: false;
   errors: ErrorType[];
@@ -34,7 +34,7 @@ export class CrudService {
   public post<TBody = any, TResponse = any>(
     url: string,
     body: TBody,
-    options: CurdHttpOptions = {}
+    options: CurdHttpOptions = {},
   ): Observable<FrontResponse<TResponse>> {
     const absoluteUrl = url.startsWith('/') ? url : `/${url}`;
     return this.http.post(absoluteUrl, body).pipe(
@@ -49,15 +49,15 @@ export class CrudService {
                 msg: curr.msg,
               },
             ],
-            []
+            [],
           ),
-        })
+        }),
       ),
       map((response: BackResponse<TResponse>) =>
         response.ok
           ? { ok: true, data: response.data }
-          : { ok: false, errors: response.errors }
-      )
+          : { ok: false, errors: response.errors },
+      ),
     );
   }
 }
