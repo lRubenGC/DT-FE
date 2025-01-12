@@ -2,7 +2,9 @@
 @let groupedCars = groupedCars$ | async;
 
 <dt-layout>
-  <h1 title class="text-4xl text-center pt-4">Coches básicos</h1>
+  <h1 title class="text-4xl text-center pt-6">
+    {{ 'BASIC_CARS.title' | translate }} {{ yearSelected | async }}
+  </h1>
   <ng-container aside>
     @if (filtersLoading$ | async) {
       <basic-cars-filters-skeleton />
