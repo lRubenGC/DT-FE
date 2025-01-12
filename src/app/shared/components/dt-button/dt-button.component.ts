@@ -11,6 +11,7 @@ export type DT_ICONS =
   | 'arrow-up'
   | 'close'
   | 'delete'
+  | 'error'
   | 'eye-close'
   | 'eye-open'
   | 'favorite'
@@ -21,7 +22,13 @@ export type DT_ICONS =
   | 'user';
 
 // Para añadir colores, ir a tailwind.config.js y añadirlos en la safelist
-export type SAFELIST_COLORS = 'orange' | 'yellow' | 'green' | 'sky' | 'red';
+export type SAFELIST_COLORS =
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'sky'
+  | 'red'
+  | 'transparent';
 
 @Component({
   selector: 'dt-button',

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
-import { CrudService } from '@shared/services/crud.service';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { CrudService, FrontResponse } from '@shared/services/crud.service';
 import { map, merge, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import {
   DT_ICONS,
@@ -15,10 +15,13 @@ import {
   templateUrl: './dt-request-button.component.html',
   styleUrl: './dt-request-button.component.scss',
 })
-export class DtRequestButtonComponent {
+export class DtRequestButtonComponent<
+  TBody extends object,
+  TResponse extends object,
+> {
   //#region INPUTS
   @Input({ required: true }) endpoint!: string;
-  @Input() body: any = '';
+  @Input({ required: true }) body!: TBody;
   @Input() icon: DT_ICONS | null = null;
   @Input() iconFill: string = '#202020';
   @Input() buttonColor: SAFELIST_COLORS = 'orange';
@@ -27,6 +30,10 @@ export class DtRequestButtonComponent {
   @Input() title: string | null = null;
   //#endregion INPUTS
 
+  //#region OUTPUTS
+  @Output() onResponse = new EventEmitter<FrontResponse<TResponse>>();
+  //#endregion OUTPUTS
+
   //#region SERVICES
   private readonly http = inject(CrudService);
   //#endregion SERVICES
@@ -34,15 +41,16 @@ export class DtRequestButtonComponent {
   //#region ON CLICK
   public onClick = new Subject<void>();
   public onClick$ = this.onClick.pipe(
-    switchMap(() => this.http.post(this.endpoint, this.body)),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    switchMap(() => this.http.post<TBody, TResponse>(this.endpoint, this.body)),
+    tap((resp) => this.onResponse.emit(resp)),
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
   //#endregion ON CLICK
 
   //#region LOADING
   public loading$ = merge(
     this.onClick.pipe(map(() => true)),
-    this.onClick$.pipe(map(() => false))
+    this.onClick$.pipe(map(() => false)),
   );
   //#endregion LOADING
 }
