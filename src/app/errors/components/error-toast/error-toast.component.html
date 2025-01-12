@@ -1,0 +1,27 @@
+@if ({ errors: errors$ | async, visible: visible$ | async }; as vm) {
+  <div class="w-full h-screen fixed z-20 pointer-events-none">
+    @for (error of vm.errors; track $index) {
+      @if (vm.visible) {
+        <div
+          class="absolute flex p-4 gap-3 justify-between top-3 right-3 w-[350px] border-2 border-red-600 rounded-md bg-white pointer-events-auto"
+          @fadeAnimation
+        >
+          <div class="flex gap-2">
+            <dt-button type="icon" icon="error" iconFill="#dc2626" />
+            <h4 class="font-semibold">
+              {{ 'ERRORS.' + error.ErrorCode | translate }}
+            </h4>
+          </div>
+          <div class="h-auto flex items-center">
+            <dt-button
+              type="button"
+              icon="close"
+              buttonColor="transparent"
+              (onClick)="close.next()"
+            />
+          </div>
+        </div>
+      }
+    }
+  </div>
+}

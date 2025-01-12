@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { LanguageService } from '@shared/services/language.service';
 import { HeaderComponent } from './layouts/header/header.component';
 import { SeoComponent } from './seo/seo.component';
+import { ErrorToastComponent } from './errors/components/error-toast/error-toast.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SeoComponent, HeaderComponent, RouterOutlet],
+  imports: [SeoComponent, HeaderComponent, RouterOutlet, ErrorToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
