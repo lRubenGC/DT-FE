@@ -19,7 +19,7 @@
     }
   },
   "BASIC_CARS": {
-    "title": "Basic cars",
+    "title": "Basic cars of ",
     "filters": {
       "year": {
         "header": "Year"
