@@ -41,9 +41,12 @@
         } @else {
           <dt-button
             type="button"
-            icon="arrow-down"
+            [icon]="vm.dropdownVisible.visible ? 'arrow-up' : 'arrow-down'"
             class="absolute inset-y-0 end-0 flex items-center pe-3"
             buttonClass="bg-transparent p-1"
+            (onClick)="
+              dropdownVisibility.next({ visible: !vm.dropdownVisible.visible })
+            "
           ></dt-button>
         }
       </div>
