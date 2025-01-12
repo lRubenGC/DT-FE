@@ -33,7 +33,10 @@
               carId: car.id,
               wantsCar: true,
             }"
+            (onResponse)="onCarWished($event, car)"
           />
+        }
+        @if (!car.hasCar) {
           <dt-request-button
             icon="add"
             buttonColor="green"
@@ -43,8 +46,10 @@
               carId: car.id,
               hasCar: true,
             }"
+            (onResponse)="onCarAdd($event, car)"
           />
-        } @else {
+        }
+        @if (car.hasCar || car.wantsCar) {
           <dt-request-button
             icon="delete"
             buttonColor="red"
@@ -53,13 +58,14 @@
             [body]="{
               carId: car.id,
             }"
+            (onResponse)="onCarDeleted($event, car)"
           />
         }
       </div>
       <img
         [src]="car.img"
         loading="lazy"
-        class="w-full h-[130px] object-cover rounded-md"
+        class="w-full h-[130px] object-cover rounded-md shadow-sm"
       />
     </div>
     <div class="w-full flex justify-between px-2">
