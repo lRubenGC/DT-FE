@@ -33,7 +33,7 @@
               carId: car.id,
               wantsCar: true,
             }"
-            (onResponse)="onCarWished($event, car)"
+            (onResponse)="onCarAction($event, car, 'wantsCar')"
           />
         }
         @if (!car.hasCar) {
@@ -46,7 +46,7 @@
               carId: car.id,
               hasCar: true,
             }"
-            (onResponse)="onCarAdd($event, car)"
+            (onResponse)="onCarAction($event, car, 'hasCar')"
           />
         }
         @if (car.hasCar || car.wantsCar) {
@@ -58,7 +58,7 @@
             [body]="{
               carId: car.id,
             }"
-            (onResponse)="onCarDeleted($event, car)"
+            (onResponse)="onCarAction($event, car, 'deleteCar')"
           />
         }
       </div>

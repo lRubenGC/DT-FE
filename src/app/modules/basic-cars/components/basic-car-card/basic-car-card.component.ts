@@ -14,26 +14,22 @@ import { ReplaySubject } from 'rxjs';
   styleUrl: './basic-car-card.component.scss',
 })
 export class BasicCarCardComponent {
+  //#region VM
   @Input({ required: true, alias: 'car' }) set carSetter(v: BasicCarDTO) {
     this.car$.next(v);
   }
   public car$ = new ReplaySubject<BasicCarDTO>(1);
+  //#endregion VM
 
-  public onCarWished(resp: FrontResponse<null>, car: BasicCarDTO): void {
+  public onCarAction(
+    resp: FrontResponse<null>,
+    car: BasicCarDTO,
+    action: 'hasCar' | 'wantsCar' | 'deleteCar',
+  ): void {
+    const hasCar = action === 'hasCar' ? 1 : 0;
+    const wantsCar = action === 'wantsCar' ? 1 : 0;
     if (resp.ok) {
-      this.car$.next({ ...car, wantsCar: 1 });
-    }
-  }
-
-  public onCarAdd(resp: FrontResponse<null>, car: BasicCarDTO): void {
-    if (resp.ok) {
-      this.car$.next({ ...car, hasCar: 1, wantsCar: 0 });
-    }
-  }
-
-  public onCarDeleted(resp: FrontResponse<null>, car: BasicCarDTO): void {
-    if (resp.ok) {
-      this.car$.next({ ...car, hasCar: 0, wantsCar: 0 });
+      this.car$.next({ ...car, hasCar, wantsCar });
     }
   }
 }
