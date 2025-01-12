@@ -6,10 +6,10 @@
     [ngClass]="[
       'bg-' + buttonColor + '-400',
       'hover:bg-' + buttonColor + '-500',
-      'active:bg-' + buttonColor + '-600'
+      'active:bg-' + buttonColor + '-600',
     ]"
     [class]="buttonClass"
-    (click)="onClick.emit()"
+    (click)="onButtonClick($event)"
   >
     @if (!!icon && !(loading$ | async)) {
       <svg-icon

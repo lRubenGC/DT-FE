@@ -57,4 +57,9 @@ export class DtButtonComponent {
   //#region OUTPUTS
   @Output() onClick = new EventEmitter<void>();
   //#endregion OUTPUTS
+
+  public onButtonClick(event: Event) {
+    event.stopPropagation();
+    this.onClick.emit();
+  }
 }
