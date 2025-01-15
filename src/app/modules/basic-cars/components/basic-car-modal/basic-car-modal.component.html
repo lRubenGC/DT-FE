@@ -1,11 +1,90 @@
-<div class="bg-slate-400 shadow-lg rounded-md p-6">
-  <h1>Hi {{ car.model_name }}</h1>
-  <img [src]="car.img" />
-  <div>
-    <label id="favorite-animal">What's your favorite animal?</label>
-    <input for="favorite-animal" placeholder="Enter your name" />
+<div class="bg-white shadow-lg rounded-md p-6">
+  <div class="w-full flex justify-end">
+    <dt-button
+      type="button"
+      icon="close"
+      buttonClass="p-1"
+      buttonColor="transparent"
+      headerClass="text-black"
+      (onClick)="dialogRef.close()"
+    />
   </div>
-  <div>
-    <button (click)="dialogRef.close()">Cancel</button>
+
+  <div class="w-fit mx-auto">
+    <h2
+      class="text-center font-semibold text-xl px-2 rounded-md"
+      [ngClass]="{
+        'bg-green-600': car.hasCar,
+        'bg-sky-600': car.wantsCar,
+        'text-black': !car.hasCar && !car.wantsCar,
+        'text-white': car.hasCar || car.wantsCar,
+      }"
+    >
+      {{ car.model_name }}
+    </h2>
+  </div>
+
+  <img [src]="car.img" />
+
+  <div class="flex flex-col">
+    <p>{{ car.car_id }}</p>
+    <p>#{{ car.col }}</p>
+    <p>{{ car.series }}</p>
+    <p>{{ car.col_serie }}</p>
+    <p>{{ car.year }}</p>
+  </div>
+  <div class="flex w-full justify-center gap-2">
+    <dt-button
+      type="button"
+      icon="open-in-full"
+      buttonClass="lg:p-2 md:p-1"
+      buttonColor="yellow"
+      header="Open"
+      headerClass="text-black"
+    />
+    @if (!car.hasCar && !car.wantsCar) {
+      <dt-request-button
+        icon="favorite"
+        buttonColor="sky"
+        buttonClass="lg:p-2 md:p-1"
+        endpoint="/api/basic-cars/add-car"
+        header="Wishlist"
+        headerClass="text-black"
+        [body]="{
+          carId: car.id,
+          wantsCar: true,
+        }"
+        (onResponse)="onCarAction($event, car, 'wantsCar')"
+      />
+    }
+    @if (!car.hasCar) {
+      <dt-request-button
+        icon="add"
+        buttonColor="green"
+        buttonClass="lg:p-2 md:p-1"
+        endpoint="/api/basic-cars/add-car"
+        header="Collection"
+        headerClass="text-black"
+        [body]="{
+          carId: car.id,
+          hasCar: true,
+        }"
+        (onResponse)="onCarAction($event, car, 'hasCar')"
+      />
+    }
+    @if (car.hasCar || car.wantsCar) {
+      <dt-request-button
+        icon="delete"
+        buttonColor="red"
+        buttonClass="lg:p-2 md:p-1"
+        endpoint="/api/basic-cars/delete-car"
+        header="Remove"
+        headerClass="text-black"
+        [body]="{
+          carId: car.id,
+        }"
+        (onResponse)="onCarAction($event, car, 'deleteCar')"
+      />
+    }
   </div>
 </div>

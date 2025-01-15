@@ -5,7 +5,7 @@ import { BasicCarDTO } from '@modules/basic-cars/models/basic-cars.models';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import { DtRequestButtonComponent } from '@shared/components/dt-request-button/dt-request-button.component';
 import { FrontResponse } from '@shared/services/crud.service';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { BasicCarModalComponent } from '../basic-car-modal/basic-car-modal.component';
 
 @Component({
@@ -31,16 +31,17 @@ export class BasicCarCardComponent {
   private readonly dialog = inject(Dialog);
   public openDialog(car: BasicCarDTO): void {
     const dialogRef = this.dialog.open(BasicCarModalComponent, {
-      height: '400px',
-      width: '600px',
+      height: 'auto',
+      width: '800px',
       panelClass: 'my-dialog',
       data: car,
     });
 
-    dialogRef.closed.subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
+    (dialogRef.closed as Observable<BasicCarDTO>).subscribe(
+      (car: BasicCarDTO) => {
+        this.car$.next(car);
+      },
+    );
   }
 
   public onCarAction(
