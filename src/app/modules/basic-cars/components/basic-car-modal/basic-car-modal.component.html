@@ -1,0 +1,11 @@
+<div class="bg-slate-400 shadow-lg rounded-md p-6">
+  <h1>Hi {{ car.model_name }}</h1>
+  <img [src]="car.img" />
+  <div>
+    <label id="favorite-animal">What's your favorite animal?</label>
+    <input for="favorite-animal" placeholder="Enter your name" />
+  </div>
+  <div>
+    <button (click)="dialogRef.close()">Cancel</button>
+  </div>
+</div>
