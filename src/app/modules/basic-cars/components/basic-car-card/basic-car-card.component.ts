@@ -1,15 +1,22 @@
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { BasicCarDTO } from '@modules/basic-cars/models/basic-cars.models';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import { DtRequestButtonComponent } from '@shared/components/dt-request-button/dt-request-button.component';
 import { FrontResponse } from '@shared/services/crud.service';
 import { ReplaySubject } from 'rxjs';
+import { BasicCarModalComponent } from '../basic-car-modal/basic-car-modal.component';
 
 @Component({
-  selector: 'dt-basic-car-card',
+  selector: 'basic-car-card',
   standalone: true,
-  imports: [CommonModule, DtButtonComponent, DtRequestButtonComponent],
+  imports: [
+    CommonModule,
+    DtButtonComponent,
+    DtRequestButtonComponent,
+    DialogModule,
+  ],
   templateUrl: './basic-car-card.component.html',
   styleUrl: './basic-car-card.component.scss',
 })
@@ -20,6 +27,21 @@ export class BasicCarCardComponent {
   }
   public car$ = new ReplaySubject<BasicCarDTO>(1);
   //#endregion VM
+
+  private readonly dialog = inject(Dialog);
+  public openDialog(car: BasicCarDTO): void {
+    const dialogRef = this.dialog.open(BasicCarModalComponent, {
+      height: '400px',
+      width: '600px',
+      panelClass: 'my-dialog',
+      data: car,
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   public onCarAction(
     resp: FrontResponse<null>,
