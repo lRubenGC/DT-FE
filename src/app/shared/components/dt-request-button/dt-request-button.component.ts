@@ -27,6 +27,7 @@ export class DtRequestButtonComponent<
   @Input() buttonColor: SAFELIST_COLORS = 'orange';
   @Input() buttonClass: string = '';
   @Input() header: string = '';
+  @Input() headerClass: string = '';
   @Input() title: string | null = null;
   //#endregion INPUTS
 

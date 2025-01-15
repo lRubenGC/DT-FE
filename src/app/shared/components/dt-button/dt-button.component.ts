@@ -45,6 +45,7 @@ export class DtButtonComponent {
   @Input() title: string | null = null;
   @Input() buttonColor: SAFELIST_COLORS = 'orange';
   @Input() buttonClass: string = '';
+  @Input() headerClass: string = '';
   @Input() iconFill: string = '#202020';
   @Input() iconSize: string = '24px';
   @Input({ alias: 'loading' }) set loadingSetter(v: boolean | null) {

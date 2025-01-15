@@ -23,7 +23,9 @@
         [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
       />
     }
-    {{ header }}
+    @if (header) {
+      <span [class]="headerClass">{{ header }}</span>
+    }
   </button>
 } @else {
   @if (!!icon) {
