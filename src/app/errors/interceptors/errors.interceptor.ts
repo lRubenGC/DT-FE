@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { ErrorType } from '@shared/services/crud.service';
+import { ErrorType } from '@shared/services/crud/crud.service';
 import { catchError, throwError } from 'rxjs';
 import { DT_ERRORS } from '../models/errors.constants';
 import { ErrorsService } from '../services/errors.service';

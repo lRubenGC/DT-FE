@@ -1,7 +1,7 @@
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LanguageService } from '@shared/services/language.service';
+import { LanguageService } from '@shared/services/language/language.service';
 import { HeaderComponent } from './layouts/header/header.component';
 import { SeoComponent } from './seo/seo.component';
 import { ErrorToastComponent } from './errors/components/error-toast/error-toast.component';

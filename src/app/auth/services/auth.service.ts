@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDTO } from '@auth/models/auth.models';
-import { CrudService } from '@shared/services/crud.service';
+import { CrudService } from '@shared/services/crud/crud.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class AuthService extends CrudService {
   public login(payload: { email: string; password: string }) {
     return this.post<{ email: string; password: string }, UserDTO>(
       '/api/auth/login',
-      payload
+      payload,
     );
   }
 

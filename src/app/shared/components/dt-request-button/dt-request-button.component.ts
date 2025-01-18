@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { CrudService, FrontResponse } from '@shared/services/crud.service';
+import { CrudService, FrontResponse } from '@shared/services/crud/crud.service';
 import { map, merge, shareReplay, Subject, switchMap, tap } from 'rxjs';
 import {
   DT_ICONS,
