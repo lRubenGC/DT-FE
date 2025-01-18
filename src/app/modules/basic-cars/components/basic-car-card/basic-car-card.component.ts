@@ -35,7 +35,6 @@ export class BasicCarCardComponent {
       this.dialog.open(BasicCarModalComponent, {
         height: 'auto',
         width: '800px',
-        panelClass: 'my-dialog',
         data: car,
       });
 
