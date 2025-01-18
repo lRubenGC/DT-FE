@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { BasicCarDTO } from '@modules/basic-cars/models/basic-cars.models';
 import { TranslateModule } from '@ngx-translate/core';
+import { DtImageOverlayComponent } from '@shared/components/dt-image-overlay/dt-image-overlay.component';
 import { DtRequestButtonComponent } from '@shared/components/dt-request-button/dt-request-button.component';
 import { FrontResponse } from '@shared/services/crud/crud.service';
 import { DtButtonComponent } from '../../../../shared/components/dt-button/dt-button.component';
@@ -16,6 +17,7 @@ import { DtButtonComponent } from '../../../../shared/components/dt-button/dt-bu
     DtRequestButtonComponent,
     DtButtonComponent,
     TranslateModule,
+    DtImageOverlayComponent,
   ],
   templateUrl: './basic-car-modal.component.html',
   styleUrl: './basic-car-modal.component.scss',
