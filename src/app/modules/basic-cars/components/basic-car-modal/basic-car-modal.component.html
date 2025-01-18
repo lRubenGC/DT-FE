@@ -1,4 +1,4 @@
-<div class="bg-white shadow-lg rounded-md p-6">
+<div class="bg-white rounded-md p-6">
   <div class="w-full flex justify-end">
     <dt-button
       type="button"
@@ -10,7 +10,7 @@
     />
   </div>
 
-  <div class="w-fit mx-auto">
+  <div class="w-fit mx-auto py-2">
     <h2
       class="text-center font-semibold text-xl px-2 rounded-md"
       [ngClass]="{
@@ -26,12 +26,47 @@
 
   <img [src]="car.img" />
 
-  <div class="flex flex-col">
-    <p>{{ car.car_id }}</p>
-    <p>#{{ car.col }}</p>
-    <p>{{ car.series }}</p>
-    <p>{{ car.col_serie }}</p>
-    <p>{{ car.year }}</p>
+  <div class="grid grid-cols-2 py-2">
+    <p class="px-2">
+      <span class="font-semibold">
+        {{ 'BASIC_CARS.modal.fields.car_id' | translate }}:
+      </span>
+      <span>
+        {{ car.car_id }}
+      </span>
+    </p>
+    <p class="px-2">
+      <span class="font-semibold">
+        {{ 'BASIC_CARS.modal.fields.col' | translate }}:
+      </span>
+      <span>
+        {{ car.col }}
+      </span>
+    </p>
+    <p class="px-2">
+      <span class="font-semibold">
+        {{ 'BASIC_CARS.modal.fields.series' | translate }}:
+      </span>
+      <span>
+        {{ car.series }}
+      </span>
+    </p>
+    <p class="px-2">
+      <span class="font-semibold">
+        {{ 'BASIC_CARS.modal.fields.col_serie' | translate }}:
+      </span>
+      <span>
+        {{ car.col_serie }}
+      </span>
+    </p>
+    <p class="px-2">
+      <span class="font-semibold">
+        {{ 'BASIC_CARS.modal.fields.year' | translate }}:
+      </span>
+      <span>
+        {{ car.year }}
+      </span>
+    </p>
   </div>
   <div class="flex w-full justify-center gap-2">
     <dt-button

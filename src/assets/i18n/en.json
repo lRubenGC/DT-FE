@@ -19,7 +19,7 @@
     }
   },
   "BASIC_CARS": {
-    "title": "Basic cars of ",
+    "title": "Basic cars of",
     "filters": {
       "year": {
         "header": "Year"
@@ -32,6 +32,15 @@
       },
       "userProperty": {
         "header": "Property"
+      }
+    },
+    "modal": {
+      "fields": {
+        "car_id": "ID",
+        "col": "Nº Col",
+        "series": "Series",
+        "col_serie": "Nº Col serie",
+        "year": "Year"
       }
     }
   },
