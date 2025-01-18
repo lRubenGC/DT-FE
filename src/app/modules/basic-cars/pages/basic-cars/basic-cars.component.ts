@@ -101,7 +101,7 @@ export class BasicCarsComponent {
     map(({ year }) => year!),
     share(),
   );
-  public yearSelected = merge(
+  public yearSelected$ = merge(
     this.data$.pipe(
       take(1),
       map(({ filters: { year } }) => year),

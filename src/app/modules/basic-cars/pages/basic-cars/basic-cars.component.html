@@ -1,9 +1,12 @@
 @let filters = filters$ | async;
 @let groupedCars = groupedCars$ | async;
+@let yearSelected = yearSelected$ | async;
+@let carsLoading = carsLoading$ | async;
 
 <dt-layout>
   <h1 title class="text-4xl text-center pt-6">
-    {{ 'BASIC_CARS.title' | translate }} {{ yearSelected | async }}
+    {{ 'BASIC_CARS.title' | translate }}
+    {{ carsLoading ? '----' : yearSelected }}
   </h1>
   <ng-container aside>
     @if (filtersLoading$ | async) {
@@ -39,7 +42,7 @@
   </ng-container>
 
   <ng-container mainContent>
-    @if (carsLoading$ | async) {
+    @if (carsLoading) {
       <basic-cars-cars-skeleton />
     } @else if (groupedCars) {
       @for (group of groupedCars | keyvalue; track $index) {
