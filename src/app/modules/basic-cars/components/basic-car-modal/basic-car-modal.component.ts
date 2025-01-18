@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { BasicCarDTO } from '@modules/basic-cars/models/basic-cars.models';
 import { DtRequestButtonComponent } from '@shared/components/dt-request-button/dt-request-button.component';
-import { FrontResponse } from '@shared/services/crud.service';
+import { FrontResponse } from '@shared/services/crud/crud.service';
 import { DtButtonComponent } from '../../../../shared/components/dt-button/dt-button.component';
-import { take, tap } from 'rxjs';
 
 @Component({
   selector: 'basic-car-modal',
@@ -20,7 +19,7 @@ import { take, tap } from 'rxjs';
   styleUrl: './basic-car-modal.component.scss',
 })
 export class BasicCarModalComponent {
-  public dialogRef = inject(DialogRef<BasicCarDTO>);
+  public dialogRef = inject(DialogRef<BasicCarDTO, BasicCarDTO>);
   public car: BasicCarDTO = inject(DIALOG_DATA);
 
   public onCarAction(
@@ -33,5 +32,9 @@ export class BasicCarModalComponent {
     if (resp.ok) {
       this.car = { ...car, hasCar, wantsCar };
     }
+  }
+
+  ngOnDestroy(): void {
+    this.dialogRef.close(this.car);
   }
 }

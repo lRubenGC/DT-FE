@@ -1,10 +1,10 @@
-import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { BasicCarDTO } from '@modules/basic-cars/models/basic-cars.models';
 import { DtButtonComponent } from '@shared/components/dt-button/dt-button.component';
 import { DtRequestButtonComponent } from '@shared/components/dt-request-button/dt-request-button.component';
-import { FrontResponse } from '@shared/services/crud.service';
+import { FrontResponse } from '@shared/services/crud/crud.service';
 import { Observable, ReplaySubject } from 'rxjs';
 import { BasicCarModalComponent } from '../basic-car-modal/basic-car-modal.component';
 
@@ -21,28 +21,29 @@ import { BasicCarModalComponent } from '../basic-car-modal/basic-car-modal.compo
   styleUrl: './basic-car-card.component.scss',
 })
 export class BasicCarCardComponent {
-  //#region VM
+  //#region CAR
   @Input({ required: true, alias: 'car' }) set carSetter(v: BasicCarDTO) {
     this.car$.next(v);
   }
   public car$ = new ReplaySubject<BasicCarDTO>(1);
-  //#endregion VM
+  //#endregion CAR
 
+  //#region DIALOG
   private readonly dialog = inject(Dialog);
   public openDialog(car: BasicCarDTO): void {
-    const dialogRef = this.dialog.open(BasicCarModalComponent, {
-      height: 'auto',
-      width: '800px',
-      panelClass: 'my-dialog',
-      data: car,
-    });
+    const dialogRef: DialogRef<BasicCarDTO, BasicCarModalComponent> =
+      this.dialog.open(BasicCarModalComponent, {
+        height: 'auto',
+        width: '800px',
+        panelClass: 'my-dialog',
+        data: car,
+      });
 
-    (dialogRef.closed as Observable<BasicCarDTO>).subscribe(
-      (car: BasicCarDTO) => {
-        this.car$.next(car);
-      },
-    );
+    dialogRef.closed.subscribe((car) => {
+      if (car) this.car$.next(car);
+    });
   }
+  //#endregion DIALOG
 
   public onCarAction(
     resp: FrontResponse<null>,
