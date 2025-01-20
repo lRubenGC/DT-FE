@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrudService } from '@shared/services/crud/crud.service';
 import {
+  BasicCarDTO,
   BasicCarPayload,
   BasicCarResponse,
   BasicCarsFilters,
@@ -21,6 +22,20 @@ export class BasicCarsService extends CrudService {
     return this.post<{ year: number }, BasicCarsFilters>(
       '/api/basic-cars/get-filters',
       payload,
+    );
+  }
+
+  public getSingle(id: number) {
+    return this.post<{ id: number }, BasicCarDTO>(
+      '/api/basic-cars/get-single',
+      { id },
+    );
+  }
+
+  public getSimilarCars(id: number) {
+    return this.post<{ id: number }, BasicCarDTO[]>(
+      '/api/basic-cars/get-similar-cars',
+      { id },
     );
   }
 }
