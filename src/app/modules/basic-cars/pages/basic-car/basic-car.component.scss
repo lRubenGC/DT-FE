@@ -1,0 +1,7 @@
+.similar-cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+}

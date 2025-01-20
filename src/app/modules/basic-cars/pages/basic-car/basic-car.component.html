@@ -1,0 +1,146 @@
+@let car = car$ | async;
+@let loadingCar = loadingCar$ | async;
+@let similarCars = similarCars$ | async;
+@let loadingSimilarCars = loadingSimilarCars$ | async;
+
+<div class="w-3/4 flex flex-col mx-auto gap-6">
+  @if (car) {
+    <div class="flex flex-col">
+      <div class="w-full">
+        <h1
+          class="text-center w-fit font-semibold text-3xl mx-auto my-4 px-2 rounded-md"
+          [ngClass]="{
+            'bg-green-600': car.hasCar,
+            'bg-sky-600': car.wantsCar,
+            'text-black': !car.hasCar && !car.wantsCar,
+            'text-white': car.hasCar || car.wantsCar,
+          }"
+        >
+          {{ car.model_name }}
+        </h1>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <dt-image-overlay [src]="car.img" />
+        <div class="flex flex-col">
+          <p>
+            <span class="font-semibold">
+              {{ 'BASIC_CARS.car.car_id' | translate }}:
+            </span>
+            <span>
+              {{ car.car_id }}
+            </span>
+          </p>
+          <p>
+            <span class="font-semibold">
+              {{ 'BASIC_CARS.car.col' | translate }}:
+            </span>
+            <span>
+              {{ car.col }}
+            </span>
+          </p>
+          <p>
+            <span class="font-semibold">
+              {{ 'BASIC_CARS.car.series' | translate }}:
+            </span>
+            <span>
+              {{ car.series }}
+            </span>
+          </p>
+          <p>
+            <span class="font-semibold">
+              {{ 'BASIC_CARS.car.col_serie' | translate }}:
+            </span>
+            <span>
+              {{ car.col_serie }}
+            </span>
+          </p>
+          <p>
+            <span class="font-semibold">
+              {{ 'BASIC_CARS.car.version' | translate }}:
+            </span>
+            <span>
+              {{ car.version }}
+            </span>
+          </p>
+          <p>
+            <span class="font-semibold">
+              {{ 'BASIC_CARS.car.year' | translate }}:
+            </span>
+            <span>
+              {{ car.year }}
+            </span>
+          </p>
+          @if (car.exclusive_serie) {
+            <p>
+              <span class="font-semibold">
+                {{ 'BASIC_CARS.car.exclusive_serie' | translate }}:
+              </span>
+              <span>
+                {{ car.exclusive_serie }}
+              </span>
+            </p>
+          }
+          <div class="flex gap-2 pt-2">
+            @if (!car.hasCar && !car.wantsCar) {
+              <dt-request-button
+                icon="favorite"
+                buttonColor="sky"
+                buttonClass="lg:p-2 md:p-1"
+                endpoint="/api/basic-cars/add-car"
+                header="Wishlist"
+                headerClass="text-black"
+                [body]="{
+                  carId: car.id,
+                  wantsCar: true,
+                }"
+                (onResponse)="onCarAction($event, car, 'wantsCar')"
+              />
+            }
+            @if (!car.hasCar) {
+              <dt-request-button
+                icon="add"
+                buttonColor="green"
+                buttonClass="lg:p-2 md:p-1"
+                endpoint="/api/basic-cars/add-car"
+                header="Collection"
+                headerClass="text-black"
+                [body]="{
+                  carId: car.id,
+                  hasCar: true,
+                }"
+                (onResponse)="onCarAction($event, car, 'hasCar')"
+              />
+            }
+            @if (car.hasCar || car.wantsCar) {
+              <dt-request-button
+                icon="delete"
+                buttonColor="red"
+                buttonClass="lg:p-2 md:p-1"
+                endpoint="/api/basic-cars/delete-car"
+                header="Remove"
+                headerClass="text-black"
+                [body]="{
+                  carId: car.id,
+                }"
+                (onResponse)="onCarAction($event, car, 'deleteCar')"
+              />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="font-semibold text-2xl">
+        {{ 'BASIC_CARS_SINGLE.similarCars.title' | translate }}
+      </h2>
+      <div class="w-full h-[1px] bg-gray-300 my-1"></div>
+      <div class="similar-cars">
+        @for (car of similarCars; track $index) {
+          <basic-car-mini-card [car]="car" />
+        }
+      </div>
+    </div>
+  } @else {
+    no coche
+  }
+</div>
