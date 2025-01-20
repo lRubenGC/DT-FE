@@ -34,14 +34,21 @@
         "header": "Property"
       }
     },
-    "modal": {
-      "fields": {
-        "car_id": "ID",
-        "col": "Nº Col",
-        "series": "Series",
-        "col_serie": "Nº Col serie",
-        "year": "Year"
-      }
+    "car": {
+      "car_id": "ID",
+      "col": "Nº Col",
+      "series": "Series",
+      "col_serie": "Nº Col serie",
+      "year": "Year",
+      "model_name": "Model name",
+      "version": "1st Color",
+      "exclusive_serie": "Exclusive serie",
+      "brand": "Ford"
+    }
+  },
+  "BASIC_CARS_SINGLE": {
+    "similarCars": {
+      "title": "Similar models"
     }
   },
   "ERRORS": {
