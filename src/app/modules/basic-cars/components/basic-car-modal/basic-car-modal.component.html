@@ -29,7 +29,7 @@
   <div class="grid grid-cols-2 py-2">
     <p class="px-2">
       <span class="font-semibold">
-        {{ 'BASIC_CARS.modal.fields.car_id' | translate }}:
+        {{ 'BASIC_CARS.car.car_id' | translate }}:
       </span>
       <span>
         {{ car.car_id }}
@@ -37,7 +37,7 @@
     </p>
     <p class="px-2">
       <span class="font-semibold">
-        {{ 'BASIC_CARS.modal.fields.col' | translate }}:
+        {{ 'BASIC_CARS.car.col' | translate }}:
       </span>
       <span>
         {{ car.col }}
@@ -45,7 +45,7 @@
     </p>
     <p class="px-2">
       <span class="font-semibold">
-        {{ 'BASIC_CARS.modal.fields.series' | translate }}:
+        {{ 'BASIC_CARS.car.series' | translate }}:
       </span>
       <span>
         {{ car.series }}
@@ -53,7 +53,7 @@
     </p>
     <p class="px-2">
       <span class="font-semibold">
-        {{ 'BASIC_CARS.modal.fields.col_serie' | translate }}:
+        {{ 'BASIC_CARS.car.col_serie' | translate }}:
       </span>
       <span>
         {{ car.col_serie }}
@@ -61,21 +61,43 @@
     </p>
     <p class="px-2">
       <span class="font-semibold">
-        {{ 'BASIC_CARS.modal.fields.year' | translate }}:
+        {{ 'BASIC_CARS.car.version' | translate }}:
+      </span>
+      <span>
+        {{ car.version }}
+      </span>
+    </p>
+    <p class="px-2">
+      <span class="font-semibold">
+        {{ 'BASIC_CARS.car.year' | translate }}:
       </span>
       <span>
         {{ car.year }}
       </span>
     </p>
+    @if (car.exclusive_serie) {
+      <p class="px-2">
+        <span class="font-semibold">
+          {{ 'BASIC_CARS.car.exclusive_serie' | translate }}:
+        </span>
+        <span>
+          {{ car.exclusive_serie }}
+        </span>
+      </p>
+    }
   </div>
   <div class="flex w-full justify-center gap-2">
     <dt-button
-      type="button"
+      type="link"
+      href="/basic-cars"
+      [hrefId]="car.id"
+      target="_blank"
       icon="open-in-full"
       buttonClass="lg:p-2 md:p-1"
       buttonColor="yellow"
       header="Open"
       headerClass="text-black"
+      (onClick)="dialogRef.close()"
     />
     @if (!car.hasCar && !car.wantsCar) {
       <dt-request-button
