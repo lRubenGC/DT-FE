@@ -1,0 +1,73 @@
+@if (car$ | async; as car) {
+  <div class="flex flex-col w-full gap-1">
+    <div class="w-fit mx-auto">
+      <h6
+        class="font-semibold rounded-md px-2"
+        [ngClass]="{
+          'bg-green-600': car.hasCar,
+          'bg-sky-600': car.wantsCar,
+          'text-black': !car.hasCar && !car.wantsCar,
+          'text-white': car.hasCar || car.wantsCar,
+        }"
+      >
+        {{ car.year }}
+      </h6>
+    </div>
+    <div class="img-container relative">
+      <div
+        class="absolute w-full bottom-2 flex justify-center gap-2 img-buttons-container"
+      >
+        <dt-button
+          type="button"
+          icon="open-in-full"
+          buttonColor="yellow"
+          buttonClass="lg:p-2 md:p-1"
+          (onClick)="openDialog(car)"
+        />
+        @if (!car.hasCar && !car.wantsCar) {
+          <dt-request-button
+            icon="favorite"
+            buttonColor="sky"
+            buttonClass="lg:p-2 md:p-1"
+            endpoint="/api/basic-cars/add-car"
+            [body]="{
+              carId: car.id,
+              wantsCar: true,
+            }"
+            (onResponse)="onCarAction($event, car, 'wantsCar')"
+          />
+        }
+        @if (!car.hasCar) {
+          <dt-request-button
+            icon="add"
+            buttonColor="green"
+            buttonClass="lg:p-2 md:p-1"
+            endpoint="/api/basic-cars/add-car"
+            [body]="{
+              carId: car.id,
+              hasCar: true,
+            }"
+            (onResponse)="onCarAction($event, car, 'hasCar')"
+          />
+        }
+        @if (car.hasCar || car.wantsCar) {
+          <dt-request-button
+            icon="delete"
+            buttonColor="red"
+            buttonClass="lg:p-2 md:p-1"
+            endpoint="/api/basic-cars/delete-car"
+            [body]="{
+              carId: car.id,
+            }"
+            (onResponse)="onCarAction($event, car, 'deleteCar')"
+          />
+        }
+      </div>
+      <img
+        [src]="car.img"
+        loading="lazy"
+        class="w-full h-[100px] object-cover rounded-md shadow-sm"
+      />
+    </div>
+  </div>
+}

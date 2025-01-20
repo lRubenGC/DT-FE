@@ -1,0 +1,18 @@
+.img-container {
+  img,
+  .img-buttons-container {
+    transition: opacity 200ms ease-in-out;
+  }
+  .img-buttons-container {
+    z-index: 10;
+    opacity: 0;
+  }
+  &:hover {
+    .img-buttons-container {
+      opacity: 1;
+    }
+    img {
+      opacity: 0.4;
+    }
+  }
+}
