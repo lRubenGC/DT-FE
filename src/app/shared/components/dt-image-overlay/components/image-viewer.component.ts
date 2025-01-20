@@ -2,7 +2,7 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 
 @Component({
-  selector: 'app-image-viewer',
+  selector: 'image-viewer',
   standalone: true,
   imports: [],
   templateUrl: './image-viewer.component.html',
