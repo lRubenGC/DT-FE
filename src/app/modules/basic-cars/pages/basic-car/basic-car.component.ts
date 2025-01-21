@@ -51,17 +51,6 @@ export class BasicCarComponent {
   );
   //#endregion SIMILAR CARS
 
-  //#region LOADING
-  public loadingCar$ = merge(
-    this.id$.pipe(map(() => true)),
-    this.car$.pipe(map(() => false)),
-  );
-  public loadingSimilarCars$ = merge(
-    this.id$.pipe(map(() => true)),
-    this.similarCars$.pipe(map(() => false)),
-  );
-  //#endregion LOADING
-
   public onCarAction(
     resp: FrontResponse<null>,
     car: BasicCarDTO,
