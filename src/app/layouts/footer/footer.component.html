@@ -1,0 +1,42 @@
+<footer class="bg-gray-200 py-8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-3">
+      <a routerLink="/home" class="text-2xl font-bold">
+        <span class="hover:text-orange-500">
+          {{ 'FOOTER.webName' | translate }}
+        </span>
+      </a>
+      <ul class="flex justify-center items-center gap-4">
+        <li>
+          <a routerLink="/about" class="hover:text-orange-500"
+            >{{ 'FOOTER.navigation.about' | translate }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contact" class="hover:text-orange-500"
+            >{{ 'FOOTER.navigation.contact' | translate }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/policies" class="hover:text-orange-500"
+            >{{ 'FOOTER.navigation.policies' | translate }}
+          </a>
+        </li>
+      </ul>
+      <div class="flex justify-end w-full">
+        <dt-button
+          type="link"
+          icon="discord"
+          buttonColor="transparent"
+          iconFill="#fff"
+          (onClick)="openDiscord()"
+        />
+      </div>
+    </div>
+    <hr class="my-6 border-gray-700" />
+    <div class="text-center">
+      <!-- TODO: QUITARLO ?? ES LEGAL ?? -->
+      <p class="text-sm">&copy; 2025 MiWeb. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

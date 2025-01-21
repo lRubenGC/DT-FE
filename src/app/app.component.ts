@@ -2,14 +2,21 @@ import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LanguageService } from '@shared/services/language/language.service';
+import { ErrorToastComponent } from './errors/components/error-toast/error-toast.component';
+import { FooterComponent } from './layouts/footer/footer.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { SeoComponent } from './seo/seo.component';
-import { ErrorToastComponent } from './errors/components/error-toast/error-toast.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SeoComponent, HeaderComponent, RouterOutlet, ErrorToastComponent],
+  imports: [
+    SeoComponent,
+    HeaderComponent,
+    RouterOutlet,
+    ErrorToastComponent,
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

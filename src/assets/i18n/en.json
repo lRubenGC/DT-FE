@@ -66,6 +66,14 @@
     "12": "User not found",
     "13": "There are no changes in form"
   },
+  "FOOTER": {
+    "webName": "Diecast Tracker",
+    "navigation": {
+      "about": "About",
+      "contact": "Contact",
+      "policies": "Policies"
+    }
+  },
   "HEADER": {
     "pages": {
       "basicCars": "Basic",
