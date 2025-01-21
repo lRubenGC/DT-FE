@@ -17,6 +17,7 @@ import {
   Subject,
 } from 'rxjs';
 import { DtButtonComponent } from '../dt-button/dt-button.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'dt-input-dropdown',
@@ -26,6 +27,7 @@ import { DtButtonComponent } from '../dt-button/dt-button.component';
     DtButtonComponent,
     ClickOutsideDirective,
     FormsModule,
+    TranslateModule,
   ],
   providers: [
     {
@@ -105,7 +107,12 @@ export class DtInputDropdownComponent implements ControlValueAccessor {
     if (option === previousOption) return;
     this.valueChanges$.next(option);
     this.dropdownVisibility.next({ visible: false });
+    console.log(option);
     this.onChange(option);
     this.onTouched();
+  }
+
+  public isString(value: unknown): value is string {
+    return typeof value === 'string';
   }
 }

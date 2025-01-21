@@ -22,14 +22,14 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 })
 export class HeaderComponent {
   //#region SERVICES
-  private router = inject(Router);
+  private readonly router = inject(Router);
   //#endregion SERVICES
 
   //#region LEFT BUTTONS
   public readonly LEFT_BUTTONS_OPTIONS: { id: string; label: string }[] = [
-    { id: '/basic-cars', label: 'Básicos' },
-    { id: '/special-cars', label: 'Especiales' },
-    { id: '/premium-cars', label: 'Premium' },
+    { id: '/basic-cars', label: 'HEADER.pages.basicCars' },
+    { id: '/special-cars', label: 'HEADER.pages.specialCars' },
+    { id: '/premium-cars', label: 'HEADER.pages.premiumCars' },
   ];
   public leftButtonsOptions$: Observable<SelectButtonOptions[]> =
     this.router.events.pipe(
@@ -39,8 +39,8 @@ export class HeaderComponent {
           id,
           label,
           active: id === event.url,
-        }))
-      )
+        })),
+      ),
     );
   //#endregion LEFT BUTTONS
 

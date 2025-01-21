@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface SelectButtonOptions {
   id: string;
@@ -10,7 +11,7 @@ export interface SelectButtonOptions {
 @Component({
   selector: 'dt-select-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './dt-select-button.component.html',
   styleUrl: './dt-select-button.component.scss',
 })

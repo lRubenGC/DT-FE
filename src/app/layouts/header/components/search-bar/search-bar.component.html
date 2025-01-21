@@ -3,7 +3,7 @@
     <dt-input-text
       type="text"
       infoIcon="search"
-      header="Search branch name...!"
+      [header]="'HEADER.searchBar.placeholder' | translate"
       [required]="true"
       bgColorClass="bg-gray-50"
       (keydownEnter)="searchCar($event)"
@@ -12,7 +12,7 @@
   <dt-button
     type="button"
     buttonClass="py-[8px] px-4"
-    header="Buscar"
+    [header]="'HEADER.searchBar.button' | translate"
     iconFill="#fff"
   />
 </div>

@@ -4,10 +4,10 @@
     class="mx-3 px-1 font-semibold hover:text-orange-400 border-b-2"
     [ngClass]="{
       'border-orange-400': opt.active,
-      'border-transparent': !opt.active
+      'border-transparent': !opt.active,
     }"
     (click)="optionSelected.emit(opt.id)"
   >
-    {{ opt.label }}
+    {{ opt.label | translate }}
   </button>
 }

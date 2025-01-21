@@ -65,5 +65,19 @@
     "11": "The car has already been added to user",
     "12": "User not found",
     "13": "There are no changes in form"
-  }
+  },
+  "HEADER": {
+    "pages": {
+      "basicCars": "Basic",
+      "premiumCars": "Premium",
+      "specialCars": "Special"
+    },
+    "searchBar": {
+      "placeholder": "Search a model name...",
+      "button": "Search"
+    }
+  },
+  "owned": "Owned",
+  "wished": "Wished",
+  "not_owned": "Not owned"
 }
