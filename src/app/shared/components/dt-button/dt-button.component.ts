@@ -12,6 +12,7 @@ export type DT_ICONS =
   | 'arrow-up'
   | 'close'
   | 'delete'
+  | 'discord'
   | 'error'
   | 'eye-close'
   | 'eye-open'
