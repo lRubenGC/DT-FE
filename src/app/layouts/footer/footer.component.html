@@ -1,24 +1,32 @@
-<footer class="bg-gray-200 py-8">
+<footer class="bg-gray-200 mt-28 py-8">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-3">
-      <a routerLink="/home" class="text-2xl font-bold">
-        <span class="hover:text-orange-500">
-          {{ 'FOOTER.webName' | translate }}
-        </span>
-      </a>
+      <div class="flex items-center">
+        <img
+          alt="logo"
+          class="w-14 cursor-pointer drop-shadow"
+          src="assets/images/shared/logo.webp"
+          [routerLink]="['/home']"
+        />
+        <a routerLink="/home" class="text-2xl font-bold text-gray-900">
+          <span class="hover:text-orange-500">
+            {{ 'FOOTER.webName' | translate }}
+          </span>
+        </a>
+      </div>
       <ul class="flex justify-center items-center gap-4">
         <li>
-          <a routerLink="/about" class="hover:text-orange-500"
+          <a routerLink="/about" class="hover:text-orange-500 text-gray-900"
             >{{ 'FOOTER.navigation.about' | translate }}
           </a>
         </li>
         <li>
-          <a routerLink="/contact" class="hover:text-orange-500"
+          <a routerLink="/contact" class="hover:text-orange-500 text-gray-900"
             >{{ 'FOOTER.navigation.contact' | translate }}
           </a>
         </li>
         <li>
-          <a routerLink="/policies" class="hover:text-orange-500"
+          <a routerLink="/policies" class="hover:text-orange-500 text-gray-900"
             >{{ 'FOOTER.navigation.policies' | translate }}
           </a>
         </li>
@@ -28,8 +36,9 @@
           type="link"
           icon="discord"
           buttonColor="transparent"
-          iconFill="#fff"
-          (onClick)="openDiscord()"
+          href="https://discord.gg/V7Ktcm48zd"
+          [isInternalRoute]="false"
+          target="_blank"
         />
       </div>
     </div>
