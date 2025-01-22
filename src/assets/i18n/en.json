@@ -85,6 +85,23 @@
       "button": "Search"
     }
   },
+  "HOME": {
+    "welcome": {
+      "welcomeBack": "Welcome back",
+      "welcomeNew": "Welcome to Diecast Tracker"
+    },
+    "description": "Diecast Tracker is a website designed for diecast car collectors (currently featuring Hot Wheels only). It allows users to explore the available cars on the market and add them to their personal collection or wish list by creating a free account.",
+    "buttons": {
+      "signIn": "Sign in",
+      "joinDiscord": "Join Discord"
+    },
+    "cards": {
+      "basic": "Basic",
+      "special": "Special",
+      "premium": "Premium",
+      "custom": "Custom"
+    }
+  },
   "owned": "Owned",
   "wished": "Wished",
   "not_owned": "Not owned"
