@@ -31,7 +31,7 @@
   @if (isInternalRoute) {
     <a
       [title]="title ?? header"
-      [routerLink]="[href, hrefId]"
+      [routerLink]="hrefId ? [href, hrefId] : href"
       [target]="target"
       class="rounded-md cursor-pointer flex items-center justify-center w-full gap-1 duration-200 text-white"
       [ngClass]="[
@@ -56,7 +56,7 @@
     <a
       [title]="title ?? header"
       [href]="href"
-      [target]="target"
+      target="_blank"
       class="rounded-md cursor-pointer flex items-center justify-center w-full gap-1 duration-200 text-white"
       [ngClass]="[
         'bg-' + buttonColor + '-400',
@@ -69,7 +69,11 @@
       @if (!!icon) {
         <svg-icon
           [src]="'assets/icons/' + icon + '.svg'"
-          [svgStyle]="{ fill: iconFill, width: iconSize, height: iconSize }"
+          [svgStyle]="{
+            fill: iconFill,
+            width: iconSize,
+            height: iconSize,
+          }"
         />
       }
       @if (header) {

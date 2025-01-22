@@ -18,6 +18,7 @@ export type DT_ICONS =
   | 'eye-open'
   | 'favorite'
   | 'lock'
+  | 'login'
   | 'mail'
   | 'open-in-full'
   | 'search'
@@ -53,7 +54,7 @@ export class DtButtonComponent {
   @Input() iconSize: string = '24px';
   @Input() href: string = '';
   @Input() isInternalRoute: boolean = true;
-  @Input() hrefId: number = 0;
+  @Input() hrefId: number | null = null;
   @Input() target: '_self' | '_blank' = '_self';
   @Input({ alias: 'loading' }) set loadingSetter(v: boolean | null) {
     if (v === null) return;
