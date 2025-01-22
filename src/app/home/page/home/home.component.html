@@ -1,1 +1,61 @@
-<p>home works!</p>
+@let userProfile = userProfile$ | async;
+
+<div class="w-full flex justify-center py-4">
+  <div class="w-2/4 flex flex-col justify-center gap-6">
+    @if (userProfile) {
+      <h1 class="text-center text-4xl font-semibold">
+        {{ 'HOME.welcome.welcomeBack' | translate }}
+        <span class="text-orange-600">{{ userProfile.username }}</span>
+      </h1>
+    } @else {
+      <h1 class="text-center text-4xl font-semibold">
+        {{ 'HOME.welcome.welcomeNew' | translate }}!
+      </h1>
+    }
+
+    <p class="px-12 text-justify">{{ 'HOME.description' | translate }}</p>
+
+    <div class="flex justify-center gap-4">
+      @if (!userProfile) {
+        <dt-button
+          type="link"
+          icon="login"
+          href="/auth"
+          [header]="'HOME.buttons.signIn' | translate"
+          buttonClass="p-2"
+          iconFill="#fff"
+        />
+      }
+      <dt-button
+        type="link"
+        icon="discord"
+        [href]="DISCORD_INVITATION"
+        [isInternalRoute]="false"
+        [header]="'HOME.buttons.joinDiscord' | translate"
+        buttonColor="violet"
+        buttonClass="p-2"
+        iconFill="#fff"
+      />
+    </div>
+
+    <div class="grid grid-cols-2 gap-8">
+      <dt-home-car-card
+        src="assets/images/home/basic_bg.webp"
+        [title]="'HOME.cards.basic' | translate"
+      />
+      <dt-home-car-card
+        src="assets/images/home/basic_bg.webp"
+        [title]="'HOME.cards.special' | translate"
+      />
+      <dt-home-car-card
+        src="assets/images/home/premium_bg.webp"
+        [title]="'HOME.cards.premium' | translate"
+      />
+      <dt-home-car-card
+        src="assets/images/home/custom_bg.webp"
+        [title]="'HOME.cards.custom' | translate"
+        [disabled]="true"
+      />
+    </div>
+  </div>
+</div>
