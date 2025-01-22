@@ -4,9 +4,19 @@
 <div class="w-3/4 flex flex-col mx-auto gap-6">
   @if (car) {
     <div class="flex flex-col">
-      <div class="w-full">
+      <div class="w-full flex items-center justify-center gap-2">
+        @if (car.exclusive_serie) {
+          <img
+            [src]="
+              'assets/images/basic-cars/exclusive-series/' +
+              car.exclusive_serie +
+              '.webp'
+            "
+            class="h-[34px] w-auto"
+          />
+        }
         <h1
-          class="text-center w-fit font-semibold text-3xl mx-auto my-4 px-2 rounded-md"
+          class="w-fit font-semibold text-3xl my-4 px-2 rounded-md"
           [ngClass]="{
             'bg-green-600': car.hasCar,
             'bg-sky-600': car.wantsCar,
