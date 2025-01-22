@@ -71,6 +71,16 @@
     </div>
     <div class="w-full flex justify-between px-2">
       <span class="text-gray-800 font-semibold">{{ car.car_id }}</span>
+      @if (car.exclusive_serie) {
+        <img
+          [src]="
+            'assets/images/basic-cars/exclusive-series/' +
+            car.exclusive_serie +
+            '.webp'
+          "
+          class="h-[24px] w-auto"
+        />
+      }
       <span class="text-gray-800 font-semibold">{{ car.version }}</span>
     </div>
   </div>

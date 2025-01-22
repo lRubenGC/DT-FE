@@ -1,6 +1,16 @@
 @if (car$ | async; as car) {
   <div class="flex flex-col w-full gap-1">
-    <div class="w-fit mx-auto">
+    <div class="w-fit mx-auto flex items-center gap-1">
+      @if (car.exclusive_serie) {
+        <img
+          [src]="
+            'assets/images/basic-cars/exclusive-series/' +
+            car.exclusive_serie +
+            '.webp'
+          "
+          class="h-[24px] w-auto"
+        />
+      }
       <h6
         class="font-semibold rounded-md px-2"
         [ngClass]="{

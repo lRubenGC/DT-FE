@@ -10,7 +10,17 @@
     />
   </div>
 
-  <div class="w-fit mx-auto py-2">
+  <div class="w-fit mx-auto py-2 flex items-center gap-2">
+    @if (car.exclusive_serie) {
+      <img
+        [src]="
+          'assets/images/basic-cars/exclusive-series/' +
+          car.exclusive_serie +
+          '.webp'
+        "
+        class="h-[28px] w-auto"
+      />
+    }
     <h2
       class="text-center font-semibold text-xl px-2 rounded-md"
       [ngClass]="{
