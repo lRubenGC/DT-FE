@@ -51,6 +51,7 @@ export class DtButtonComponent {
   @Input() iconFill: string = '#202020';
   @Input() iconSize: string = '24px';
   @Input() href: string = '';
+  @Input() isInternalRoute: boolean = true;
   @Input() hrefId: number = 0;
   @Input() target: '_self' | '_blank' = '_self';
   @Input({ alias: 'loading' }) set loadingSetter(v: boolean | null) {
