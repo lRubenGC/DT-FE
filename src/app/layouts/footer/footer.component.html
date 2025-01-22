@@ -36,9 +36,11 @@
           type="link"
           icon="discord"
           buttonColor="transparent"
-          href="https://discord.gg/V7Ktcm48zd"
+          [href]="DISCORD_INVITATION"
           [isInternalRoute]="false"
-          target="_blank"
+          [iconFill]="isDiscordHovered ? '#a78bfa' : '#000'"
+          (mouseenter)="isDiscordHovered = true"
+          (mouseleave)="isDiscordHovered = false"
         />
       </div>
     </div>

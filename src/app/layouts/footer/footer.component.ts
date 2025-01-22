@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { DISCORD_INVITATION } from '@shared/models/urls.constants';
 import { DtButtonComponent } from '../../shared/components/dt-button/dt-button.component';
 
 @Component({
@@ -11,7 +12,8 @@ import { DtButtonComponent } from '../../shared/components/dt-button/dt-button.c
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  openDiscord() {
-    console.log('Si si ahora se abre tranqui');
-  }
+  //#region DISCORD
+  public readonly DISCORD_INVITATION = DISCORD_INVITATION;
+  public isDiscordHovered: boolean = false;
+  //#endregion DISCORD
 }
