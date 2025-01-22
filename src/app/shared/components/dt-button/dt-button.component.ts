@@ -30,6 +30,7 @@ export type SAFELIST_COLORS =
   | 'green'
   | 'sky'
   | 'red'
+  | 'violet'
   | 'transparent';
 
 @Component({
