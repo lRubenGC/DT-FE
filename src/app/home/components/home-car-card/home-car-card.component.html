@@ -1,4 +1,9 @@
-<div class="container" [ngClass]="{ disabled }">
-  <img [src]="src" />
+<a
+  [routerLink]="href"
+  [title]="title"
+  class="container"
+  [ngClass]="{ disabled }"
+>
+  <img [src]="src" [alt]="title + ' image'" />
   <h3>{{ title }}</h3>
-</div>
+</a>

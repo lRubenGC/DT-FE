@@ -1,13 +1,21 @@
 .container {
   position: relative;
   display: inline-block;
-  transition: scale 0.2s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   z-index: 1;
+  cursor: auto;
 
   &:hover:not(.disabled) {
     cursor: pointer;
-    scale: 1.1;
+    transform: scale(1.1);
     z-index: 5;
+    h3 {
+      transform: translate(-50%, -50%) scale(1.1);
+      letter-spacing: 0.1em;
+    }
+    img {
+      filter: brightness(1);
+    }
   }
 
   img {
@@ -16,7 +24,9 @@
     object-fit: cover;
     border-radius: 0.35rem;
     filter: brightness(0.75);
+    transition: filter 0.3s ease-in-out;
   }
+
   &.disabled img {
     filter: grayscale(100%);
   }
@@ -26,8 +36,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-size: xx-large;
+    font-size: 2rem;
     font-weight: bolder;
+    color: white;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+    transition:
+      transform 0.3s ease-in-out,
+      letter-spacing 0.3s ease-in-out;
   }
 }
