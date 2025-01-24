@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appClickOutside]',
+  selector: '[dtClickOutside]',
   standalone: true,
 })
-export class ClickOutsideDirective {
+export class DtClickOutsideDirective {
   @Output() clickOutside = new EventEmitter<void>();
 
   constructor(private elementRef: ElementRef) {}

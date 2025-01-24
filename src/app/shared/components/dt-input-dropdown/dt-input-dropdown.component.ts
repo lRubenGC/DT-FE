@@ -5,7 +5,7 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { ClickOutsideDirective } from '@shared/directives/click-outside-directive';
+import { DtClickOutsideDirective } from '@shared/directives/click-outside-directive';
 import {
   BehaviorSubject,
   combineLatest,
@@ -25,7 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     DtButtonComponent,
-    ClickOutsideDirective,
+    DtClickOutsideDirective,
     FormsModule,
     TranslateModule,
   ],
