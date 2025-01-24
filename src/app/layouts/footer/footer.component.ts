@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { DISCORD_INVITATION } from '@shared/models/urls.constants';
-import { DtButtonComponent } from '../../shared/components/dt-button/dt-button.component';
+import { DtRrssIconComponent } from '@shared/components/rrss-icon/rrss-icon.component';
+import {
+  BUY_ME_A_COFFEE_LINK,
+  DISCORD_LINK,
+} from '@shared/models/urls.constants';
 
 @Component({
   selector: 'dt-footer',
   standalone: true,
-  imports: [TranslateModule, RouterLink, DtButtonComponent],
+  imports: [TranslateModule, RouterLink, DtRrssIconComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  //#region DISCORD
-  public readonly DISCORD_INVITATION = DISCORD_INVITATION;
-  public isDiscordHovered: boolean = false;
-  //#endregion DISCORD
+  public readonly DISCORD_LINK = DISCORD_LINK;
+  public readonly BUY_ME_A_COFFEE_LINK = BUY_ME_A_COFFEE_LINK;
 }

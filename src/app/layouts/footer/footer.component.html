@@ -9,45 +9,50 @@
           [routerLink]="['/home']"
         />
         <a routerLink="/home" class="text-2xl font-bold text-gray-900">
-          <span class="hover:text-orange-500">
+          <span class="duration-200 hover:text-orange-500">
             {{ 'FOOTER.webName' | translate }}
           </span>
         </a>
       </div>
       <ul class="flex justify-center items-center gap-4">
         <li>
-          <a routerLink="/about" class="hover:text-orange-500 text-gray-900"
+          <a
+            routerLink="/about"
+            class="duration-200 hover:text-orange-500 text-gray-900"
             >{{ 'FOOTER.navigation.about' | translate }}
           </a>
         </li>
         <li>
-          <a routerLink="/contact" class="hover:text-orange-500 text-gray-900"
+          <a
+            routerLink="/contact"
+            class="duration-200 hover:text-orange-500 text-gray-900"
             >{{ 'FOOTER.navigation.contact' | translate }}
           </a>
         </li>
         <li>
-          <a routerLink="/policies" class="hover:text-orange-500 text-gray-900"
+          <a
+            routerLink="/policies"
+            class="duration-200 hover:text-orange-500 text-gray-900"
             >{{ 'FOOTER.navigation.policies' | translate }}
           </a>
         </li>
       </ul>
-      <div class="flex justify-end w-full">
-        <dt-button
-          type="link"
-          icon="discord"
-          buttonColor="transparent"
-          [href]="DISCORD_INVITATION"
-          [isInternalRoute]="false"
-          [iconFill]="isDiscordHovered ? '#a78bfa' : '#000'"
-          (mouseenter)="isDiscordHovered = true"
-          (mouseleave)="isDiscordHovered = false"
+      <div class="flex justify-end w-full items-center gap-3">
+        <dt-rrss-icon
+          icon="discord-colored"
+          [href]="DISCORD_LINK"
+          [title]="'FOOTER.icons.discord.title' | translate"
+        />
+        <dt-rrss-icon
+          icon="buy-me-a-coffee-colored"
+          [href]="BUY_ME_A_COFFEE_LINK"
+          [title]="'FOOTER.icons.buyMeACoffee.title' | translate"
         />
       </div>
     </div>
     <hr class="my-6 border-gray-700" />
     <div class="text-center">
-      <!-- TODO: QUITARLO ?? ES LEGAL ?? -->
-      <p class="text-sm">&copy; 2025 MiWeb. Todos los derechos reservados.</p>
+      <p class="text-sm">&copy; {{ 'FOOTER.reservedRights' | translate }}</p>
     </div>
   </div>
 </footer>

@@ -72,7 +72,16 @@
       "about": "About",
       "contact": "Contact",
       "policies": "Policies"
-    }
+    },
+    "icons": {
+      "discord": {
+        "title": "Discord"
+      },
+      "buyMeACoffee": {
+        "title": "Buy me a coffee"
+      }
+    },
+    "reservedRights": "2025 Diecast Tracker. All rights reserved."
   },
   "HEADER": {
     "pages": {
