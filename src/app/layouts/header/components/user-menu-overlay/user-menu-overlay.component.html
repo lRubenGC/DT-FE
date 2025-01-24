@@ -1,0 +1,20 @@
+@let userProfile = userProfile$ | async;
+
+<div class="bg-gray-100 rounded-md p-2 flex flex-col gap-2">
+  <ul>
+    @if (userProfile) {
+      <li>Tu perfil</li>
+      <li>Editar datos</li>
+      <li>Cerrar sesión</li>
+    } @else {
+      <li>Iniciar sesion</li>
+    }
+  </ul>
+  <div class="w-full h-[1px] bg-gray-300 my-1"></div>
+  <ul>
+    <li id="language-dropdown" (click)="openLanguageDialog()">Idioma</li>
+    <li>Sobre DT</li>
+    <li>Contacto</li>
+    <li>Políticas</li>
+  </ul>
+</div>

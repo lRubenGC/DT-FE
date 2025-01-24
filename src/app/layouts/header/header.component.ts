@@ -7,6 +7,7 @@ import {
 } from '@shared/components/dt-select-button/dt-select-button.component';
 import { filter, map, Observable } from 'rxjs';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { DtUserMenuComponent } from './components/user-menu/user-menu.component';
 
 @Component({
   selector: 'dt-header',
@@ -16,6 +17,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     DtSelectButtonComponent,
     SearchBarComponent,
     RouterLink,
+    DtUserMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

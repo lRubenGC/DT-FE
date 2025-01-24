@@ -1,0 +1,9 @@
+@let userProfile = userProfile$ | async;
+
+<img
+  id="user-dropdown"
+  alt="user"
+  class="w-12 rounded-full cursor-pointer"
+  [src]="userProfile ? userProfile.img : 'assets/images/header/no-user.webp'"
+  (click)="openOverlay()"
+/>
