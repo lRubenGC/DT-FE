@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserDTO } from '@auth/models/auth.models';
 import { CrudService } from '@shared/services/crud/crud.service';
-import { map, Observable, shareReplay } from 'rxjs';
+import { map, Observable, share } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class AuthService extends CrudService {
 
   public userProfile$: Observable<UserDTO | null> = this.getUserProfile().pipe(
     map((resp) => (resp.ok ? resp.data : null)),
-    shareReplay({ refCount: true, bufferSize: 1 }),
+    share(),
   );
 
   public login(payload: { email: string; password: string }) {
