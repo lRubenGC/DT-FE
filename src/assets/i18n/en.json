@@ -43,7 +43,7 @@
       "model_name": "Model name",
       "version": "1st Color",
       "exclusive_serie": "Exclusive serie",
-      "brand": "Ford"
+      "brand": "Brand"
     }
   },
   "BASIC_CARS_SINGLE": {
@@ -52,7 +52,7 @@
     }
   },
   "ERRORS": {
-    "1": "Internal server error | | talk to admin please",
+    "1": "Internal server error | Talk to admin please",
     "2": "Bad request | talk to admin please",
     "3": "Username already in use",
     "4": "Invalid username pattern",

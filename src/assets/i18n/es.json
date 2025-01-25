@@ -1,1 +1,134 @@
-{}
+{
+  "AUTH": {
+    "signIn": {
+      "header": "Inicia sesión",
+      "description": "Accede a tu colección de diecasts",
+      "goToSignUpQuestion": "¿Nuevo en Diecast Tracker?",
+      "goToSignUpAction": "Regístrate ahora"
+    },
+    "signUp": {
+      "header": "Regístrate",
+      "description": "Empieza a registrar tu colección hoy",
+      "goToSignInQuestion": "¿Ya tienes una cuenta?",
+      "goToSignInAction": "Inicia sesión"
+    },
+    "fields": {
+      "username": "Username",
+      "email": "Email",
+      "password": "Contraseña"
+    }
+  },
+  "BASIC_CARS": {
+    "title": "Coches básicos de",
+    "filters": {
+      "year": {
+        "header": "Año"
+      },
+      "mainSerie": {
+        "header": "Serie principal"
+      },
+      "exclusiveSerie": {
+        "header": "Serie exclusiva"
+      },
+      "userProperty": {
+        "header": "Propiedad"
+      }
+    },
+    "car": {
+      "car_id": "ID",
+      "col": "Nº Col",
+      "series": "Series",
+      "col_serie": "Nº Col serie",
+      "year": "Año",
+      "model_name": "Nombre modelo",
+      "version": "1º Color",
+      "exclusive_serie": "Serie exclusiva",
+      "brand": "Marca"
+    }
+  },
+  "BASIC_CARS_SINGLE": {
+    "similarCars": {
+      "title": "Coches similares"
+    }
+  },
+  "ERRORS": {
+    "1": "Error interno del servidor | Por favor, hable con el administrador",
+    "2": "Solicitud fallida | Por favor, hable con el administrador",
+    "3": "Username ya en uso",
+    "4": "Username inválido",
+    "5": "Email ya en uso",
+    "6": "Email inválido",
+    "7": "Contraseña inválida",
+    "8": "Usuario o contraseña erroneos",
+    "9": "El coche no existe",
+    "10": "El usuario debe iniciar sesión para esto",
+    "11": "El usuario ya tiene este coche",
+    "12": "El usuario no existe",
+    "13": "No hay cambios en el formulario"
+  },
+  "FOOTER": {
+    "webName": "Diecast Tracker",
+    "navigation": {
+      "about": "Sobre DT",
+      "contact": "Contacto",
+      "policies": "Políticas"
+    },
+    "icons": {
+      "discord": {
+        "title": "Discord"
+      },
+      "buyMeACoffee": {
+        "title": "Buy me a coffee"
+      }
+    },
+    "reservedRights": "2025 Diecast Tracker. Todos los derechos reservados."
+  },
+  "HEADER": {
+    "pages": {
+      "basicCars": "Básicos",
+      "premiumCars": "Premium",
+      "specialCars": "Especiales"
+    },
+    "searchBar": {
+      "placeholder": "Busca un coche...",
+      "button": "Buscar"
+    },
+    "menu": {
+      "yourProfile": "Tu perfil",
+      "editProfile": "Editar tu perfil",
+      "logIn": "Iniciar sesión",
+      "logOut": "Desconectarse",
+      "language": {
+        "header": "Idioma",
+        "options": {
+          "en": "English",
+          "es": "Español",
+          "pt": "Português"
+        }
+      },
+      "aboutDT": "Sobre DT",
+      "contact": "Contacto",
+      "policies": "Políticas"
+    }
+  },
+  "HOME": {
+    "welcome": {
+      "welcomeBack": "Bienvenido de vuelta",
+      "welcomeNew": "Bienvenido a Diecast Tracker"
+    },
+    "description": "Diecast Tracker es una web diseñada para coleccionistas de diecast (actualmente solo existen de Hot Wheels). Permite a los usuarios encontrar los coches disponibles y añadirlos a su lista de colección o de deseados creandose una cuenta gratuita.",
+    "buttons": {
+      "signIn": "Inicia sesión",
+      "joinDiscord": "Únete a Discord"
+    },
+    "cards": {
+      "basic": "Básicos",
+      "special": "Especiales",
+      "premium": "Premium",
+      "custom": "Custom"
+    }
+  },
+  "owned": "En propiedad",
+  "wished": "Deseados",
+  "not_owned": "No en propiedad"
+}

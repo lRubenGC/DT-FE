@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserMenuItemComponent } from '../user-menu-item/user-menu-item.component';
+import {
+  DT_LANGS,
+  LanguageService,
+} from '@shared/services/language/language.service';
 
 @Component({
   selector: 'user-menu-language-overlay',
@@ -10,5 +14,8 @@ import { UserMenuItemComponent } from '../user-menu-item/user-menu-item.componen
   styleUrl: './user-menu-language-overlay.component.scss',
 })
 export class UserMenuLanguageOverlayComponent {
-  public changeLanguage(lang: string) {}
+  private readonly languageService = inject(LanguageService);
+  public changeLanguage(lang: DT_LANGS) {
+    this.languageService.changeLang(lang);
+  }
 }
