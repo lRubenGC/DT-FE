@@ -22,6 +22,14 @@
   </div>
 
   <div class="flex items-center justify-end">
-    <dt-user-menu [userProfile]="userProfile" />
+    <img
+      id="user-dropdown"
+      alt="user"
+      class="w-10 rounded-full cursor-pointer"
+      [src]="
+        userProfile ? userProfile.img : 'assets/images/header/no-user.webp'
+      "
+      (click)="openOverlay(userProfile)"
+    />
   </div>
 </header>

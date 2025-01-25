@@ -8,7 +8,9 @@ import {
 } from '@shared/components/dt-select-button/dt-select-button.component';
 import { filter, map, Observable, switchMap } from 'rxjs';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { DtUserMenuComponent } from './components/user-menu/user-menu.component';
+import { UserDTO } from '@auth/models/auth.models';
+import { DtOverlayService } from '@shared/services/dt-overlay/dt-overlay.service';
+import { UserMenuOverlayComponent } from './components/user-menu-overlay/user-menu-overlay.component';
 
 @Component({
   selector: 'dt-header',
@@ -18,7 +20,6 @@ import { DtUserMenuComponent } from './components/user-menu/user-menu.component'
     DtSelectButtonComponent,
     SearchBarComponent,
     RouterLink,
-    DtUserMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -53,6 +54,19 @@ export class HeaderComponent {
       ),
     );
   //#endregion LEFT BUTTONS
+
+  //#region USER OVERLAY
+  private readonly overlay = inject(DtOverlayService);
+  public openOverlay(userProfile: UserDTO | null) {
+    this.overlay.openOverlay(
+      UserMenuOverlayComponent,
+      document.querySelector('#user-dropdown') as HTMLElement,
+      {
+        inputs: [{ id: 'userProfile', value: userProfile }],
+      },
+    );
+  }
+  //#endregion USER OVERLAY
 
   public navigate(route: string) {
     this.router.navigate([route]);
