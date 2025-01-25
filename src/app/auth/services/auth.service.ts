@@ -1,29 +1,21 @@
-import { inject, Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { UserDTO } from '@auth/models/auth.models';
 import { CrudService } from '@shared/services/crud/crud.service';
-import { filter, map, Observable, share, switchMap } from 'rxjs';
+import { map, Observable, share } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends CrudService {
-  //#region USER PROFILE
-  private readonly router = inject(Router);
-  private onRouterChange$ = this.router.events.pipe(
-    filter((event) => event instanceof NavigationEnd),
-  );
   private getUserProfile() {
     return this.post<string, UserDTO>('/api/auth/get-user-profile', '', {
       skipErrorsInterceptor: true,
     });
   }
-  public userProfile$: Observable<UserDTO | null> = this.onRouterChange$.pipe(
-    switchMap(() => this.getUserProfile()),
+  public userProfile$: Observable<UserDTO | null> = this.getUserProfile().pipe(
     map((resp) => (resp.ok ? resp.data : null)),
     share(),
   );
-  //#endregion USER PROFILE
 
   public login(payload: { email: string; password: string }) {
     return this.post<{ email: string; password: string }, UserDTO>(
