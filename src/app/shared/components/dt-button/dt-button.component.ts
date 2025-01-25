@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AngularSvgIconModule } from 'angular-svg-icon';
+import { SvgIconComponent } from 'angular-svg-icon';
 import { BehaviorSubject } from 'rxjs';
 
 export type DT_ICONS =
@@ -11,17 +11,28 @@ export type DT_ICONS =
   | 'arrow-right'
   | 'arrow-up'
   | 'close'
+  | 'contact'
   | 'delete'
   | 'discord'
+  | 'en'
   | 'error'
+  | 'es'
   | 'eye-close'
   | 'eye-open'
   | 'favorite'
+  | 'fr'
+  | 'info'
+  | 'it'
+  | 'language'
   | 'lock'
   | 'login'
+  | 'logout'
   | 'mail'
   | 'open-in-full'
   | 'search'
+  | 'policy'
+  | 'pt'
+  | 'user-edit'
   | 'user';
 
 // Para añadir colores, ir a tailwind.config.js y añadirlos en la safelist
@@ -37,7 +48,7 @@ export type SAFELIST_COLORS =
 @Component({
   selector: 'dt-button',
   standalone: true,
-  imports: [CommonModule, AngularSvgIconModule, RouterLink],
+  imports: [CommonModule, SvgIconComponent, RouterLink],
   templateUrl: './dt-button.component.html',
   styleUrl: './dt-button.component.scss',
 })
