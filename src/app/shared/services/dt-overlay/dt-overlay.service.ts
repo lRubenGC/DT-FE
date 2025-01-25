@@ -2,10 +2,15 @@ import { ConnectedPosition, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
 
-export interface DTOverlayOptions {
+interface DTOverlayOptions {
   hasBackdrop?: boolean;
   backdropClass?: string;
   panelClass?: string;
+}
+
+interface OverlayInputs {
+  id: string;
+  value: any;
 }
 
 @Injectable({
@@ -17,28 +22,32 @@ export class DtOverlayService {
   openOverlay(
     component: any,
     target: HTMLElement,
-    positions?: ConnectedPosition,
-    options?: DTOverlayOptions,
+    props?: {
+      positions?: ConnectedPosition;
+      options?: DTOverlayOptions;
+      inputs?: OverlayInputs[];
+    },
   ) {
     const overlayRef = this.overlay.create({
-      hasBackdrop: options?.hasBackdrop ?? true,
+      hasBackdrop: props?.options?.hasBackdrop ?? true,
       backdropClass:
-        options?.backdropClass ?? 'cdk-overlay-transparent-backdrop',
-      panelClass: options?.panelClass ?? 'shadow-xl',
+        props?.options?.backdropClass ?? 'cdk-overlay-transparent-backdrop',
+      panelClass: props?.options?.panelClass ?? 'shadow-xl',
       positionStrategy: this.overlay
         .position()
         .flexibleConnectedTo(target)
         .withPositions([
           {
-            originX: positions?.originX ?? 'center',
-            originY: positions?.originY ?? 'bottom',
-            overlayX: positions?.overlayX ?? 'end',
-            overlayY: positions?.overlayY ?? 'top',
+            originX: props?.positions?.originX ?? 'center',
+            originY: props?.positions?.originY ?? 'bottom',
+            overlayX: props?.positions?.overlayX ?? 'end',
+            overlayY: props?.positions?.overlayY ?? 'top',
           },
         ]),
     });
     const componentPotal = new ComponentPortal(component);
     const componentRef = overlayRef.attach(componentPotal);
+    props?.inputs?.forEach(({ id, value }) => componentRef.setInput(id, value));
     overlayRef.backdropClick().subscribe(() => overlayRef.detach());
   }
 }
