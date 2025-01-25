@@ -92,6 +92,23 @@
     "searchBar": {
       "placeholder": "Search a model name...",
       "button": "Search"
+    },
+    "menu": {
+      "yourProfile": "Your profile",
+      "editProfile": "Edit your data",
+      "logIn": "Log in",
+      "logOut": "Log out",
+      "language": {
+        "header": "Language",
+        "options": {
+          "en": "English",
+          "es": "Español",
+          "pt": "Português"
+        }
+      },
+      "aboutDT": "About DT",
+      "contact": "Contact",
+      "policies": "Policies"
     }
   },
   "HOME": {
