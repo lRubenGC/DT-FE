@@ -1,0 +1,14 @@
+<li
+  (click)="onClick.emit()"
+  class="py-1 px-3 hover:bg-gray-300 cursor-pointer flex gap-2 items-center"
+>
+  <svg-icon
+    [src]="'assets/icons/' + icon + '.svg'"
+    [svgStyle]="{
+      fill: 'black',
+      width: 20,
+      height: 20,
+    }"
+  />
+  <ng-content></ng-content>
+</li>

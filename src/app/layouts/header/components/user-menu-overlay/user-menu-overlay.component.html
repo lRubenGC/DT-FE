@@ -1,20 +1,50 @@
-@let userProfile = userProfile$ | async;
+@if (logOut$ | async) {}
 
-<div class="bg-gray-100 rounded-md p-2 flex flex-col gap-2">
-  <ul>
+<div class="bg-gray-200 rounded-lg flex flex-col py-1 gap-2">
+  <ul class="flex flex-col">
     @if (userProfile) {
-      <li>Tu perfil</li>
-      <li>Editar datos</li>
-      <li>Cerrar sesión</li>
+      <dt-user-menu-item
+        icon="user"
+        (onClick)="navigateTo('user/' + userProfile.username)"
+      >
+        {{ 'HEADER.menu.yourProfile' | translate }}
+      </dt-user-menu-item>
+      <dt-user-menu-item icon="user-edit" (onClick)="navigateTo('user/edit')">
+        {{ 'HEADER.menu.editProfile' | translate }}
+      </dt-user-menu-item>
+      <dt-user-menu-item icon="logout" (onClick)="logOut.next()">
+        {{ 'HEADER.menu.logOut' | translate }}
+      </dt-user-menu-item>
     } @else {
-      <li>Iniciar sesion</li>
+      <dt-user-menu-item icon="login" (onClick)="navigateTo('auth')">
+        {{ 'HEADER.menu.logIn' | translate }}
+      </dt-user-menu-item>
     }
   </ul>
-  <div class="w-full h-[1px] bg-gray-300 my-1"></div>
-  <ul>
-    <li id="language-dropdown" (click)="openLanguageDialog()">Idioma</li>
-    <li>Sobre DT</li>
-    <li>Contacto</li>
-    <li>Políticas</li>
+
+  <div class="w-full h-[1px] bg-gray-400"></div>
+
+  <ul class="flex flex-col">
+    <dt-user-menu-item
+      icon="language"
+      id="language-dropdown"
+      (onClick)="openLanguageDialog()"
+    >
+      {{ 'HEADER.menu.language.header' | translate }}
+    </dt-user-menu-item>
+  </ul>
+
+  <div class="w-full h-[1px] bg-gray-400"></div>
+
+  <ul class="flex flex-col">
+    <dt-user-menu-item icon="info" (onClick)="navigateTo('about')">
+      {{ 'HEADER.menu.aboutDT' | translate }}
+    </dt-user-menu-item>
+    <dt-user-menu-item icon="contact" (onClick)="navigateTo('contact')">
+      {{ 'HEADER.menu.contact' | translate }}
+    </dt-user-menu-item>
+    <dt-user-menu-item icon="policy" (onClick)="navigateTo('policies')">
+      {{ 'HEADER.menu.policies' | translate }}
+    </dt-user-menu-item>
   </ul>
 </div>

@@ -19,7 +19,7 @@ interface OverlayInputs {
 export class DtOverlayService {
   private readonly overlay = inject(Overlay);
 
-  openOverlay(
+  public openOverlay(
     component: any,
     target: HTMLElement,
     props?: {
