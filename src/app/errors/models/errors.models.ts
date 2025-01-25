@@ -1,3 +1,5 @@
+import { HttpContextToken } from '@angular/common/http';
+
 export interface IError<TBody> {
   Message: string;
   Endpoint: string;
@@ -5,3 +7,7 @@ export interface IError<TBody> {
   Payload: TBody;
   Status: number | null;
 }
+
+export const SKIP_ERRORS_INTERCEPTOR = new HttpContextToken<boolean>(
+  () => false,
+);

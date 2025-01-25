@@ -8,7 +8,9 @@ import { map, Observable, share } from 'rxjs';
 })
 export class AuthService extends CrudService {
   private getUserProfile() {
-    return this.post<string, UserDTO>('/api/auth/get-user-profile', '');
+    return this.post<string, UserDTO>('/api/auth/get-user-profile', '', {
+      skipErrorsInterceptor: true,
+    });
   }
 
   public userProfile$: Observable<UserDTO | null> = this.getUserProfile().pipe(
