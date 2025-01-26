@@ -46,11 +46,10 @@ export type SAFELIST_COLORS =
   | 'transparent';
 
 @Component({
-  selector: 'dt-button',
-  standalone: true,
-  imports: [CommonModule, SvgIconComponent, RouterLink],
-  templateUrl: './dt-button.component.html',
-  styleUrl: './dt-button.component.scss',
+    selector: 'dt-button',
+    imports: [CommonModule, SvgIconComponent, RouterLink],
+    templateUrl: './dt-button.component.html',
+    styleUrl: './dt-button.component.scss'
 })
 export class DtButtonComponent {
   //#region INPUTS

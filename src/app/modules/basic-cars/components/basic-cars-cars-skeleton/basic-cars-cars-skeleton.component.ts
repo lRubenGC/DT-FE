@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { getRandomNumberBetween } from '@shared/helpers/utils';
 
 @Component({
-  selector: 'basic-cars-cars-skeleton',
-  standalone: true,
-  imports: [],
-  templateUrl: './basic-cars-cars-skeleton.component.html',
-  styleUrl: './basic-cars-cars-skeleton.component.scss',
+    selector: 'basic-cars-cars-skeleton',
+    imports: [],
+    templateUrl: './basic-cars-cars-skeleton.component.html',
+    styleUrl: './basic-cars-cars-skeleton.component.scss'
 })
 export class BasicCarsCarsSkeletonComponent {
   public readonly RANDOM_GROUPS = this.generateRandomGroups();

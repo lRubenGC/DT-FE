@@ -9,11 +9,10 @@ import {
 } from '../dt-button/dt-button.component';
 
 @Component({
-  selector: 'dt-request-button',
-  standalone: true,
-  imports: [CommonModule, DtButtonComponent],
-  templateUrl: './dt-request-button.component.html',
-  styleUrl: './dt-request-button.component.scss',
+    selector: 'dt-request-button',
+    imports: [CommonModule, DtButtonComponent],
+    templateUrl: './dt-request-button.component.html',
+    styleUrl: './dt-request-button.component.scss'
 })
 export class DtRequestButtonComponent<
   TBody extends object,

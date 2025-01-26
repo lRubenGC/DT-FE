@@ -7,12 +7,11 @@ import { DtButtonComponent } from '../../../shared/components/dt-button/dt-butto
 import { ErrorsService } from '../../services/errors.service';
 
 @Component({
-  selector: 'dt-error-toast',
-  standalone: true,
-  imports: [CommonModule, DtButtonComponent, TranslateModule],
-  templateUrl: './error-toast.component.html',
-  styleUrl: './error-toast.component.scss',
-  animations: [fadeAnimation],
+    selector: 'dt-error-toast',
+    imports: [CommonModule, DtButtonComponent, TranslateModule],
+    templateUrl: './error-toast.component.html',
+    styleUrl: './error-toast.component.scss',
+    animations: [fadeAnimation]
 })
 export class ErrorToastComponent {
   private readonly errorsService = inject(ErrorsService);

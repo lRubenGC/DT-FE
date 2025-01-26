@@ -2,11 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'dt-seo',
-  standalone: true,
-  imports: [],
-  templateUrl: './seo.component.html',
-  styleUrl: './seo.component.scss',
+    selector: 'dt-seo',
+    imports: [],
+    templateUrl: './seo.component.html',
+    styleUrl: './seo.component.scss'
 })
 export class SeoComponent {
   private readonly title = inject(Title);

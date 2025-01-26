@@ -20,24 +20,23 @@ import { DtButtonComponent } from '../dt-button/dt-button.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'dt-input-dropdown',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DtButtonComponent,
-    DtClickOutsideDirective,
-    FormsModule,
-    TranslateModule,
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DtInputDropdownComponent),
-      multi: true,
-    },
-  ],
-  templateUrl: './dt-input-dropdown.component.html',
-  styleUrl: './dt-input-dropdown.component.scss',
+    selector: 'dt-input-dropdown',
+    imports: [
+        CommonModule,
+        DtButtonComponent,
+        DtClickOutsideDirective,
+        FormsModule,
+        TranslateModule,
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DtInputDropdownComponent),
+            multi: true,
+        },
+    ],
+    templateUrl: './dt-input-dropdown.component.html',
+    styleUrl: './dt-input-dropdown.component.scss'
 })
 export class DtInputDropdownComponent implements ControlValueAccessor {
   //#region INPUTS

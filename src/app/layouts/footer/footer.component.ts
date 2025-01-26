@@ -8,11 +8,10 @@ import {
 } from '@shared/models/urls.constants';
 
 @Component({
-  selector: 'dt-footer',
-  standalone: true,
-  imports: [TranslateModule, RouterLink, DtRrssIconComponent],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+    selector: 'dt-footer',
+    imports: [TranslateModule, RouterLink, DtRrssIconComponent],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
   public readonly DISCORD_LINK = DISCORD_LINK;

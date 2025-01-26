@@ -9,16 +9,15 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { BasicCarModalComponent } from '../basic-car-modal/basic-car-modal.component';
 
 @Component({
-  selector: 'basic-car-card',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DtButtonComponent,
-    DtRequestButtonComponent,
-    DialogModule,
-  ],
-  templateUrl: './basic-car-card.component.html',
-  styleUrl: './basic-car-card.component.scss',
+    selector: 'basic-car-card',
+    imports: [
+        CommonModule,
+        DtButtonComponent,
+        DtRequestButtonComponent,
+        DialogModule,
+    ],
+    templateUrl: './basic-car-card.component.html',
+    styleUrl: './basic-car-card.component.scss'
 })
 export class BasicCarCardComponent {
   //#region CAR

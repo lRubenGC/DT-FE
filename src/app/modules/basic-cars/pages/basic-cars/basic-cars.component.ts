@@ -31,20 +31,19 @@ import {
 import { DtLayoutComponent } from 'src/app/layouts/dt-layout/dt-layout.component';
 
 @Component({
-  selector: 'basic-cars',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    DtInputDropdownComponent,
-    BasicCarCardComponent,
-    DtLayoutComponent,
-    BasicCarsFiltersSkeletonComponent,
-    BasicCarsCarsSkeletonComponent,
-  ],
-  templateUrl: './basic-cars.component.html',
-  styleUrl: './basic-cars.component.scss',
+    selector: 'basic-cars',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        DtInputDropdownComponent,
+        BasicCarCardComponent,
+        DtLayoutComponent,
+        BasicCarsFiltersSkeletonComponent,
+        BasicCarsCarsSkeletonComponent,
+    ],
+    templateUrl: './basic-cars.component.html',
+    styleUrl: './basic-cars.component.scss'
 })
 export class BasicCarsComponent {
   //#region SERVICES

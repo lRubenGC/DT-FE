@@ -7,11 +7,10 @@ import {
 } from '@shared/services/language/language.service';
 
 @Component({
-  selector: 'user-menu-language-overlay',
-  standalone: true,
-  imports: [TranslateModule, UserMenuItemComponent],
-  templateUrl: './user-menu-language-overlay.component.html',
-  styleUrl: './user-menu-language-overlay.component.scss',
+    selector: 'user-menu-language-overlay',
+    imports: [TranslateModule, UserMenuItemComponent],
+    templateUrl: './user-menu-language-overlay.component.html',
+    styleUrl: './user-menu-language-overlay.component.scss'
 })
 export class UserMenuLanguageOverlayComponent {
   private readonly languageService = inject(LanguageService);

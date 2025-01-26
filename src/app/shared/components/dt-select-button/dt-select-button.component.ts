@@ -9,11 +9,10 @@ export interface SelectButtonOptions {
 }
 
 @Component({
-  selector: 'dt-select-button',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './dt-select-button.component.html',
-  styleUrl: './dt-select-button.component.scss',
+    selector: 'dt-select-button',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './dt-select-button.component.html',
+    styleUrl: './dt-select-button.component.scss'
 })
 export class DtSelectButtonComponent {
   @Input({ required: true }) options: SelectButtonOptions[] | null = [];

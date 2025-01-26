@@ -4,11 +4,10 @@ import { ScreenService } from '@shared/services/screen-service/screen-service.se
 import { ImageViewerComponent } from './components/image-viewer.component';
 
 @Component({
-  selector: 'dt-image-overlay',
-  standalone: true,
-  imports: [],
-  templateUrl: './dt-image-overlay.component.html',
-  styleUrl: './dt-image-overlay.component.scss',
+    selector: 'dt-image-overlay',
+    imports: [],
+    templateUrl: './dt-image-overlay.component.html',
+    styleUrl: './dt-image-overlay.component.scss'
 })
 export class DtImageOverlayComponent {
   @Input({ required: true }) src: string = '';

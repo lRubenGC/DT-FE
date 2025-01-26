@@ -4,11 +4,10 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 export type RRSS_ICONS = 'discord-colored' | 'buy-me-a-coffee-colored';
 
 @Component({
-  selector: 'dt-rrss-icon',
-  standalone: true,
-  imports: [AngularSvgIconModule],
-  templateUrl: './rrss-icon.component.html',
-  styleUrl: './rrss-icon.component.scss',
+    selector: 'dt-rrss-icon',
+    imports: [AngularSvgIconModule],
+    templateUrl: './rrss-icon.component.html',
+    styleUrl: './rrss-icon.component.scss'
 })
 export class DtRrssIconComponent {
   @Input() icon: RRSS_ICONS | null = null;

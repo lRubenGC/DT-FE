@@ -10,11 +10,10 @@ import { Router } from '@angular/router';
 import { Subject, switchMap, tap } from 'rxjs';
 
 @Component({
-  selector: 'dt-user-menu-overlay',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, UserMenuItemComponent],
-  templateUrl: './user-menu-overlay.component.html',
-  styleUrl: './user-menu-overlay.component.scss',
+    selector: 'dt-user-menu-overlay',
+    imports: [CommonModule, TranslateModule, UserMenuItemComponent],
+    templateUrl: './user-menu-overlay.component.html',
+    styleUrl: './user-menu-overlay.component.scss'
 })
 export class UserMenuOverlayComponent {
   @Input() userProfile: UserDTO | null = null;

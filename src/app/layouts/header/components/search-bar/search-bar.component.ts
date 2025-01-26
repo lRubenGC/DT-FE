@@ -5,16 +5,15 @@ import { DtButtonComponent } from '@shared/components/dt-button/dt-button.compon
 import { DtInputTextComponent } from '@shared/components/dt-input-text/dt-input-text.component';
 
 @Component({
-  selector: 'dt-search-bar',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DtInputTextComponent,
-    DtButtonComponent,
-    TranslateModule,
-  ],
-  templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss',
+    selector: 'dt-search-bar',
+    imports: [
+        CommonModule,
+        DtInputTextComponent,
+        DtButtonComponent,
+        TranslateModule,
+    ],
+    templateUrl: './search-bar.component.html',
+    styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
   public searchCar(event: Event): void {

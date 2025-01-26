@@ -7,16 +7,15 @@ import { DtButtonComponent } from '../../../shared/components/dt-button/dt-butto
 import { HomeCarCardComponent } from '../../components/home-car-card/home-car-card.component';
 
 @Component({
-  selector: 'dt-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TranslateModule,
-    DtButtonComponent,
-    HomeCarCardComponent,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'dt-home',
+    imports: [
+        CommonModule,
+        TranslateModule,
+        DtButtonComponent,
+        HomeCarCardComponent,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   public readonly DISCORD_INVITATION = DISCORD_LINK;

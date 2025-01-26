@@ -9,18 +9,17 @@ import { FrontResponse } from '@shared/services/crud/crud.service';
 import { DtButtonComponent } from '../../../../shared/components/dt-button/dt-button.component';
 
 @Component({
-  selector: 'basic-car-modal',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DialogModule,
-    DtRequestButtonComponent,
-    DtButtonComponent,
-    TranslateModule,
-    DtImageOverlayComponent,
-  ],
-  templateUrl: './basic-car-modal.component.html',
-  styleUrl: './basic-car-modal.component.scss',
+    selector: 'basic-car-modal',
+    imports: [
+        CommonModule,
+        DialogModule,
+        DtRequestButtonComponent,
+        DtButtonComponent,
+        TranslateModule,
+        DtImageOverlayComponent,
+    ],
+    templateUrl: './basic-car-modal.component.html',
+    styleUrl: './basic-car-modal.component.scss'
 })
 export class BasicCarModalComponent implements OnDestroy {
   public dialogRef = inject(DialogRef<BasicCarDTO, BasicCarDTO>);

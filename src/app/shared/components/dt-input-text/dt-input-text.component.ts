@@ -13,18 +13,17 @@ import { DT_ICONS, DtButtonComponent } from '../dt-button/dt-button.component';
 export type InputType = 'text' | 'password' | 'email';
 
 @Component({
-  selector: 'dt-input-text',
-  standalone: true,
-  imports: [CommonModule, DtButtonComponent],
-  templateUrl: './dt-input-text.component.html',
-  styleUrl: './dt-input-text.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DtInputTextComponent),
-      multi: true,
-    },
-  ],
+    selector: 'dt-input-text',
+    imports: [CommonModule, DtButtonComponent],
+    templateUrl: './dt-input-text.component.html',
+    styleUrl: './dt-input-text.component.scss',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DtInputTextComponent),
+            multi: true,
+        },
+    ]
 })
 export class DtInputTextComponent implements ControlValueAccessor {
   //#region INPUTS

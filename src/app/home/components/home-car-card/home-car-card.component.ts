@@ -3,11 +3,10 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'dt-home-car-card',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './home-car-card.component.html',
-  styleUrl: './home-car-card.component.scss',
+    selector: 'dt-home-car-card',
+    imports: [CommonModule, RouterLink],
+    templateUrl: './home-car-card.component.html',
+    styleUrl: './home-car-card.component.scss'
 })
 export class HomeCarCardComponent {
   @Input() src: string = '';

@@ -2,11 +2,10 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 
 @Component({
-  selector: 'image-viewer',
-  standalone: true,
-  imports: [],
-  templateUrl: './image-viewer.component.html',
-  styleUrl: './image-viewer.component.scss',
+    selector: 'image-viewer',
+    imports: [],
+    templateUrl: './image-viewer.component.html',
+    styleUrl: './image-viewer.component.scss'
 })
 export class ImageViewerComponent {
   public dialogRef = inject(DialogRef<{ a: number }, { b: number }>);

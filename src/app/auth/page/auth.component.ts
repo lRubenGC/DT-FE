@@ -24,17 +24,16 @@ import {
 import { DtInputTextComponent } from '../../shared/components/dt-input-text/dt-input-text.component';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    DtButtonComponent,
-    DtInputTextComponent,
-    TranslateModule,
-  ],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss',
+    selector: 'app-auth',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        DtButtonComponent,
+        DtInputTextComponent,
+        TranslateModule,
+    ],
+    templateUrl: './auth.component.html',
+    styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
   //#region SERVICES

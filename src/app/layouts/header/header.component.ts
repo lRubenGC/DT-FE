@@ -13,16 +13,15 @@ import { DtOverlayService } from '@shared/services/dt-overlay/dt-overlay.service
 import { UserMenuOverlayComponent } from './components/user-menu-overlay/user-menu-overlay.component';
 
 @Component({
-  selector: 'dt-header',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DtSelectButtonComponent,
-    SearchBarComponent,
-    RouterLink,
-  ],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'dt-header',
+    imports: [
+        CommonModule,
+        DtSelectButtonComponent,
+        SearchBarComponent,
+        RouterLink,
+    ],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   //#region USER PROFILE
