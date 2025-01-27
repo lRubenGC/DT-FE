@@ -1,0 +1,98 @@
+@let routeParams = routeParams$ | async;
+@let searchTypeValue = searchType$ | async;
+@let carsResult = carsResult$ | async;
+@let carsResultLoading = carsResultLoading$ | async;
+
+<dt-layout>
+  <h1 title class="text-4xl text-center pt-6">
+    {{ 'SEARCH.title.' + searchTypeValue | translate }}:
+    {{ routeParams?.query }}
+  </h1>
+  <ng-container aside>
+    <form [formGroup]="payload">
+      <div class="flex flex-col gap-3">
+        <dt-input-dropdown
+          [ngModel]="searchType$ | async"
+          (ngModelChange)="searchType.next($event)"
+          [ngModelOptions]="{ standalone: true }"
+          [header]="'SEARCH.filters.searchType.header' | translate"
+          [options]="SEARCH_TYPE_OPTIONS"
+          [allowNullable]="false"
+        />
+        @if (searchTypeValue === 'cars') {
+          <dt-input-dropdown
+            formControlName="carType"
+            [header]="'SEARCH.filters.carType.header' | translate"
+            [options]="CAR_TYPE_OPTIONS"
+          />
+          <dt-input-dropdown
+            formControlName="userProperty"
+            [header]="'SEARCH.filters.userProperty.header' | translate"
+            [options]="USER_PROPERTY_OPTIONS"
+          />
+          <dt-input-dropdown
+            formControlName="order"
+            [header]="'SEARCH.filters.order.header' | translate"
+            [options]="ORDER_OPTIONS"
+          />
+          @if (areCarsAvaiable(payload.controls.carType, 'basic')) {
+            <div>
+              {{ 'basic' | translate }} - {{ carsResult?.basicCarsOwned }} /
+              {{ carsResult?.basicCarsShowed }}
+            </div>
+          }
+          @if (areCarsAvaiable(payload.controls.carType, 'special')) {
+            <div>
+              {{ 'special' | translate }} - {{ carsResult?.specialCarsOwned }} /
+              {{ carsResult?.specialCarsShowed }}
+            </div>
+          }
+          @if (areCarsAvaiable(payload.controls.carType, 'premium')) {
+            <div>
+              {{ 'premium' | translate }} - {{ carsResult?.premiumCarsOwned }} /
+              {{ carsResult?.premiumCarsShowed }}
+            </div>
+          }
+        }
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container mainContent>
+    @if (searchTypeValue === 'cars') {
+      @if (carsResultLoading) {
+        <basic-cars-cars-skeleton />
+      } @else if (!!carsResult) {
+        @if (areCarsAvaiable(payload.controls.carType, 'basic')) {
+          <h3 class="text-2xl">{{ 'SEARCH.cars.basic.title' | translate }}</h3>
+          <div class="w-full h-[1px] bg-gray-300 my-1"></div>
+          <div class="basic-cars-group">
+            @for (car of carsResult.basicCars; track $index) {
+              <basic-car-card [car]="car" />
+            }
+          </div>
+        }
+        <!-- @if (areCarsAvaiable(payload.controls.carType, 'special')) {
+       <h3 class="text-2xl">{{ 'SEARCH.cars.special.title' | translate }}</h3>
+        <div class="w-full h-[1px] bg-gray-300 my-1"></div>
+        @for (car of carsResult.specialCars; track $index) {
+          <div class="special-cars-group">
+            <special-car-card [car]="car" />
+          </div>
+        }
+      }
+      @if (areCarsAvaiable(payload.controls.carType, 'premium')) {
+      <h3 class="text-2xl">{{ 'SEARCH.cars.premium.title' | translate }}</h3>
+        <div class="w-full h-[1px] bg-gray-300 my-1"></div>
+        @for (car of carsResult.premiumCars; track $index) {
+          <div class="premium-cars-group">
+            <premium-car-card [car]="car" />
+          </div>
+        }
+      } -->
+      }
+    } @else {
+      usuarios
+    }
+  </ng-container>
+</dt-layout>
