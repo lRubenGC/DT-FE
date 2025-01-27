@@ -128,7 +128,45 @@
       "custom": "Custom"
     }
   },
+  "SEARCH": {
+    "title": {
+      "users": "Usuarios",
+      "cars": "Coches"
+    },
+    "filters": {
+      "searchType": {
+        "header": "Tipo de búsqueda"
+      },
+      "carType": {
+        "header": "Tipo de coche"
+      },
+      "userProperty": {
+        "header": "Propiedad"
+      },
+      "order": {
+        "header": "Orden"
+      }
+    },
+    "cars": {
+      "basic": {
+        "title": "Coches básicos"
+      },
+      "special": {
+        "title": "Coches especiales"
+      },
+      "premium": {
+        "title": "Coches premium"
+      }
+    }
+  },
   "owned": "En propiedad",
   "wished": "Deseados",
-  "not_owned": "No en propiedad"
+  "not_owned": "No en propiedad",
+  "ASC": "Ascendente",
+  "DESC": "Descendente",
+  "basic": "Básicos",
+  "special": "Especiales",
+  "premium": "Premium",
+  "cars": "Coches",
+  "users": "Usuarios"
 }

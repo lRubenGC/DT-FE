@@ -128,7 +128,45 @@
       "custom": "Custom"
     }
   },
+  "SEARCH": {
+    "title": {
+      "users": "Users",
+      "cars": "Cars"
+    },
+    "filters": {
+      "searchType": {
+        "header": "Search type"
+      },
+      "carType": {
+        "header": "Car type"
+      },
+      "userProperty": {
+        "header": "Property"
+      },
+      "order": {
+        "header": "Order"
+      }
+    },
+    "cars": {
+      "basic": {
+        "title": "Basic cars"
+      },
+      "special": {
+        "title": "Special cars"
+      },
+      "premium": {
+        "title": "Premium cars"
+      }
+    }
+  },
   "owned": "Owned",
   "wished": "Wished",
-  "not_owned": "Not owned"
+  "not_owned": "Not owned",
+  "ASC": "Ascending",
+  "DESC": "Descending",
+  "basic": "Basic",
+  "special": "Special",
+  "premium": "Premium",
+  "cars": "Cars",
+  "users": "Users"
 }
