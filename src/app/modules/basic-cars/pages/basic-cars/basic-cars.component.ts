@@ -31,7 +31,7 @@ import {
 import { DtLayoutComponent } from 'src/app/layouts/dt-layout/dt-layout.component';
 
 @Component({
-  selector: 'basic-cars',
+  selector: 'dt-basic-cars',
   standalone: true,
   imports: [
     CommonModule,

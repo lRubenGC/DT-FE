@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-special-cars',
+  selector: 'dt-special-cars',
   standalone: true,
   imports: [],
   templateUrl: './special-cars.component.html',
-  styleUrl: './special-cars.component.scss'
+  styleUrl: './special-cars.component.scss',
 })
-export class SpecialCarsComponent {
-
-}
+export class SpecialCarsComponent {}

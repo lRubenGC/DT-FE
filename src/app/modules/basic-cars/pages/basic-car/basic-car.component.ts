@@ -11,7 +11,7 @@ import { map, merge, Observable, shareReplay, Subject, switchMap } from 'rxjs';
 import { DtImageOverlayComponent } from '../../../../shared/components/dt-image-overlay/dt-image-overlay.component';
 
 @Component({
-  selector: 'app-basic-car',
+  selector: 'dt-basic-car',
   standalone: true,
   imports: [
     CommonModule,
