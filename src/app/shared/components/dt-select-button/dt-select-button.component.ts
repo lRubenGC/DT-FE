@@ -17,5 +17,6 @@ export interface SelectButtonOptions {
 })
 export class DtSelectButtonComponent {
   @Input({ required: true }) options: SelectButtonOptions[] | null = [];
-  @Output() optionSelected = new EventEmitter<string>();
+  @Input() buttonsClass: string = '';
+  @Output() optionSelected = new EventEmitter<any>();
 }
