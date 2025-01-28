@@ -90,7 +90,10 @@
       "specialCars": "Especiales"
     },
     "searchBar": {
-      "placeholder": "Busca un coche...",
+      "placeholder": {
+        "cars": "Busca un coche...",
+        "users": "Busca un usuario..."
+      },
       "button": "Buscar"
     },
     "menu": {

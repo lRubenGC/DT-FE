@@ -16,7 +16,9 @@
       />
       <input
         type="text"
-        [placeholder]="'HEADER.searchBar.placeholder' | translate"
+        [placeholder]="
+          'HEADER.searchBar.placeholder.' + (optionSelected | async) | translate
+        "
         required
         class="absolute w-full outline-none ps-9 leading-[38px] rounded-md border border-gray-400 text-gray-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white z-10"
         [ngClass]="{
@@ -44,6 +46,7 @@
       </div>
     </div>
   </div>
+
   <dt-button
     type="button"
     buttonClass="py-[8px] px-4"
