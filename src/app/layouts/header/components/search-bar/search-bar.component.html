@@ -1,18 +1,54 @@
+@let options = optionsVisibility$ | async;
+@if (onSearch$ | async) {}
+
 <div class="flex gap-2 items-center max-w-sm">
-  <div class="w-full">
-    <dt-input-text
-      type="text"
-      infoIcon="search"
-      [header]="'HEADER.searchBar.placeholder' | translate"
-      [required]="true"
-      bgColorClass="bg-gray-50"
-      (keydownEnter)="searchCar($event)"
-    />
+  <div class="w-full h-[40px]">
+    <div
+      dtClickOutside
+      (clickOutside)="optionsVisibility.next({ visible: false })"
+      class="relative h-full leading-[38px]"
+    >
+      <dt-button
+        class="absolute z-20 inset-y-0 ps-2"
+        type="icon"
+        icon="search"
+        iconSize="22px"
+      />
+      <input
+        type="text"
+        [placeholder]="'HEADER.searchBar.placeholder' | translate"
+        required
+        class="absolute w-full outline-none ps-9 leading-[38px] rounded-md border border-gray-400 text-gray-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white z-10"
+        [ngClass]="{
+          'rounded-b-none': options?.visible,
+        }"
+        [ngModel]="query$ | async"
+        (ngModelChange)="query.next($event)"
+        (keydown.enter)="onSearch.next()"
+        (focus)="optionsVisibility.next({ visible: true })"
+      />
+
+      <div
+        class="absolute top-full w-full overflow-hidden z-20 duration-200 border-x-gray-400 border-b-gray-400 bg-white text-gray-700 dark:bg-gray-700"
+        [ngClass]="{ border: options?.visible }"
+        [class.max-h-0]="!options?.visible"
+        [class.max-h-16]="options?.visible"
+      >
+        <div class="w-full h-10 flex justify-center items-center gap-2 p-1">
+          <dt-select-button
+            [options]="options$ | async"
+            (optionSelected)="optionSelected.next($event)"
+            buttonsClass="text-sm"
+          />
+        </div>
+      </div>
+    </div>
   </div>
   <dt-button
     type="button"
     buttonClass="py-[8px] px-4"
     [header]="'HEADER.searchBar.button' | translate"
     iconFill="#fff"
+    (onClick)="onSearch.next()"
   />
 </div>

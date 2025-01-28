@@ -25,7 +25,6 @@ import {
   Subject,
   switchMap,
   take,
-  tap,
 } from 'rxjs';
 import { DtLayoutComponent } from '../../../layouts/dt-layout/dt-layout.component';
 import { BasicCarCardComponent } from '../../basic-cars/components/basic-car-card/basic-car-card.component';
@@ -133,7 +132,6 @@ export class SearchComponent {
     switchMap(([{ query }, { carType, order, userProperty }]) =>
       this.getCars({ query, carType, order, userProperty }),
     ),
-    tap((v) => console.log(v)),
     shareReplay({ refCount: true, bufferSize: 1 }),
   );
   //#endregion CARS
